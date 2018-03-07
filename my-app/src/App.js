@@ -50,7 +50,7 @@ class App extends Component {
       //   imageUrl: require("./images/interstellar.jpeg")
       // },
       // ],
-      movies: [],
+      movies:[],
       tvShows: [{
         title: "Prison Break",
         rating: 4,
@@ -68,17 +68,19 @@ class App extends Component {
 
   componentDidMount() {
     axios.get('http://localhost:8080/movies/featured')
-    .then(function(response) {
-      let movieList = response.data.data;
-      console.log(movieList);
-      this.setState({
-        movies : movieList
-      });
-    }.bind(this)); 
+      .then(function (response) {
+        let movieList = response.data.data;
+        movieList.forEach(function(element) {
+          element.imageURL = require(""+element.imageURL);
+        });
+        this.setState({
+          movies : movieList
+        });
+      }.bind(this));
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-  
+
   render() {
     return (
       <div className="App" >

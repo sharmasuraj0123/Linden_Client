@@ -7,7 +7,7 @@ class Movies extends Component {
       this.props.movies.map((movie) =>
         <Grid.Column>
           <Card>
-            <Image height='250' width='300' src={movie.imageUrl} />
+            <Image height='250' width='280' src={movie.imageURL} />
             <Card.Content>
               <Card.Header>
                 {movie.name}

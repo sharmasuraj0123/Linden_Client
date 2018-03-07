@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Movies from './Movies';
 import TvShows from "./TvShows";
 import { Header, Grid, Input, Menu, Segment } from 'semantic-ui-react';
@@ -13,42 +14,43 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [{
-        title: "Kumki",
-        rating: 4,
-        imageUrl: require("./images/kumki.jpeg")
-      },
-      {
-        title: "MS Dhoni",
-        rating: 5,
-        imageUrl: require("./images/dhoni.jpeg")
-      },
-      {
-        title: "Thar Ragnorak",
-        rating: 2,
-        imageUrl: require("./images/thor.jpg")
-      },
-      {
-        title: "Arjun Reddy",
-        rating: 5,
-        imageUrl: require("./images/Reddy.jpeg")
-      },
-      {
-        title: "Orient Express",
-        rating: 1,
-        imageUrl: require("./images/murder.jpeg")
-      },
-      {
-        title: "Rush",
-        rating: 5,
-        imageUrl: require("./images/rush.jpeg")
-      },
-      {
-        title: "Interstellar",
-        rating: 5,
-        imageUrl: require("./images/interstellar.jpeg")
-      },
-      ],
+      // movies: [{
+      //   name: "Kumki",
+      //   rating: 4,
+      //   imageUrl: require("./images/kumki.jpeg")
+      // },
+      // {
+      //   name: "MS Dhoni",
+      //   rating: 5,
+      //   imageUrl: require("./images/dhoni.jpeg")
+      // },
+      // {
+      //   name: "Thar Ragnorak",
+      //   rating: 2,
+      //   imageUrl: require("./images/thor.jpg")
+      // },
+      // {
+      //   name: "Arjun Reddy",
+      //   rating: 5,
+      //   imageUrl: require("./images/Reddy.jpeg")
+      // },
+      // {
+      //   name: "Orient Express",
+      //   rating: 1,
+      //   imageUrl: require("./images/murder.jpeg")
+      // },
+      // {
+      //   name: "Rush",
+      //   rating: 5,
+      //   imageUrl: require("./images/rush.jpeg")
+      // },
+      // {
+      //   name: "Interstellar",
+      //   rating: 5,
+      //   imageUrl: require("./images/interstellar.jpeg")
+      // },
+      // ],
+      movies: [],
       tvShows: [{
         title: "Prison Break",
         rating: 4,
@@ -64,11 +66,22 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:8080/movies/featured')
+    .then(function(response) {
+      let movieList = response.data.data;
+      console.log(movieList);
+      this.setState({
+        movies : movieList
+      });
+    }.bind(this)); 
+  }
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   
   render() {
     return (
-      <div className="App">
+      <div className="App" >
         <Segment inverted>
           <Menu inverted pointing secondary>
             <Menu.Item name='movie' active={this.state.activeItem === 'movie'} onClick={this.handleItemClick} />
@@ -87,7 +100,7 @@ class App extends Component {
           (
             <div style={marginStyle}>
               <Header as='h2' block attached='top'>Featured Movies</Header>
-              <Segment block attached>
+              <Segment attached>
                 <Grid>
                   <Grid.Row columns={7}>
                     <Movies className='Movies' movies={this.state.movies} />

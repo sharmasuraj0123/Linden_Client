@@ -10,7 +10,7 @@ class Movies extends Component {
             <Image height='250' width='300' src={movie.imageUrl} />
             <Card.Content>
               <Card.Header>
-                {movie.title}
+                {movie.name}
               </Card.Header>
             </Card.Content>
             <Card.Content extra>

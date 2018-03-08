@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Movies from './Movies';
 import TvShows from "./TvShows";
-import { Header, Grid, Input, Menu, Segment } from 'semantic-ui-react';
+import { List, Header, Grid, Input, Menu, Segment } from 'semantic-ui-react';
 import './App.css';
 
 
@@ -14,43 +14,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // movies: [{
-      //   name: "Kumki",
-      //   rating: 4,
-      //   imageUrl: require("./images/kumki.jpeg")
-      // },
-      // {
-      //   name: "MS Dhoni",
-      //   rating: 5,
-      //   imageUrl: require("./images/dhoni.jpeg")
-      // },
-      // {
-      //   name: "Thar Ragnorak",
-      //   rating: 2,
-      //   imageUrl: require("./images/thor.jpg")
-      // },
-      // {
-      //   name: "Arjun Reddy",
-      //   rating: 5,
-      //   imageUrl: require("./images/Reddy.jpeg")
-      // },
-      // {
-      //   name: "Orient Express",
-      //   rating: 1,
-      //   imageUrl: require("./images/murder.jpeg")
-      // },
-      // {
-      //   name: "Rush",
-      //   rating: 5,
-      //   imageUrl: require("./images/rush.jpeg")
-      // },
-      // {
-      //   name: "Interstellar",
-      //   rating: 5,
-      //   imageUrl: require("./images/interstellar.jpeg")
-      // },
-      // ],
-      movies:[],
+      movies: [],
       tvShows: [{
         title: "Prison Break",
         rating: 4,
@@ -70,11 +34,11 @@ class App extends Component {
     axios.get('http://localhost:8080/movies/featured')
       .then(function (response) {
         let movieList = response.data.data;
-        movieList.forEach(function(element) {
-          element.imageURL = require(""+element.imageURL);
+        movieList.forEach(function (element) {
+          element.imageURL = require("" + element.imageURL);
         });
         this.setState({
-          movies : movieList
+          movies: movieList
         });
       }.bind(this));
   }
@@ -109,6 +73,52 @@ class App extends Component {
                   </Grid.Row>
                 </Grid>
               </Segment>
+              <hr></hr>
+              <br></br>
+              <hr></hr>
+              <Grid columns='equal'>
+                <Grid.Column>
+                  <Segment>
+                    <Header as='h3'>Opening this week</Header>
+                  </Segment>
+                  <List divided relaxed>
+
+                    {this.state.movies.map((movie) =>
+                      <List.Item>
+                        <List.Content floated='right'>
+                          <List.Header>MAR 9</List.Header>
+                        </List.Content>
+                        <List.Icon name='tree' size='large' verticalAlign='middle' />
+                        <List.Content>
+                          <List.Header as='a'>{movie.name}</List.Header>
+                        </List.Content>
+                      </List.Item>
+                    )}
+                    
+                  </List>
+                </Grid.Column>
+
+                <Grid.Column>
+                  <Segment>
+                    <Header as='h3'>Top Box Office</Header>
+                  </Segment>
+                  <List divided relaxed>
+                    
+                    {this.state.movies.map((movie) =>
+                      <List.Item>
+                        <List.Content floated='right'>
+                          <List.Header>$65 M</List.Header>
+                        </List.Content>
+                        <List.Icon name='tree' size='large' verticalAlign='middle' />
+                        <List.Content>
+                          <List.Header as='a'>{movie.name}</List.Header>
+                        </List.Content>
+                      </List.Item>
+                    )}
+
+                  </List>
+                </Grid.Column>
+              </Grid>
             </div>
           )
         }

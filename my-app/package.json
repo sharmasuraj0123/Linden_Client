@@ -7,6 +7,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-responsive-carousel": "^3.1.33",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "react-slick": "^0.20.0",
     "semantic-ui-css": "^2.3.0",

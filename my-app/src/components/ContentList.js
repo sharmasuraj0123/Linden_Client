@@ -6,7 +6,7 @@ class ContentList extends Component {
     return (
       <List divided relaxed>
         {this.props.movies.map((movie) =>
-          <List.Item>
+          <List.Item key={movie.id}>
             <List.Content floated='right'>
               <List.Header>{movie.rating}</List.Header>
             </List.Content>

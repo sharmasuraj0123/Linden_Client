@@ -6,9 +6,9 @@ class CardBox extends Component {
     return (
       <Segment attached>
         <Grid>
-          <Grid.Row columns={this.props.movies.length}>
+          <Grid.Row columns={7}>
             {this.props.movies.map((movie) =>
-              <Grid.Column>
+              <Grid.Column key={movie.id}>
                 <Card href={'/movies/'+movie.id}>
                   <Image height='250' width='280' src={movie.imageURL} />
                   <Card.Content>

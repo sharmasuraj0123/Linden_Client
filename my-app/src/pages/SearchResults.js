@@ -1,12 +1,9 @@
-import React, { Component,View }  from 'react'
-import { Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment, Sidebar,Pagination } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Grid, Segment, Pagination } from 'semantic-ui-react'
+import axios from 'axios';
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Movies from '../components/Movies';
-import Content from '../components/Content';
-import MenuExampleVertical from '../components/MenuExampleVertical';
-import ModalBasicExample from '../components/ModalBasicExample';
-import axios from 'axios';
 import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
 
 const SegmentStyle = {

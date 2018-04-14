@@ -1,7 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment,Checkbox, Input } from 'semantic-ui-react'
-
-
+import { Button, Form, Grid, Header, Message, Segment, Checkbox, Input } from 'semantic-ui-react'
 
 const ContactUsForm = () => (
     <div className='contactUs-form'>
@@ -40,17 +38,17 @@ const ContactUsForm = () => (
                             label='E-mail address'
                         />
                         <Form.Group inline >
-      <Form.Field >
-        <label>Phone Number</label>
-        <Input placeholder='(xxx)' style={{ width: 75 }}/>
-      </Form.Field>
-      <Form.Field>
-        <Input placeholder='xxx' style={{ width: 75 }}/>
-      </Form.Field>
-      <Form.Field>
-        <Input placeholder='xxxx' style={{ width: 75 }}/>
-      </Form.Field>
-    </Form.Group>
+                            <Form.Field >
+                                <label>Phone Number</label>
+                                <Input placeholder='(xxx)' style={{ width: 75 }} />
+                            </Form.Field>
+                            <Form.Field>
+                                <Input placeholder='xxx' style={{ width: 75 }} />
+                            </Form.Field>
+                            <Form.Field>
+                                <Input placeholder='xxxx' style={{ width: 75 }} />
+                            </Form.Field>
+                        </Form.Group>
                         <Form.TextArea label='About' placeholder='Tell us more about reason for Contact' />
                         <Form.Field
                             control={Checkbox}

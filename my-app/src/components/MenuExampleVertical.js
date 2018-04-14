@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Label, Menu } from 'semantic-ui-react'
+import { Label, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleVertical extends Component {
     state = { activeItem: 'All' }

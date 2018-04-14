@@ -1,9 +1,8 @@
 import React from 'react'
-import { Image, List, Header, Button } from 'semantic-ui-react'
+import { List, Header } from 'semantic-ui-react'
 
 const ListExampleVerticallyAligned = () => (
   <div>
-
     <List horizontal>
       <List.Item>
         <List.Content verticalAlign='top'>

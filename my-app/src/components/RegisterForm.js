@@ -1,7 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment,Checkbox } from 'semantic-ui-react'
-
-
+import { Button, Form, Grid, Header, Message, Segment, Checkbox } from 'semantic-ui-react'
 
 const RegisterForm = () => (
     <div className='register-form'>

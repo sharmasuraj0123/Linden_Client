@@ -12,8 +12,9 @@ class SearchResultsPage extends Component {
 
     componentDidMount() {
         const values = queryString.parse(this.props.location.search);
-        console.log(values.query);
-        // axios.get('http://localhost:8080/search?query='+values.query)
+        let keywords = values.query.replace(/ /g, '+');
+        console.log(keywords);
+        // axios.get('http://localhost:8080/search?keywords='+keywords+'&page=1')
         //     .then(function (response) {
         //         let movieList = response.data.data;
         //         movieList.forEach(function (element) {

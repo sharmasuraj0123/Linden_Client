@@ -20,18 +20,6 @@ class NavBar extends Component {
         super(props);
         this.state = {
             movies: [],
-            tvShows: [{
-                name: "Prison Break",
-                rating: 4,
-                imageUrl: require("./images/prison_break.jpg")
-            },
-                {
-                    name: "Pitchers",
-                    rating: 5,
-                    imageUrl: require("./images/pitcher.png")
-                }
-            ],
-            activeItem: 'movie'
         };
     }
     // componentDidMount() {
@@ -67,7 +55,7 @@ class NavBar extends Component {
             <div >
                 <Menu top  inverted > 
                 <Menu.Item>
-                <Image src= {require("./images/Logo.png")} circular style={{ width: 100, height:100 }}/>
+                <Image src= {require("../images/Logo.png")} circular style={{ width: 100, height:100 }}/>
                 </Menu.Item>
                 {/* <Header as='h1' inverted size = 'huge' verticalAlign='middle'>LINDEN</Header>    */}
                 <Menu.Item >

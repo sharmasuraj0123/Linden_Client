@@ -1,15 +1,13 @@
 import React, { Component,View }  from 'react'
 import { Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment, Sidebar,Pagination } from 'semantic-ui-react'
-import NavBar from "./NavBar";
-import Footer from "./Footer";
-import Movies from './Movies';
-import Content from './Content';
-import MenuExampleVertical from './MenuExampleVertical';
-import ModalBasicExample from './ModalBasicExample';
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import Movies from '../components/Movies';
+import Content from '../components/Content';
+import MenuExampleVertical from '../components/MenuExampleVertical';
+import ModalBasicExample from '../components/ModalBasicExample';
 import axios from 'axios';
-import StepExampleLinkClickable from "./StepExampleLinkClickable";
-import './App.css';
-
+import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
 
 const SegmentStyle = {
     flex: 1,
@@ -18,26 +16,11 @@ const SegmentStyle = {
    
 };
 
-
-
-
 class SearchResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
             movies: [],
-            tvShows: [{
-                title: "Prison Break",
-                rating: 4,
-                imageUrl: require("./images/prison_break.jpg")
-            },
-                {
-                    title: "Pitchers",
-                    rating: 5,
-                    imageUrl: require("./images/pitcher.png")
-                }
-            ],
-            activeItem: 'movie'
         };
     }
 
@@ -50,7 +33,7 @@ class SearchResults extends Component {
                 let movieList = response.data.movies;
                 let listLength=0;
                 movieList.forEach(function (element) {
-                    element.imageURL = require("./images/Logo.png");
+                    element.imageURL = require("../images/Logo.png");
                     listLength++;
                 });
                 this.setState({

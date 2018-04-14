@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
-import SearchResults from './SearchResults';
-import LoginForm from './LoginLayout';
+import SearchResults from './pages/SearchResults';
+import LoginForm from './components/LoginLayout';
 import './App.css';
-import RegisterForm from './RegisterForm';
+import RegisterForm from './components/RegisterForm';
 import Cookies from 'universal-cookie';
 
 class App extends Component {

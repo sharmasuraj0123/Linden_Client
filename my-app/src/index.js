@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import ListExampleVerticallyAligned from  "./ListExampleVerticallyAligned";
-import ModalBasicExample from  "./ModalBasicExample";
-import SearchResults from "./SearchResults";
+import SearchResults from "./pages/SearchResults";
 import registerServiceWorker from './registerServiceWorker';
 import 'semantic-ui-css/semantic.min.css';
 

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import HomePage from './pages/HomePage'
-import { BrowserRouter as Router } from 'react-router-dom';
-import Route from 'react-router-dom/Route'
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+import HomePage from './pages/HomePage';
+import SearchResultsPage from './pages/SearchResultsPage';
+import MoviePage from './pages/MoviePage';
 import './App.css';
 
 class App extends Component {
@@ -17,7 +19,10 @@ class App extends Component {
     axios.get('http://localhost:8080/movies/featured')
       .then(function (response) {
         let movieList = response.data.data;
+        let i = 1;
         movieList.forEach(function (element) {
+          // remove when the response has content id.
+          element.id = i++;
           element.imageURL = require("" + element.imageURL);
         });
         this.setState({
@@ -30,16 +35,28 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          <Route path='/' exact render={
-            () => {
-              return (<HomePage movies={this.state.movies} />);
-            }
-          } />
-          <Route path='/movies/featured' exact render={
-            () => {
-              return (<h1> Featured Movies </h1>);
-            }
-          } />
+          <Switch>
+            <Route path='/' exact render = {
+              () => {
+                return (<HomePage movies={this.state.movies} />);
+              }
+            } />
+            <Route path='/search' exact render = {
+              () => {
+                return (<SearchResultsPage />);
+              }
+            } />
+            <Route path='/movies/featured' exact render = {
+              () => {
+                return (<h1> Featured Movies </h1>);
+              }
+            } />
+            <Route path='/movies/:contentid' exact render = {
+              () => {
+                return (<MoviePage />);
+              }
+            } />
+          </Switch>
         </div>
       </Router>
     );

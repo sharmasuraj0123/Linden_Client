@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Header, Grid, Segment } from 'semantic-ui-react';
 import CardBox from '../components/CardBox';
-import ContentList from '../components/ContentList'
+import ContentList from '../components/ContentList';
+import SearchInput from '../components/SearchInput';
 
 const marginStyle = {
   'margin': 20
@@ -11,6 +12,8 @@ class HomePage extends Component {
   render() {
     return (
       <div style={marginStyle} className="App" >
+        <Header size='huge'>Linden</Header>
+        <SearchInput />
         <Header as='h2' block attached='top'>Featured Movies</Header>
         <CardBox className='Movies' movies={this.props.movies} />
         <br></br>

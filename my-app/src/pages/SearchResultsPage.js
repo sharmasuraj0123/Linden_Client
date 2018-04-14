@@ -3,6 +3,8 @@ import { Header } from 'semantic-ui-react';
 import SearchInput from '../components/SearchInput';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 const marginStyle = {
     'margin': 20
@@ -11,18 +13,15 @@ const marginStyle = {
 class SearchResultsPage extends Component {
 
     componentDidMount() {
+        const cookies = new Cookies();
+        console.log(cookies.get('username'));
         const values = queryString.parse(this.props.location.search);
         let keywords = values.query.replace(/ /g, '+');
-        console.log(keywords);
-        // axios.get('http://localhost:8080/search?keywords='+keywords+'&page=1')
-        //     .then(function (response) {
-        //         let movieList = response.data.data;
-        //         movieList.forEach(function (element) {
-        //         });
-        //         this.setState({
-        //             movies: movieList
-        //         });
-        //     }.bind(this));
+        // console.log(keywords);
+        axios.get('http://localhost:8080/search?keywords='+keywords+'&page=1')
+            .then(function (response) {
+                console.log(response);
+            });
     }
 
     render() {

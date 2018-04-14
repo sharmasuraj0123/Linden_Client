@@ -7,6 +7,7 @@ import SearchResultsPage from './pages/SearchResultsPage';
 import MoviePage from './pages/MoviePage';
 import NotFoundPage from './pages/NotFoundPage';
 import './App.css';
+import Cookies from 'universal-cookie';
 
 class App extends Component {
   constructor(props) {
@@ -33,6 +34,8 @@ class App extends Component {
   }
 
   render() {
+    const cookies = new Cookies();
+    cookies.set('username', 'Krishna');
     return (
       <Router>
         <div className='App'>

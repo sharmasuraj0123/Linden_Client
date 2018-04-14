@@ -5,6 +5,7 @@ import Route from 'react-router-dom/Route';
 import HomePage from './pages/HomePage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import MoviePage from './pages/MoviePage';
+import NotFoundPage from './pages/NotFoundPage';
 import './App.css';
 
 class App extends Component {
@@ -56,6 +57,7 @@ class App extends Component {
                 return (<MoviePage />);
               }
             } />
+            <Route component = {NotFoundPage} />
           </Switch>
         </div>
       </Router>

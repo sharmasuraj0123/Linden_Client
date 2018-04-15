@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { Input } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
-import Cookies from 'universal-cookie';
 
 class SearchInput extends Component {
 
-
-    
     handleClick(query) { 
         this.props.history.push('/search?keywords='+this.query+'&page=1');
         window.location.reload();
-
     }
 
     render() {

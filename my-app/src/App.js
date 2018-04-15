@@ -36,7 +36,6 @@ class App extends Component {
 
   render() {
     const cookies = new Cookies();
-   
     return (
       <Router>
         <div className='App'>
@@ -75,4 +74,3 @@ class App extends Component {
 }
 
 export default App;
-

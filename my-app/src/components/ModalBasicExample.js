@@ -7,26 +7,19 @@ import Cookies from 'universal-cookie';
 import UserMenu from "./UserMenu";
 
 class ModalBasicExample extends Component {
-  state = { openLogin: false, openRegister: false, openContactUs: false }
 
-  
-  
+  state = { openLogin: false, openRegister: false, openContactUs: false }  
   showContactUs = dimmer => () => this.setState({ dimmer, openContactUs: true })
   closeContactUs = () => this.setState({ openContactUs: false })
 
   render() {
-    const { openLogin, dimmer, openRegister, openContactUs } = this.state
-    const cookies = new Cookies();
-    console.log(cookies.get('username'));
-    
+    const { dimmer, openContactUs } = this.state
+    const cookies = new Cookies();    
     let LoginButton = cookies.get('username') ?    (<UserMenu/>) :(<LoginForm/> );
     let RegisterButton = cookies.get('username') ?   (<div />): (<RegisterForm />);
 
-   
-
     return (
       <div fluid style={{ paddingBottom: '1em' }}>
-
         <Button color='black' size='mini' href='about' style={{ maxWidth: 80 }}>Seasons</Button>
         <Button color='black' size='mini' href='about' style={{}}>About Linden</Button>
         <Button color='black' size='mini' href='lindenCritics' style={{ maxWidth: 150 }}>Meet Our Critics</Button>
@@ -38,7 +31,6 @@ class ModalBasicExample extends Component {
         </Modal>
         {LoginButton}
         {RegisterButton}
-        
       </div>
     )
   }

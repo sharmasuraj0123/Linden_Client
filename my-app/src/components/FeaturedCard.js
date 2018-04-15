@@ -2,12 +2,12 @@ import React from 'react'
 import { Card, Segment } from 'semantic-ui-react'
 
 const FeaturedCard = () => (
-  <Segment>
-    <Card style={{ width: 800 }}
+  
+    <Card style={{ width: 200,height: 250 }}
       image={require("../images/Logo.png")}
       header='Featured'
     />
-  </Segment>
+  
 )
 
 export default FeaturedCard;

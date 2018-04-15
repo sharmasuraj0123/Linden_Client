@@ -10,6 +10,7 @@ import axios from 'axios';
 import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
 import FeaturedCard from "../components/FeaturedCard";
 import DescriptionCard from "../components/DescriptionCard";
+import SideBarList from "../components/SideBarList";
 
 
 
@@ -20,7 +21,7 @@ const SegmentStyle = {
 
 };
 
-const src = require('./images/Logo.png')
+const src = require('../images/Logo.png')
 
 
 class Home extends Component {
@@ -31,12 +32,12 @@ class Home extends Component {
             tvShows: [{
                 title: "Prison Break",
                 rating: 4,
-                imageUrl: require("./images/prison_break.jpg")
+                imageUrl: require("../images/prison_break.jpg")
             },
             {
                 title: "Pitchers",
                 rating: 5,
-                imageUrl: require("./images/pitcher.png")
+                imageUrl: require("../images/pitcher.png")
             }
             ],
             activeItem: 'movie'
@@ -52,7 +53,7 @@ class Home extends Component {
                 let movieList = response.data.movies;
                 let listLength = 0;
                 movieList.forEach(function (element) {
-                    element.imageURL = require("./images/Logo.png");
+                    element.imageURL = require("../images/Logo.png");
                     listLength++;
                 });
                 this.setState({
@@ -73,8 +74,8 @@ class Home extends Component {
 
             <Segment raised style={SegmentStyle}>
                 < NavBar />
-                <Grid columns>
-                    <Grid.Column width={10}>
+                <Grid columns divided style={{paddingTop:'2em'}}>
+                    <Grid.Column width={11}>
                         <Segment>
                             <List horizontal>
                                 <List.Item>
@@ -86,61 +87,14 @@ class Home extends Component {
                                 <List.Item>
                                     <FeaturedCard />
                                 </List.Item>
-
                             </List>
                         </Segment>
-                    </Grid.Column>
-                    <Grid.Column width={5}>
-                        <Segment raised >
-                            <List horizontal>
-                                <List.Item>
-                                    <Header as='h3' size='mini'>Movies In Theater</Header>
-                                    <List.Item>
-                                        <List.Content>
-                                            <List.Header as='a'>Opening This Week</List.Header>
-                                        </List.Content>
-                                        <List.Content>
-                                            <List.Header as='a'>Top Box Office</List.Header>
-                                        </List.Content>
-                                        <List.Content>
-                                            <List.Header as='a'>Coming Soon</List.Header>
-                                        </List.Content>
-                                        <List.Content>
-                                            <List.Header as='a'>Fresh</List.Header>
-                                        </List.Content>
-                                        <List.Content>
-                                            <List.Header as='a'>Featured</List.Header>
-                                        </List.Content>
-                                    </List.Item>
-                                </List.Item>
-                                <List.Item>
 
-                                    <Header as='h3' size='mini'>Top Performers</Header>
-
-                                    <List.Item>
-                                        <List.Content>
-                                            <List.Header as='a'>Top Rated</List.Header>
-                                        </List.Content>
-                                    </List.Item>
-                                    <List.Item>
-                                        <List.Content>
-                                            <List.Header as='a'>Critically Acclaimed</List.Header>
-                                        </List.Content>
-                                    </List.Item>
-                                    <List.Item>
-                                        <List.Content>
-                                            <List.Header as='a'>Trending Now</List.Header>
-                                        </List.Content>
-                                    </List.Item>
-                                </List.Item>
-                            </List>
-                        </Segment>
-                    </Grid.Column>
                     <Divider horizontal>Certified Summer Collection</Divider>
-                    <DescriptionCard/>
+                   
                     <List horizontal>
                                 <List.Item>
-                                    <FeaturedCard />
+                                <DescriptionCard/>
                                 </List.Item>
                                 <List.Item>
                                     <FeaturedCard />
@@ -151,16 +105,17 @@ class Home extends Component {
                                 <List.Item>
                                     <FeaturedCard />
                                 </List.Item>
+                               
                               
 
                             </List>
                     <Divider horizontal>News and features</Divider>
 
-                    <Image.Group size='small'>
-                        <Image src={src} />
-                        <Image src={src} />
-                        <Image src={src} />
-                        <Image src={src} />
+                    <Image.Group size='small' divided>
+                        <Image src={require('../images/new1.png')} style={{ width: 150,height: 150 }} />
+                        <Image src={require('../images/new2.png')} style={{ width: 150,height: 150 }}/>
+                        <Image src={require('../images/new3.png')} style={{ width: 150,height: 150 }}/>
+                        <Image src={require('../images/new4.png')} style={{ width: 150,height: 150 }}/>
                     </Image.Group>
                     <Divider horizontal>Headlines Today</Divider>
                     <Feed>
@@ -226,6 +181,25 @@ class Home extends Component {
     </Feed.Event>
   </Feed>
   
+
+
+
+
+
+  </Grid.Column>
+                    <Grid.Column width={5}>
+                        <Segment raised >
+                       <SideBarList title='Opening This week'/>
+                        </Segment>
+                        <Segment raised >
+                       <SideBarList title='Coming Soon'/>
+                        </Segment>
+                        <Segment raised >
+                       <SideBarList title='Critic Picks'/>
+                        </Segment>
+                    </Grid.Column>
+
+
                 </Grid>
                 <Footer />
             </Segment>

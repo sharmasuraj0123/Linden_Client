@@ -138,7 +138,7 @@ class Home extends Component {
                     </Grid.Column>
                     <Divider horizontal>Certified Summer Collection</Divider>
                     <DescriptionCard/>
-                    <List horizontal>
+                    <List horizontal >
                                 <List.Item>
                                     <FeaturedCard />
                                 </List.Item>

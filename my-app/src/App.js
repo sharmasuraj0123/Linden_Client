@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import SearchResults from './SearchResults';
 import LoginForm from './LoginLayout';
+import Home from './Home.js';
 import './App.css';
 import RegisterForm from './RegisterForm';
 
@@ -39,6 +40,11 @@ class App extends Component {
             <Route path='/search' exact render = {
               () => {
                 return (<SearchResults/>);
+              }
+            } />
+            <Route path='/home' exact render = {
+              () => {
+                return (<Home/>);
               }
             } />
             

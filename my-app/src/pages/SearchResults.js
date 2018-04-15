@@ -8,12 +8,6 @@ import Footer from "../components/Footer";
 import Movies from '../components/Movies';
 import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
 
-const SegmentStyle = {
-    flex: 1,
-    marginLeft: "10em",
-    marginRight: "10em",
-};
-
 class SearchResults extends Component {
     constructor(props) {
         super(props);
@@ -46,15 +40,15 @@ class SearchResults extends Component {
 
     render() {
         return (
-            <Segment raised padded>
-                < NavBar />
+            <div>
+                <NavBar />
                 <Segment padded >
                     <StepExampleLinkClickable numberOfmovies={this.state.numberOfmovies} />
                     <Movies className='Movies' movies={this.state.movies} />
                     <Pagination defaultActivePage={this.state.page} totalPages={10} horizontalAlign='middle' />
                 </Segment>
                 <Footer />
-            </Segment>
+            </div>
         );
     }
 }

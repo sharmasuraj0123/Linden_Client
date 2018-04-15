@@ -19,7 +19,6 @@ class Movies extends Component {
                   <Rating defaultRating={movie.score} maxRating={5} disabled />
                   <Label>75 Reviews</Label  >
                 </Item.Extra>
-                
               </Item.Content>
             </Item>
           </Item.Group>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import NavBar from './components/NavBar';
+import Home from './pages/Home';
 import Route from 'react-router-dom/Route';
 import SearchResults from './pages/SearchResults';
 import LoginForm from './components/LoginLayout';
@@ -43,7 +43,7 @@ class App extends Component {
           <Switch>
           <Route path='/' exact render = {
               () => {
-                return (<NavBar />);
+                return (<Home />);
               }
             } />
             <Route path='/search' exact render = {

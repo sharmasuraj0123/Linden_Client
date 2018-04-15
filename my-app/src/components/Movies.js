@@ -12,13 +12,14 @@ class Movies extends Component {
               <Item.Content>
                 <Item.Header as='a'>{movie.name}</Item.Header>
                 <Item.Meta>
-                  <span className='cinema'>{movie.releaseDate}</span>
+                  <span className='cinema'>{movie.year}</span>
                 </Item.Meta>
                 <Item.Description>{movie.details}</Item.Description>
                 <Item.Extra>
-                  <Rating defaultRating={movie.score * 5} maxRating={5} disabled />
-                  <Label>75 Reviews</Label>
+                  <Rating defaultRating={movie.score} maxRating={5} disabled />
+                  <Label>75 Reviews</Label  >
                 </Item.Extra>
+                
               </Item.Content>
             </Item>
           </Item.Group>

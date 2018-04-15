@@ -1,6 +1,10 @@
 import React from 'react';
 import { Button, Form, Grid, Header, Message, Segment, Checkbox } from 'semantic-ui-react';
 
+function handleLogin(e, data) {
+    console.log(data);
+}
+
 const LoginForm = () => (
     <div className='login-form'>
         {/*
@@ -44,7 +48,7 @@ const LoginForm = () => (
                             label={<label>Remember Me</label>}
                             fluid
                         />
-                        <Button color='black' fluid size='large'>Login</Button>
+                        <Button color='black' fluid size='large' onClick={(event, data) => handleLogin()}>Login</Button>
                     </Segment>
                 </Form>
                 <Message>
@@ -55,4 +59,4 @@ const LoginForm = () => (
     </div>
 )
 
-export default LoginForm
+export default LoginForm;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Segment, Pagination } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import queryString from 'query-string';
-import { withRouter } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Movies from '../components/Movies';
@@ -10,8 +10,8 @@ import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
 
 const SegmentStyle = {
     flex: 1,
-    marginLeft: "3em",
-    marginRight: "3em",
+    marginLeft: "10em",
+    marginRight: "10em",
 };
 
 class SearchResults extends Component {
@@ -19,19 +19,21 @@ class SearchResults extends Component {
         super(props);
         this.state = {
             movies: [],
+            page: 1
         };
     }
 
     componentDidMount() {
         const values = queryString.parse(this.props.location.search);
-        let keywords = values.query.replace(/ /g, '+');
-        axios.get('http://localhost:8080/search?keywords=' + keywords + '&page=1')
+        let keywords = values.keywords.replace(/ /g, '+');
+        let page = values.page;
+        axios.get('http://localhost:8080/search?keywords=' + keywords + '&page=' + page)
             .then(function (response) {
                 console.log(response);
                 let movieList = response.data.movies;
                 let listLength = 0;
                 movieList.forEach(function (element) {
-
+                    element.year = element.releaseDate.split('-')[0];
                     element.imageURL = require("../images/Logo.png");
                     listLength++;
                 });
@@ -42,21 +44,17 @@ class SearchResults extends Component {
             }.bind(this));
     }
 
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
     render() {
         return (
-
-            <Segment raised style={SegmentStyle}>
+            <Segment raised padded>
                 < NavBar />
-                <Segment>
+                <Segment padded >
                     <StepExampleLinkClickable numberOfmovies={this.state.numberOfmovies} />
                     <Movies className='Movies' movies={this.state.movies} />
-                    <Pagination defaultActivePage={5} totalPages={10} horizontalAlign='middle' />
+                    <Pagination defaultActivePage={this.state.page} totalPages={10} horizontalAlign='middle' />
                 </Segment>
                 <Footer />
             </Segment>
-
         );
     }
 }

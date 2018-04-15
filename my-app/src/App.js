@@ -36,7 +36,7 @@ class App extends Component {
 
   render() {
     const cookies = new Cookies();
-    cookies.set('username', 'Krishna');
+   
     return (
       <Router>
         <div className='App'>

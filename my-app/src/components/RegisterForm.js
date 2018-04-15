@@ -1,8 +1,59 @@
-import React from 'react'
-import { Button, Form, Grid, Header, Message, Segment, Checkbox } from 'semantic-ui-react'
+import React, {Component} from 'react';
+import { Button, Form, Grid, Header, Message, Segment, Modal,Checkbox } from 'semantic-ui-react';
+import Cookies from 'universal-cookie';
+import axios from 'axios';
 
-const RegisterForm = () => (
-    <div className='register-form'>
+
+
+let email = '';
+let password = '';
+let firstName ='';
+let lastName = '';
+
+
+class RegisterForm extends Component {
+    constructor(props) {
+        super(props); 
+  this.state = { openLogin: false, error:null}
+    }
+
+    showRegister = dimmer => () => this.setState({ dimmer, openRegister: true })
+    closeRegister = () => this.setState({ openRegister: false })
+
+ 
+  handleRegister() {
+    axios.post('http://localhost:8080/register', {
+        firstName: firstName,
+        lastName:lastName,
+        email: email,
+        password: password,
+    })
+        .then(function (response) {
+            
+            response = response.data;
+            if (response.status === 'ERROR') {
+                console.log('Invalid Creds!');
+                
+                
+            } else {
+                response = response.obj;
+                const cookies = new Cookies();
+                cookies.set('username', response.firstName);
+                console.log(cookies.get('username'));
+            }
+        }).then (this.closeRegister)
+        .catch(function (error) {
+            console.log(error)
+        })
+}
+    render() {
+      const { openRegister, dimmer } = this.state
+  
+      return (
+        <Modal trigger={<Button color='black' size='mini' onClick={this.showRegister('blurring')}>Register</Button>}
+        dimmer={dimmer} open={openRegister} onClose={this.closeRegister} style={{ marginTop: '15em', marginLeft: "25em", maxWidth: 550 }}>
+        <Modal.Content>
+        <div className='register-form'>
         {/*
       Heads up! The styles below are necessary for the correct render of this example.
       You can do same with CSS, the main idea is that all the elements up to the `Grid`
@@ -27,14 +78,21 @@ const RegisterForm = () => (
                 <Form size='large'>
                     <Segment stacked>
                         <Form.Group widths='equal'>
-                            <Form.Input fluid id='form-subcomponent-shorthand-input-first-name' label='First name' placeholder='First name' />
-                            <Form.Input fluid id='form-subcomponent-shorthand-input-last-name' label='Last name' placeholder='Last name' />
+                            <Form.Input fluid id='form-subcomponent-shorthand-input-first-name' 
+                            label='First name' 
+                            placeholder='First name' 
+                            onChange={(e, data) => firstName = data.value}/>
+                            <Form.Input fluid id='form-subcomponent-shorthand-input-last-name' 
+                            label='Last name' 
+                            placeholder='Last name' 
+                            onChange={(e, data) => lastName = data.value}/>
                         </Form.Group>
                         <Form.Input
                             fluid
                             icon='user'
                             iconPosition='left'
                             placeholder='E-mail address'
+                            onChange={(e, data) => email = data.value}
                         />
                         <Form.Input
                             fluid
@@ -42,6 +100,7 @@ const RegisterForm = () => (
                             iconPosition='left'
                             placeholder='Password'
                             type='password'
+                            onChange={(e, data) => password = data.value}
                         />
                         
                         <Form.Field
@@ -49,7 +108,10 @@ const RegisterForm = () => (
                             label={<label>I agree to the Terms and Conditions</label>}
                             fluid
                         />
-                        <Button color='black' fluid size='large'>Sign up</Button>
+                        <Button 
+                        color='black' 
+                        fluid size='large' 
+                        onClick={(event, data) => this.handleRegister()}>Sign up</Button>
                     </Segment>
                 </Form>
                 <Message>
@@ -58,6 +120,11 @@ const RegisterForm = () => (
             </Grid.Column>
         </Grid>
     </div>
-)
+  </Modal.Content>
+      </Modal>
+      )
+    }
+  }
 
-export default RegisterForm;
+
+  export default RegisterForm;

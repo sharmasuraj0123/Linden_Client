@@ -47,7 +47,7 @@ class NavBar extends Component {
 
                         <Grid.Column >
                           <Segment raised >
-                            <Header as='h3' size='mini'>Movies In Theater</Header>
+                            <Header as='h3' size='tiny'>Movies In Theater</Header>
                             <List>
                               <List.Item>
                                 <List.Content>
@@ -68,7 +68,7 @@ class NavBar extends Component {
                               </List.Item>
                             </List>
 
-                            <Header as='h3' size='mini'>Top Performers</Header>
+                            <Header as='h3' size='tiny'>Top Performers</Header>
 
                             <List>
                               <List.Item>
@@ -89,17 +89,12 @@ class NavBar extends Component {
                             </List>
                           </Segment>
                         </Grid.Column>
-
-
-
                         <Grid.Column>
                           <FeaturedCard />
                         </Grid.Column>
-
                         <Grid.Column>
                           <FeaturedCard />
                         </Grid.Column>
-
                       </Grid>
                     </Dropdown.Item>
                   </Dropdown.Menu>
@@ -189,12 +184,8 @@ class NavBar extends Component {
                                   </List.Content>
                                 </List.Item>
                               </List>
-
                             </Grid.Column>
-
                           </Grid>
-
-
                         </Dropdown.Item>
                         <Dropdown.Item>List Item</Dropdown.Item>
                         <ModalBasicExample />
@@ -207,8 +198,6 @@ class NavBar extends Component {
               </Menu>
             </div>
           </Menu.Item>
-
-
 
           <Menu.Item position='right'>
             <div>

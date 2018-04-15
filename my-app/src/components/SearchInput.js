@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 class SearchInput extends Component {
 
     handleClick(query) {
-        this.props.history.push('/search?query='+this.query);
+        this.props.history.push('/search?keywords='+this.query+'&page=1');
     }
 
     render() {

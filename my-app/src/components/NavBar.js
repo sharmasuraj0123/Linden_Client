@@ -1,27 +1,10 @@
 import React, { Component } from 'react'
-import { Input, Menu, Segment, Dropdown, Image, Header, List, Grid, Button } from 'semantic-ui-react'
+import { Menu, Segment, Dropdown, Image, Header, List, Grid, Button } from 'semantic-ui-react'
 import ModalBasicExample from './ModalBasicExample';
 import FeaturedCard from './FeaturedCard';
+import SearchInput from './SearchInput';
 
 class NavBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: [],
-    };
-  }
-  // componentDidMount() {
-  //     axios.get('http://localhost:8080/search?keywords=pirate&page=1')
-  //       .then(function (response) {
-  //         let movieList = response.data.data;
-  //         movieList.forEach(function (element) {
-  //           element.imageURL = require("" + element.imageURL);
-  //         });
-  //         this.setState({
-  //           movies: movieList
-  //         });
-  //       }.bind(this));
-  //   };
 
   render() {
     // const { activeItem } = 'home';
@@ -118,16 +101,9 @@ class NavBar extends Component {
                         </Grid.Column>
 
                       </Grid>
-
-
-
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-
-
-
-
                 <Dropdown item simple text='TV Shows'>
                   <Dropdown.Menu>
                     <Dropdown.Item fluid>List Item</Dropdown.Item>
@@ -237,7 +213,7 @@ class NavBar extends Component {
           <Menu.Item position='right'>
             <div>
               <ModalBasicExample />
-              <Input icon='search' fluid placeholder='Search..' />
+              <SearchInput />
             </div>
             {/* <Dropdown trigger={trigger} options={options_profile} pointing='top right' icon={null} /> */}
           </Menu.Item>

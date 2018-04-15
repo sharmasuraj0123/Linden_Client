@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import NavBar from './components/NavBar';
 import Route from 'react-router-dom/Route';
 import SearchResults from './pages/SearchResults';
 import LoginForm from './components/LoginLayout';
 import './App.css';
 import RegisterForm from './components/RegisterForm';
 import Cookies from 'universal-cookie';
+import NotFoundPage from './pages/NotFoundPage';
 
 class App extends Component {
   constructor(props) {
@@ -39,12 +41,16 @@ class App extends Component {
       <Router>
         <div className='App'>
           <Switch>
-            <Route path='/search' exact render = {
+          <Route path='/' exact render = {
               () => {
-                return (<SearchResults/>);
+                return (<NavBar />);
               }
             } />
-            
+            <Route path='/search' exact render = {
+              () => {
+                return (<SearchResults />);
+              }
+            } />
             <Route path='/movies/featured' exact render = {
               () => {
                 return (<h1> Featured Movies </h1>);
@@ -60,6 +66,7 @@ class App extends Component {
                 return (<RegisterForm/>);
               }
             } />
+            <Route component={NotFoundPage} />
           </Switch>
         </div>
       </Router>

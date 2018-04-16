@@ -32,8 +32,8 @@ class RegisterForm extends Component {
                 } else {
                     response = response.obj;
                     const cookies = new Cookies();
-                    cookies.set('username', response.firstName);
-                    console.log(cookies.get('username'));
+                    //cookies.set('username', response.firstName);
+                    //console.log(cookies.get('username'));
                 }
             }).then(this.closeRegister)
             .catch(function (error) {

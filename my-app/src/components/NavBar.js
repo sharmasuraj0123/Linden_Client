@@ -32,58 +32,6 @@ class NavBar extends Component {
               <Menu inverted>
                 <Dropdown item simple text='Movies' >
                   <Dropdown.Menu fluid={'true'} selection={'true'}>
-                    <Dropdown.Item fluid={'true'}>
-                      <Grid relaxed columns={4}>
-                        <Grid.Column >
-                          <Segment raised >
-                            <Header as='h3' size='tiny'>Movies In Theater</Header>
-                            <List>
-                              <List.Item>
-                                <List.Content>
-                                  <List.Header as='a'>Opening This Week</List.Header>
-                                </List.Content>
-                                <List.Content>
-                                  <List.Header as='a'>Top Box Office</List.Header>
-                                </List.Content>
-                                <List.Content>
-                                  <List.Header as='a'>Coming Soon</List.Header>
-                                </List.Content>
-                                <List.Content>
-                                  <List.Header as='a'>Fresh</List.Header>
-                                </List.Content>
-                                <List.Content>
-                                  <List.Header as='a'>Featured</List.Header>
-                                </List.Content>
-                              </List.Item>
-                            </List>
-                            <Header as='h3' size='tiny'>Top Performers</Header>
-                            <List>
-                              <List.Item>
-                                <List.Content>
-                                  <List.Header as='a'>Top Rated</List.Header>
-                                </List.Content>
-                              </List.Item>
-                              <List.Item>
-                                <List.Content>
-                                  <List.Header as='a'>Critically Acclaimed</List.Header>
-                                </List.Content>
-                              </List.Item>
-                              <List.Item>
-                                <List.Content>
-                                  <List.Header as='a'>Trending Now</List.Header>
-                                </List.Content>
-                              </List.Item>
-                            </List>
-                          </Segment>
-                        </Grid.Column>
-                        <Grid.Column>
-                          <FeaturedCard />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <FeaturedCard />
-                        </Grid.Column>
-                      </Grid>
-                    </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item simple text='TV Shows'>
@@ -161,16 +109,15 @@ class NavBar extends Component {
                           </Grid>
                         </Dropdown.Item>
                         <Dropdown.Item>List Item</Dropdown.Item>
-                        <ModalBasicExample />
                       </Dropdown.Menu>
                     </Dropdown.Item>
                     <Dropdown.Item>List Item</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-
               </Menu>
             </div>
           </Menu.Item>
+          
           <Menu.Item position='right'>
             <div>
               <ModalBasicExample />

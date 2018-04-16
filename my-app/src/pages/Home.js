@@ -58,17 +58,7 @@ class Home extends Component {
                                  </Segment>
 
                                  </List.Item>
-                                 </List>
-
-                               
-                                
-
-                                
-
-                                
-                                
-
-                            
+                                 </List>               
 
                         <Divider horizontal style={DividerStyle}> Fall Collections</Divider>
                         <List horizontal>
@@ -187,8 +177,6 @@ class Home extends Component {
                                 </Feed.Content>
                             </Feed.Event>
                         </Feed>
-
-
                         <Feed>
                             <Feed.Event>
                                 <Feed.Label>

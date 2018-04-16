@@ -17,37 +17,12 @@ class RegisterForm extends Component {
     showRegister = dimmer => () => this.setState({ dimmer, openRegister: true })
     closeRegister = () => this.setState({ openRegister: false })
 
-<<<<<<< HEAD
- 
-  handleRegister() {
-    axios.post('http://localhost:8080/register', {
-        firstName: firstName,
-        lastName:lastName,
-        email: email,
-        password: password,
-    })
-        .then(function (response) {
-            
-            response = response.data;
-            if (response.status === 'ERROR') {
-                console.log('Invalid Creds!');             
-            } else {
-                response = response.obj;
-                const cookies = new Cookies();
-                cookies.set('username', response.firstName);
-                console.log(cookies.get('username'));
-            }
-        }).then (this.closeRegister)
-        .catch(function (error) {
-            console.log(error)
-=======
     handleRegister() {
         axios.post('http://localhost:8080/register', {
             firstName: firstName,
             lastName: lastName,
             email: email,
             password: password,
->>>>>>> bff03d2858dd942b78022353e93f26bae49159f7
         })
             .then(function (response) {
 

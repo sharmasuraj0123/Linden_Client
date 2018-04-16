@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-<<<<<<< HEAD
 import GridColumn, { Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment, Sidebar, Pagination, Feed, Embed } from 'semantic-ui-react'
-=======
-import { Divider, Grid, Image, List, Segment, Feed } from 'semantic-ui-react'
->>>>>>> bff03d2858dd942b78022353e93f26bae49159f7
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import FeaturedCard from "../components/FeaturedCard";
@@ -16,7 +12,6 @@ const SegmentStyle = {
     marginRight: "3em",
 };
 
-<<<<<<< HEAD
 const DividerStyle = {
     fontSize:'25px', 
     paddingTop:'2em',  
@@ -25,15 +20,12 @@ const DividerStyle = {
 
 const src = require('../images/Logo.png')
 
-=======
->>>>>>> bff03d2858dd942b78022353e93f26bae49159f7
 class Home extends Component {
 
     render() {
         return (
             <Segment raised style={SegmentStyle}>
                 < NavBar />
-<<<<<<< HEAD
 
 
                 <Grid columns divided style={{ paddingTop: '2em' }}>
@@ -79,24 +71,6 @@ class Home extends Component {
                             
 
                         <Divider horizontal style={DividerStyle}> Fall Collections</Divider>
-=======
-                <Grid columns={'equal'} divided style={{ paddingTop: '2em' }}>
-                    <Grid.Column width={11}>
-                        <Segment>
-                            <List horizontal>
-                                <List.Item>
-                                    <FeaturedCard />
-                                </List.Item>
-                                <List.Item>
-                                    <FeaturedCard />
-                                </List.Item>
-                                <List.Item>
-                                    <FeaturedCard />
-                                </List.Item>
-                            </List>
-                        </Segment>
-                        <Divider horizontal>Certified Summer Collection</Divider>
->>>>>>> bff03d2858dd942b78022353e93f26bae49159f7
                         <List horizontal>
                         <List.Item>
                        
@@ -126,7 +100,6 @@ class Home extends Component {
                             <List.Item>
                                 <FeaturedCard />
                             </List.Item>
-<<<<<<< HEAD
                            </List>
                           
                            <Divider />
@@ -151,17 +124,11 @@ class Home extends Component {
                                 <FeaturedCard />
                             </List.Item>
 
-=======
->>>>>>> bff03d2858dd942b78022353e93f26bae49159f7
                         </List>
 
-<<<<<<< HEAD
                     
                         <Divider horizontal style={DividerStyle}>News and features</Divider>
                         <Image.Group size='small' divided>
-=======
-                        <Image.Group size='small' divided={'true'}>
->>>>>>> bff03d2858dd942b78022353e93f26bae49159f7
                             <Image src={require('../images/new1.png')} style={{ width: 150, height: 150 }} />
                             <Image src={require('../images/new2.png')} style={{ width: 150, height: 150 }} />
                             <Image src={require('../images/new3.png')} style={{ width: 150, height: 150 }} />

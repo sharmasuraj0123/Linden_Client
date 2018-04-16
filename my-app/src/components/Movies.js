@@ -5,7 +5,7 @@ class Movies extends Component {
   render() {
     return (
       this.props.movies.map((movie) =>
-        <Card fluid>
+        <Card fluid key={movie.contentId}>
           <Item.Group>
             <Item>
               <Item.Image src={movie.imageURL} />

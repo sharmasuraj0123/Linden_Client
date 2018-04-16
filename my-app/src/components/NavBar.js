@@ -5,29 +5,19 @@ import FeaturedCard from './FeaturedCard';
 import SearchInput from './SearchInput';
 
 class NavBar extends Component {
-
   render() {
-    // const { activeItem } = 'home';
-
-    // const options_profile = [
-    //   { key: 'user', text: 'Account', icon: 'user' },
-    //   { key: 'settings', text: 'Settings', icon: 'settings' },
-    //   { key: 'sign-out', text: 'Sign Out', icon: 'sign out' },
-    // ]
-
-    // const trigger = (
-    //   <span>
-    //     <Image avatar src='https://img00.deviantart.net/a9d5/i/2013/226/5/7/male_avatar_test_by_oliviabronsonart-d6i40wt.png' />
-    //   </span>
-    // )
-
     return (
       <div >
-        <Menu top inverted >
+        <Menu top={'true'} inverted >
           <Menu.Item>
-            <Image src={require("../images/Logo.png")} circular style={{ width: 100, height: 100 }} />
+            <Image
+              src={require('../images/Logo.png')}
+              circular
+              style={{ width: 100, height: 100 }}
+              as='a'
+              href='/'
+            />
           </Menu.Item>
-          {/* <Header as='h1' inverted size = 'huge' verticalAlign='middle'>LINDEN</Header>    */}
           <Menu.Item >
             <div>
               <div >
@@ -39,12 +29,11 @@ class NavBar extends Component {
                 <Button size='big' circular color='black' icon='twitter' />
                 <Button size='big' circular color='black' icon='tumblr' />
               </div>
-              <Menu inverted verticalAlign='top'>
+              <Menu inverted>
                 <Dropdown item simple text='Movies' >
-                  <Dropdown.Menu fluid selection>
-                    <Dropdown.Item fluid>
+                  <Dropdown.Menu fluid={'true'} selection={'true'}>
+                    <Dropdown.Item fluid={'true'}>
                       <Grid relaxed columns={4}>
-
                         <Grid.Column >
                           <Segment raised >
                             <Header as='h3' size='tiny'>Movies In Theater</Header>
@@ -67,9 +56,7 @@ class NavBar extends Component {
                                 </List.Content>
                               </List.Item>
                             </List>
-
                             <Header as='h3' size='tiny'>Top Performers</Header>
-
                             <List>
                               <List.Item>
                                 <List.Content>
@@ -101,7 +88,7 @@ class NavBar extends Component {
                 </Dropdown>
                 <Dropdown item simple text='TV Shows'>
                   <Dropdown.Menu>
-                    <Dropdown.Item fluid>List Item</Dropdown.Item>
+                    <Dropdown.Item fluid={'true'}>List Item</Dropdown.Item>
                     <Dropdown.Item>List Item</Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Header>Header Item</Dropdown.Header>
@@ -119,7 +106,6 @@ class NavBar extends Component {
                 <Dropdown item simple text='News'>
                   <Dropdown.Menu>
                     <Dropdown.Item>
-
                     </Dropdown.Item>
                     <Dropdown.Item>List Item</Dropdown.Item>
                     <Dropdown.Divider />
@@ -129,12 +115,9 @@ class NavBar extends Component {
                       <span className='text'>Submenu</span>
                       <Dropdown.Menu>
                         <Dropdown.Item>
-
                           <Grid relaxed columns={4}>
                             <Grid.Column >
-
                               <Header as='h3'>Opening this week</Header>
-
                               <List>
                                 <List.Item>
                                   <List.Content>
@@ -154,14 +137,9 @@ class NavBar extends Component {
                                   </List.Content>
                                 </List.Item>
                               </List>
-
                             </Grid.Column>
-
-
                             <Grid.Column>
-
                               <Header as='h3'>Opening this week</Header>
-
                               <List>
                                 <List.Item>
                                   <List.Content>
@@ -169,14 +147,9 @@ class NavBar extends Component {
                                   </List.Content>
                                 </List.Item>
                               </List>
-
                             </Grid.Column>
-
-
                             <Grid.Column>
-
                               <Header as='h3'>Opening this week</Header>
-
                               <List>
                                 <List.Item>
                                   <List.Content>
@@ -198,15 +171,12 @@ class NavBar extends Component {
               </Menu>
             </div>
           </Menu.Item>
-
           <Menu.Item position='right'>
             <div>
               <ModalBasicExample />
               <SearchInput />
             </div>
-            {/* <Dropdown trigger={trigger} options={options_profile} pointing='top right' icon={null} /> */}
           </Menu.Item>
-
         </Menu>
       </div>
     )

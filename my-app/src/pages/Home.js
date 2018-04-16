@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
-import { Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment, Sidebar, Pagination, Feed } from 'semantic-ui-react'
+import { Divider, Grid, Image, List, Segment, Feed } from 'semantic-ui-react'
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import Movies from '../components/Movies';
-import Content from '../components/Content';
-import MenuExampleVertical from '../components/MenuExampleVertical';
-import ModalBasicExample from '../components/ModalBasicExample';
-import axios from 'axios';
-import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
 import FeaturedCard from "../components/FeaturedCard";
 import DescriptionCard from "../components/DescriptionCard";
 import SideBarList from "../components/SideBarList";
@@ -18,45 +12,13 @@ const SegmentStyle = {
     marginRight: "3em",
 };
 
-const src = require('../images/Logo.png')
-
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            movies: [],
-        }
-    }
-
-    componentDidMount() {
-        axios.get('http://localhost:8080/search?keywords=the&page=1')
-            .then(function (response) {
-                console.log(response);
-                let movieList = response.data.movies;
-                let listLength = 0;
-                movieList.forEach(function (element) {
-                    element.imageURL = require("../images/Logo.png");
-                    listLength++;
-                });
-                this.setState({
-                    movies: movieList,
-                    numberOfmovies: listLength
-                });
-            }.bind(this));
-    }
-
-
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
-
-
 
     render() {
         return (
-
             <Segment raised style={SegmentStyle}>
                 < NavBar />
-                <Grid columns divided style={{ paddingTop: '2em' }}>
+                <Grid columns={'equal'} divided style={{ paddingTop: '2em' }}>
                     <Grid.Column width={11}>
                         <Segment>
                             <List horizontal>
@@ -71,9 +33,7 @@ class Home extends Component {
                                 </List.Item>
                             </List>
                         </Segment>
-
                         <Divider horizontal>Certified Summer Collection</Divider>
-
                         <List horizontal>
                             <List.Item>
                                 <DescriptionCard />
@@ -87,13 +47,10 @@ class Home extends Component {
                             <List.Item>
                                 <FeaturedCard />
                             </List.Item>
-
-
-
                         </List>
                         <Divider horizontal>News and features</Divider>
 
-                        <Image.Group size='small' divided>
+                        <Image.Group size='small' divided={'true'}>
                             <Image src={require('../images/new1.png')} style={{ width: 150, height: 150 }} />
                             <Image src={require('../images/new2.png')} style={{ width: 150, height: 150 }} />
                             <Image src={require('../images/new3.png')} style={{ width: 150, height: 150 }} />
@@ -162,12 +119,6 @@ class Home extends Component {
                                 </Feed.Content>
                             </Feed.Event>
                         </Feed>
-
-
-
-
-
-
                     </Grid.Column>
                     <Grid.Column width={5}>
                         <Segment raised >
@@ -180,14 +131,9 @@ class Home extends Component {
                             <SideBarList title='Critic Picks' />
                         </Segment>
                     </Grid.Column>
-
-
                 </Grid>
                 <Footer />
             </Segment>
-
-
-
         );
     }
 }

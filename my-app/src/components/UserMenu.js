@@ -3,34 +3,25 @@ import { Dropdown, Icon } from 'semantic-ui-react'
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 
+// eslint-disable-next-line
 const cookies = new Cookies(cookies);
 
-
 function handleLogout() {
-    console.log("success");
-    axios.get('http://localhost:8080/logout', {
-       
+  axios.get('http://localhost:8080/logout')
+    .then(function (response) {
+      response = response.data;
+      if (response.status === 'ERROR') {
+        console.log('Cannot Log-Out');
+      } else {
+        response = response.obj;    
+        cookies.remove('username');
+      }
+      window.location.reload();
     })
-        .then(function (response) {
-            
-            response = response.data;
-            if (response.status === 'ERROR') {
-                console.log('Cannot Log-Out');
-                
-                
-            } else {
-                response = response.obj;
-                cookies.remove('username');    
-            }
-            window.location.reload();
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
+    .catch(function (error) {
+      console.log(error)
+    })
 }
-
-
-
 
 const trigger = (
   <span>
@@ -50,11 +41,11 @@ const options = [
   { key: 'integrations', text: 'Integrations' },
   { key: 'help', text: 'Help' },
   { key: 'settings', text: 'Settings' },
-  { key: 'sign-out', text: 'Sign Out' , onClick: (event, data) => handleLogout() }
+  { key: 'sign-out', text: 'Sign Out', onClick: (event, data) => handleLogout() }
 ]
 
 const UserMenu = () => (
-  <Dropdown left trigger={trigger} options={options} size='mini'/>
+  <Dropdown left trigger={trigger} options={options} size='mini' />
 )
 
-export default UserMenu
+export default UserMenu;

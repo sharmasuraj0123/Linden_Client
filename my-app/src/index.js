@@ -11,7 +11,7 @@ import NotFound from './pages/NotFound';
 import 'semantic-ui-css/semantic.min.css';
 
 const appStyle = {
-    'text-align': 'center'
+    'textAlign': 'center'
 };
 
 ReactDOM.render(

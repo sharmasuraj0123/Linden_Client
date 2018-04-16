@@ -3,9 +3,10 @@ import { Card, Segment } from 'semantic-ui-react'
 
 const FeaturedCard = () => (
   
-    <Card style={{ width: 200,height: 250 }}
-      image={require("../images/Logo.png")}
-      header='Featured'
+    <Card centered style={{ width: 100,height: 200, verticalAlign: 'top' } }
+      image={require("../images/certifiedmovie2.jpg") }
+      header='Gandhi'
+      meta = 'Score: 90'
     />
   
 )

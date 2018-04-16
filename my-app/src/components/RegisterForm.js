@@ -32,9 +32,7 @@ class RegisterForm extends Component {
             
             response = response.data;
             if (response.status === 'ERROR') {
-                console.log('Invalid Creds!');
-                
-                
+                console.log('Invalid Creds!');             
             } else {
                 response = response.obj;
                 const cookies = new Cookies();

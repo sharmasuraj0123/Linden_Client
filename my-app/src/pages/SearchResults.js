@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Pagination } from 'semantic-ui-react'
+import { Segment, Pagination,Grid } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import queryString from 'query-string';
@@ -7,6 +7,13 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Movies from '../components/Movies';
 import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
+import SideBarList from "../components/SideBarList";
+
+const SegmentStyle = {
+    flex: 1,
+    marginLeft: "3em",
+    marginRight: "3em",
+};
 
 class SearchResults extends Component {
     constructor(props) {
@@ -61,8 +68,12 @@ class SearchResults extends Component {
     render() {
         return (
             <div>
-                <NavBar />
-                <Segment padded >
+                
+                <Segment raised style={SegmentStyle}>
+                    <NavBar />
+                    <Grid columns divided style={{ paddingTop: '2em' }}>
+                    <Grid.Column width={11}>
+                    <Segment raised >
                     <StepExampleLinkClickable resultCount={this.state.resultCount} />
                     <Movies className='Movies' movies={this.state.movies} />
                     <Pagination 
@@ -76,8 +87,24 @@ class SearchResults extends Component {
                         totalPages={this.state.totalPages} 
                         horizontalAlign='middle' 
                     />
+                    </Segment>
+                     </Grid.Column>
+                    <Grid.Column width={5}>
+                        <Segment raised >
+                            <SideBarList title='Opening This week' />
+                        </Segment>
+                        <Segment raised >
+                            <SideBarList title='Coming Soon' />
+                        </Segment>
+                        <Segment raised >
+                            <SideBarList title='Critic Picks' />
+                        </Segment>
+
+                    </Grid.Column>
+                    </Grid>
+                    <Footer />
                 </Segment>
-                <Footer />
+                
             </div>
         );
     }

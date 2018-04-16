@@ -17,20 +17,24 @@ export default class StepExampleLinkClickable extends Component {
     return (
       <div size='mini'>
         <Step.Group fixed='center' size='mini'>
-          <Step active={active === 'All'} onClick={this.handleClick} title='All'>
-            <Step.Title>All <Label>{this.props.resultCount.all}</Label>
+          <Step active={active === 'All'} onClick={this.handleClick}>
+            <Step.Title>
+              All <Label>{this.props.resultCount.all}</Label>
             </Step.Title>
           </Step>
-          <Step active={active === 'Movies'} onClick={this.handleClick} title='Movies'>
-            <Step.Title>Movies <Label>{this.props.resultCount.movies}</Label>
+          <Step active={active === 'Movies'} onClick={this.handleClick}>
+            <Step.Title>
+              Movies <Label>{this.props.resultCount.movies}</Label>
             </Step.Title>
           </Step>
-          <Step active={active === 'TVShows'} onClick={this.handleClick} title='TVShows'>
-            <Step.Title>TV Shows <Label>{this.props.resultCount.tvShows}</Label>
+          <Step active={active === 'TVShows'} onClick={this.handleClick}>
+            <Step.Title>
+              TV Shows <Label>{this.props.resultCount.tvShows}</Label>
             </Step.Title>
           </Step>
-          <Step active={active === 'Actors'} onClick={this.handleClick} title='Actors'>
-            <Step.Title>Actors <Label>{this.props.resultCount.actors}</Label>
+          <Step active={active === 'Actors'} onClick={this.handleClick}>
+            <Step.Title>
+              Actors <Label>{this.props.resultCount.actors}</Label>
             </Step.Title>
           </Step>
         </Step.Group>

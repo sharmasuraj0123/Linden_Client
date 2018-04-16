@@ -15,7 +15,6 @@ class LoginForm extends Component {
     showLogin = dimmer => () => this.setState({ dimmer, openLogin: true })
     closeLogin = () => this.setState({ openLogin: false, error: null })
 
-
     handleLogin() {
         axios.post('http://localhost:8080/login', {
             email: email,

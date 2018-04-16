@@ -15,6 +15,7 @@ const SegmentStyle = {
     marginRight: "3em",
 };
 
+
 class SearchResults extends Component {
     constructor(props) {
         super(props);
@@ -23,39 +24,36 @@ class SearchResults extends Component {
             page: 1,
             totalPages: 0,
             keywords: '',
-            resultCount:{
-                'all' : 0,
-                'movies':0,
-                'tvShows':0,
-                'actors':0
+            resultCount: {
+                'all': 0,
+                'movies': 0,
+                'tvShows': 0,
+                'actors': 0
             }
         };
     }
 
     createSearchRequest(keywords, page) {
         axios.get('http://localhost:8080/search?keywords=' + keywords + '&page=' + page)
-        .then(function (response) {
-            console.log(response);
-            let movieList = response.data.movies;
-            let resultCountResponse = response.data.resultCount;
-            let listLength = 0;
-            let totalPages = Math.ceil(response.data.resultCount.all / 10.0);
-            
-            movieList.forEach(function (element) {
-                element.year = element.releaseDate.split('-')[0];
-                element.imageURL = require("../images/Logo.png");
-                listLength++;
-            });
-            this.setState({
-                movies: movieList,
-                numberOfmovies: listLength,
-                resultCount: resultCountResponse,
-                totalPages: totalPages,
-                keywords: keywords,
-                page: page
-            });
-
-        }.bind(this));
+            .then(function (response) {
+                let movieList = response.data.movies;
+                let resultCountResponse = response.data.resultCount;
+                let listLength = 0;
+                let totalPages = Math.ceil(response.data.resultCount.all / 10.0);
+                movieList.forEach(function (element) {
+                    element.year = element.releaseDate.split('-')[0];
+                    element.imageURL = require("../images/Logo.png");
+                    listLength++;
+                });
+                this.setState({
+                    movies: movieList,
+                    numberOfmovies: listLength,
+                    resultCount: resultCountResponse,
+                    totalPages: totalPages,
+                    keywords: keywords,
+                    page: page
+                });
+            }.bind(this));
     }
 
     componentDidMount() {
@@ -76,16 +74,18 @@ class SearchResults extends Component {
                     <Segment raised >
                     <StepExampleLinkClickable resultCount={this.state.resultCount} />
                     <Movies className='Movies' movies={this.state.movies} />
-                    <Pagination 
-                        onPageChange ={(e, data) => {
-                            this.props.history.push('/search?keywords='+this.state.keywords+'&page='+data.activePage);
-                            this.state.page = data.activePage;
+                    <Pagination
+                        onPageChange={(e, data) => {
+                            this.props.history.push('/search?keywords=' + this.state.keywords + '&page=' + data.activePage);
+                            this.setState({
+                                page: data.activePage
+                            });
                             this.createSearchRequest(this.state.keywords, data.activePage);
                             this.forceUpdate();
                         }}
-                        defaultActivePage={this.state.page} 
-                        totalPages={this.state.totalPages} 
-                        horizontalAlign='middle' 
+                        activePage={this.state.page}
+                        totalPages={this.state.totalPages}
+                        horizontalAlign='middle'
                     />
                     </Segment>
                      </Grid.Column>

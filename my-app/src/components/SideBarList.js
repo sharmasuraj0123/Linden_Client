@@ -6,7 +6,7 @@ class SideBarList extends Component {
     render() {
       return (
         <List divided relaxed>
-  <Header as='h3' size='mini'>{this.props.title}</Header>
+  <Header as='h3' size='tiny'>{this.props.title}</Header>
     <List.Item>
       <List.Icon name='add'   color='grey' size='large' verticalAlign='middle' />
       <List.Content>

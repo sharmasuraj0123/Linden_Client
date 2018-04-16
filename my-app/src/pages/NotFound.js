@@ -6,7 +6,7 @@ const marginStyle = {
     'margin': 20
 };
 
-class NotFoundPage extends Component {
+class NotFound extends Component {
     render() {
         console.log(this.props);
         return (
@@ -17,4 +17,4 @@ class NotFoundPage extends Component {
     }
 }
 
-export default withRouter(NotFoundPage);
+export default withRouter(NotFound);

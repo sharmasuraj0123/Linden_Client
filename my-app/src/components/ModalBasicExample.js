@@ -19,7 +19,7 @@ class ModalBasicExample extends Component {
     let RegisterButton = cookies.get('username') ?   (<div />): (<RegisterForm />);
 
     return (
-      <div fluid style={{ paddingBottom: '1em' }}>
+      <div fluid={'true'} style={{ paddingBottom: '1em' }}>
         <Button color='black' size='mini' href='about' style={{ maxWidth: 80 }}>Seasons</Button>
         <Button color='black' size='mini' href='about' style={{}}>About Linden</Button>
         <Button color='black' size='mini' href='lindenCritics' style={{ maxWidth: 150 }}>Meet Our Critics</Button>

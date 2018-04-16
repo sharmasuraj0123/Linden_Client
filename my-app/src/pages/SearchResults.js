@@ -13,8 +13,22 @@ class SearchResults extends Component {
         super(props);
         this.state = {
             movies: [],
-            page: 1
+            page: 1,
+            resultCount:{
+                'all' : 0,
+                'movies':0,
+                'tvShows':0,
+                'actors':0
+            }
+                        
+            
         };
+    }
+
+    handleClick(query) { 
+        this.props.history.push('/search?keywords='+this.query+'&page=1');
+        window.location.reload();
+
     }
 
     componentDidMount() {
@@ -25,6 +39,8 @@ class SearchResults extends Component {
             .then(function (response) {
                 console.log(response);
                 let movieList = response.data.movies;
+                let resultCountResponse = response.data.resultCount;
+               // console.log(response.data);
                 let listLength = 0;
                 movieList.forEach(function (element) {
                     element.year = element.releaseDate.split('-')[0];
@@ -33,7 +49,8 @@ class SearchResults extends Component {
                 });
                 this.setState({
                     movies: movieList,
-                    numberOfmovies: listLength
+                    numberOfmovies: listLength,
+                    resultCount: resultCountResponse
                 });
             }.bind(this));
     }
@@ -43,7 +60,7 @@ class SearchResults extends Component {
             <div>
                 <NavBar />
                 <Segment padded >
-                    <StepExampleLinkClickable numberOfmovies={this.state.numberOfmovies} />
+                    <StepExampleLinkClickable resultCount={this.state.resultCount} />
                     <Movies className='Movies' movies={this.state.movies} />
                     <Pagination defaultActivePage={this.state.page} totalPages={10} horizontalAlign='middle' />
                 </Segment>

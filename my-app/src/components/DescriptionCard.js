@@ -1,5 +1,5 @@
-import React, {Component}from 'react'
-import  { Card, Icon, Image, Header,Segment } from 'semantic-ui-react'
+import React, {Component} from 'react';
+import  { Image } from 'semantic-ui-react';
 
 class DescriptionCard extends Component {
   render() {
@@ -12,4 +12,4 @@ class DescriptionCard extends Component {
   }
 }
 
-export default DescriptionCard
+export default DescriptionCard;

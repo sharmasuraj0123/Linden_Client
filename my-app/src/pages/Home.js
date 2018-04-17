@@ -26,7 +26,7 @@ class Home extends Component {
                 <List horizontal>
                     <List.Item>
                         <Embed style={{ fontSize: '25px', width: 670, height: 400 }}
-                            autoplay='true'
+                            autoplay
                             brandedUI
                             id='uMDVa4yoCWw'
                             placeholder={require("../images/featured.jpg")}
@@ -37,7 +37,7 @@ class Home extends Component {
 
                     <List.Item>
                         <Embed style={{ fontSize: '25px', width: 283, height: 400 }}
-                            autoplay='true'
+                            autoplay
                             brandedUI
                             id='coOKvrsmQiI'
                             placeholder={require("../images/featured2.jpg")}

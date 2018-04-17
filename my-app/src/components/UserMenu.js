@@ -45,7 +45,7 @@ const options = [
 ]
 
 const UserMenu = () => (
-  <Dropdown left trigger={trigger} options={options} size='mini' />
+  <Dropdown trigger={trigger} options={options} size='mini' />
 )
 
 export default UserMenu;

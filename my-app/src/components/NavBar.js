@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Segment, Dropdown, Image, Header, List, Grid, Button } from 'semantic-ui-react'
-import ModalBasicExample from './ModalBasicExample';
+import NavbarModals from './NavbarModals';
 import FeaturedCard from './FeaturedCard';
 import SearchInput from './SearchInput';
 
@@ -11,9 +11,8 @@ class NavBar extends Component {
         <Menu top={'true'} inverted >
           <Menu.Item>
             <Image
-              src={require('../images/Logo.png')}
-              circular
-              style={{ width: 100, height: 100 }}
+              src={require('../images/LogoNew.png')}
+              style={{ width: 200, height: 155 }}
               as='a'
               href='/'
             />
@@ -35,7 +34,7 @@ class NavBar extends Component {
                   </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item simple text='TV Shows'>
-                  <Dropdown.Menu>
+                  <Dropdown.Menu style={{ fontSize:'25px', width:550, height: 350}}>
                     <Dropdown.Item fluid={'true'}>List Item</Dropdown.Item>
                     <Dropdown.Item>List Item</Dropdown.Item>
                     <Dropdown.Divider />
@@ -120,7 +119,7 @@ class NavBar extends Component {
           
           <Menu.Item position='right'>
             <div>
-              <ModalBasicExample />
+              <NavbarModals />
               <SearchInput />
             </div>
           </Menu.Item>

@@ -6,7 +6,7 @@ import ContactUsForm from "./ContactUsForm";
 import Cookies from 'universal-cookie';
 import UserMenu from "./UserMenu";
 
-class ModalBasicExample extends Component {
+class NavbarModals extends Component {
 
   state = { openLogin: false, openRegister: false, openContactUs: false }  
   showContactUs = dimmer => () => this.setState({ dimmer, openContactUs: true })
@@ -26,7 +26,7 @@ class ModalBasicExample extends Component {
         <Modal trigger={<Button color='black' size='mini' onClick={this.showContactUs('blurring')}>Contact Us</Button>}
           dimmer={dimmer} open={openContactUs} onClose={this.closeContactUs} style={{ marginTop: '8em', marginLeft: "30em", maxWidth: 450 }}>
           <Modal.Content>
-            <ContactUsForm />
+            <ContactUsForm/>
           </Modal.Content>
         </Modal>
         {LoginButton}
@@ -36,4 +36,4 @@ class ModalBasicExample extends Component {
   }
 }
 
-export default ModalBasicExample;
+export default NavbarModals;

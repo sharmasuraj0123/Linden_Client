@@ -20,7 +20,7 @@ ReactDOM.render(
             <Switch>
                 <Route path='/' exact render={
                     () => {
-                        return (<Home />);
+                        return (<Home/>);
                     }
                 } />
                 <Route path='/search' exact render={

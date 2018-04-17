@@ -65,29 +65,27 @@ class SearchResults extends Component {
 
     render() {
         return (
-            <div>
-                
+            <div>   
                 <Segment raised style={SegmentStyle}>
-                    <NavBar />
+                    <NavBar/>
                     <Grid columns divided style={{ paddingTop: '2em' }}>
                     <Grid.Column width={11}>
-                    <Segment raised >
-                    <StepExampleLinkClickable resultCount={this.state.resultCount} />
-                    <Movies className='Movies' movies={this.state.movies} />
-                    <Pagination
-                        onPageChange={(e, data) => {
-                            this.props.history.push('/search?keywords=' + this.state.keywords + '&page=' + data.activePage);
-                            this.setState({
-                                page: data.activePage
-                            });
-                            this.createSearchRequest(this.state.keywords, data.activePage);
-                            this.forceUpdate();
-                        }}
-                        activePage={this.state.page}
-                        totalPages={this.state.totalPages}
-                        horizontalAlign='middle'
-                    />
-                    </Segment>
+                        <Segment raised>
+                            <StepExampleLinkClickable resultCount={this.state.resultCount} />
+                            <Movies className='Movies' movies={this.state.movies} />
+                            <Pagination
+                                onPageChange={(e, data) => {
+                                    this.props.history.push('/search?keywords=' + this.state.keywords + '&page=' + data.activePage);
+                                    this.setState({
+                                        page: data.activePage
+                                    });
+                                    this.createSearchRequest(this.state.keywords, data.activePage);
+                                    this.forceUpdate();
+                                }}
+                                activePage={this.state.page}
+                                totalPages={this.state.totalPages}
+                                horizontalAlign='middle'/>
+                        </Segment>
                      </Grid.Column>
                     <Grid.Column width={5}>
                         <Segment raised >
@@ -99,12 +97,10 @@ class SearchResults extends Component {
                         <Segment raised >
                             <SideBarList title='Critic Picks' />
                         </Segment>
-
                     </Grid.Column>
                     </Grid>
                     <Footer />
-                </Segment>
-                
+                </Segment>   
             </div>
         );
     }

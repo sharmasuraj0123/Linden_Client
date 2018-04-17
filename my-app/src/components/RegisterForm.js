@@ -25,15 +25,11 @@ class RegisterForm extends Component {
             password: password,
         })
             .then(function (response) {
-
                 response = response.data;
                 if (response.status === 'ERROR') {
                     console.log('Invalid Creds!');
                 } else {
                     response = response.obj;
-                    const cookies = new Cookies();
-                    cookies.set('username', response.firstName);
-                    console.log(cookies.get('username'));
                 }
             }).then(this.closeRegister)
             .catch(function (error) {
@@ -107,6 +103,5 @@ class RegisterForm extends Component {
         )
     }
 }
-
 
 export default RegisterForm;

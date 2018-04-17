@@ -22,32 +22,29 @@ class Home extends Component {
     render() {
         return (
             <Segment raised style={SegmentStyle}>
-                <NavBar />
-                <Grid divided style={{ paddingTop: '2em' }}>
-                    <Grid.Column width={12}>
-                        <Divider horizontal style={{ fontSize: '25px' }}>Featured</Divider>
-                        <List horizontal>
-                            <List.Item>
-                                <Segment raised style={{ fontSize: '25px', width: 500, height: 350 }}>
-                                    <Embed
-                                        brandedUI
-                                        id='O6Xo21L0ybE'
-                                        placeholder={require("../images/featured.jpg")}
-                                        source='youtube'
-                                    />
-                                    <Header> Blockers</Header>
-                                </Segment>
-                            </List.Item>
-                            <List.Item>
-                                <Segment raised style={{ fontSize: '25px', width: 500, height: 350 }}>
-                                    <Embed
-                                        brandedUI
-                                        id='O6Xo21L0ybE'
-                                        placeholder={require("../images/featured2.jpg")}
-                                        source='youtube'
-                                    />
-                                    <Header> Rampage</Header>
-                                </Segment>
+                < NavBar/>
+                <List horizontal>
+                               <List.Item> 
+                                <Embed style={{ fontSize:'25px', width:670, height: 400}}
+                                autoplay='true'
+                                brandedUI
+                                id='uMDVa4yoCWw'
+                                placeholder={require("../images/featured.jpg")}
+                                source='youtube'
+                                />
+                                <Header> Blockers</Header>
+                                </List.Item>
+
+                                <List.Item>   
+                                <Embed style={{ fontSize:'25px', width:283, height: 400}}
+                                autoplay='true'
+                                brandedUI
+                                id='coOKvrsmQiI'
+                                placeholder={require("../images/featured2.jpg")}
+                                source='youtube'
+                                />
+                                <Header> Rampage</Header>   
+                                 </List.Item>
 
                             </List.Item>
                         </List>
@@ -156,7 +153,7 @@ class Home extends Component {
                         </Segment>
                     </Grid.Column>
                 </Grid>
-                <Footer />
+                <Footer/>
             </Segment>
         );
     }

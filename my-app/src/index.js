@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 import 'semantic-ui-css/semantic.min.css';
 
 
+import MovieDetails from './pages/MovieDetails';
 
 const appStyle = {
     'textAlign': 'center'
@@ -42,7 +43,7 @@ ReactDOM.render(
                 } />
                 <Route path='/movieDetails' exact render={
                     () => {
-                       
+                        return (<MovieDetails />);
                     }
                 } />
                 <Route component={NotFound} />

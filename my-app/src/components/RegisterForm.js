@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment, Modal, Checkbox } from 'semantic-ui-react';
-import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 let email = '';

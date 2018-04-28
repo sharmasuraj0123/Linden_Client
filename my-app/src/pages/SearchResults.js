@@ -68,7 +68,7 @@ class SearchResults extends Component {
             <div>   
                 <Segment raised style={SegmentStyle}>
                     <NavBar/>
-                    <Grid columns divided style={{ paddingTop: '2em' }}>
+                    <Grid divided style={{ paddingTop: '2em' }}>
                     <Grid.Column width={11}>
                         <Segment raised>
                             <StepExampleLinkClickable resultCount={this.state.resultCount} />
@@ -84,7 +84,7 @@ class SearchResults extends Component {
                                 }}
                                 activePage={this.state.page}
                                 totalPages={this.state.totalPages}
-                                horizontalAlign='middle'/>
+                                />
                         </Segment>
                      </Grid.Column>
                     <Grid.Column width={5}>

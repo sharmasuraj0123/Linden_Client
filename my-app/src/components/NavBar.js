@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Menu, Segment, Dropdown, Image, Header, List, Grid, Button } from 'semantic-ui-react'
+import { Menu, Dropdown, Image, Header, List, Grid, Button } from 'semantic-ui-react'
 import NavbarModals from './NavbarModals';
-import FeaturedCard from './FeaturedCard';
 import SearchInput from './SearchInput';
 
 class NavBar extends Component {

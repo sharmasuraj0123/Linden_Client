@@ -11,16 +11,13 @@ class LoginForm extends Component {
         super(props);
         this.state = { openLogin: false, error: null }
     }
-
     showLogin = dimmer => () => this.setState({ dimmer, openLogin: true })
     closeLogin = () => this.setState({ openLogin: false, error: null })
-
     handleLogin() {
-        axios.post('http://localhost:8080/login', {
+        axios.post('http://localhost:8080/login',{
             email: email,
             password: password,
-        })
-            .then(function (response) {
+        }).then(function (response) {
                 response = response.data;
                 if (response.status === 'ERROR') {
                     console.log('Invalid Creds!');
@@ -40,7 +37,7 @@ class LoginForm extends Component {
         const { openLogin, dimmer } = this.state
 
         return (
-            <Modal trigger={<Button color='black' size='mini' onClick={this.showLogin('blurring')}>Log-in</Button>}
+            <Modal trigger={<Button color='black' size='small' onClick={this.showLogin('blurring')}>Log-in</Button>}
                 dimmer={dimmer} open={openLogin} onClose={this.closeLogin.bind(this)} style={{ marginTop: '17em', marginLeft: "30em", maxWidth: 450 }}>
                 <Modal.Content>
                     <div className='login-form'>

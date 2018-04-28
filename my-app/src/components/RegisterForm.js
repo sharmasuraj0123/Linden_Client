@@ -39,7 +39,7 @@ class RegisterForm extends Component {
     render() {
         const { openRegister, dimmer } = this.state
         return (
-            <Modal trigger={<Button color='black' size='mini' onClick={this.showRegister('blurring')}>Register</Button>}
+            <Modal trigger={<Button color='black' size='small' onClick={this.showRegister('blurring')}>Register</Button>}
                 dimmer={dimmer} open={openRegister} onClose={this.closeRegister} style={{ marginTop: '15em', marginLeft: "25em", maxWidth: 550 }}>
                 <Modal.Content>
                     <div className='register-form'>

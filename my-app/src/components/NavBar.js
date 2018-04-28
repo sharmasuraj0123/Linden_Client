@@ -12,7 +12,7 @@ class NavBar extends Component {
           <Menu.Item>
             <Image
               src={require('../images/LogoNew.png')}
-              style={{ width: 200, height: 155 }}
+              style={{ width: 120, height: 100, verticalAlign:'top' }}
               as='a'
               href='/'
             />
@@ -20,7 +20,7 @@ class NavBar extends Component {
           <Menu.Item >
             <div>
               <div >
-                <Button size='big' circular color='black' icon='facebook' />
+                <Button size='big' circular color='blue' inverted icon='facebook' />
                 <Button size='big' circular color='black' icon='instagram' />
                 <Button size='big' circular color='black' icon='google plus' />
                 <Button size='big' circular color='black' icon='youtube play' />
@@ -28,13 +28,13 @@ class NavBar extends Component {
                 <Button size='big' circular color='black' icon='twitter' />
                 <Button size='big' circular color='black' icon='tumblr' />
               </div>
-              <Menu inverted>
+              <Menu inverted style={{ fontSize:'19px', verticalAlign: 'bottom'}}>
                 <Dropdown item simple text='Movies' >
                   <Dropdown.Menu fluid={'true'} selection={'true'}>
                   </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item simple text='TV Shows'>
-                  <Dropdown.Menu style={{ fontSize:'25px', width:550, height: 350}}>
+                  <Dropdown.Menu style={{ fontSize:'12px', width:550, height: 350}}>
                     <Dropdown.Item fluid={'true'}>List Item</Dropdown.Item>
                     <Dropdown.Item>List Item</Dropdown.Item>
                     <Dropdown.Divider />
@@ -117,7 +117,7 @@ class NavBar extends Component {
             </div>
           </Menu.Item>
           
-          <Menu.Item position='right'>
+          <Menu.Item>
             <div>
               <NavbarModals />
               <SearchInput />

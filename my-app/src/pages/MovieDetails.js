@@ -20,7 +20,7 @@ const DividerStyle = {
 
 const src = require('../images/Logo.png')
 
-class Home extends Component {
+class MovieDetails extends Component {
 
     render() {
         return (
@@ -203,4 +203,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default MovieDetails;

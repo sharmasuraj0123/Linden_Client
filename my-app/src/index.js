@@ -38,6 +38,11 @@ ReactDOM.render(
                         return (<RegisterForm />);
                     }
                 } />
+                <Route path='/movieDetails' exact render={
+                    () => {
+                        return (<MovieDetails />);
+                    }
+                } />
                 <Route component={NotFound} />
             </Switch>
         </div>

@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react'
 
 const FeaturedCard = () => (
   
-    <Card centered style={{ width: 100,height: 200, verticalAlign: 'top' } }
+    <Card centered style={{ width: 195,height: 330, verticalAlign: 'top' } }
       image={require("../images/certifiedmovie2.jpg") }
       header='Gandhi'
       meta = 'Score: 90'

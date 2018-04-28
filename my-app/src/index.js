@@ -10,6 +10,8 @@ import RegisterForm from './components/RegisterForm';
 import NotFound from './pages/NotFound';
 import 'semantic-ui-css/semantic.min.css';
 
+
+
 const appStyle = {
     'textAlign': 'center'
 };
@@ -40,7 +42,7 @@ ReactDOM.render(
                 } />
                 <Route path='/movieDetails' exact render={
                     () => {
-                        return (<MovieDetails />);
+                       
                     }
                 } />
                 <Route component={NotFound} />

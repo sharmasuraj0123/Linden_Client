@@ -63,7 +63,7 @@ class SearchResults extends Component {
         return (
             <div>   
                
-                    <NavBar/>
+                   
                     <Grid divided style={{ paddingTop: '2em' }}>
                     <Grid.Column width={11}>
                         <Segment raised>
@@ -95,7 +95,7 @@ class SearchResults extends Component {
                         </Segment>
                     </Grid.Column>
                     </Grid>
-                    <Footer />  
+                   
             </div>
         );
     }

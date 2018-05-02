@@ -13,8 +13,10 @@ import 'semantic-ui-css/semantic.min.css';
 
 
 import MovieDetails from './pages/MovieDetails';
-import ProfileDetailsPage from './pages/ProfileDetailsPage';
-
+import ProfileDetails from './pages/ProfileDetails';
+import CastDetails from './pages/CastDetails';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 const SegmentStyle = {
     flex: 1,
@@ -25,6 +27,7 @@ const SegmentStyle = {
 ReactDOM.render(
     <Router>
         <Segment raised style={SegmentStyle}>
+        <NavBar/>
             <Switch>
                 <Route path='/' exact render={
                     () => {
@@ -48,6 +51,7 @@ ReactDOM.render(
                         return (<RegisterForm />);
                     }
                 } />
+
                 <Route path='/movieDetails' exact render={
                     () => {
                         return (<MovieDetails />);
@@ -55,11 +59,17 @@ ReactDOM.render(
                 } />
                 <Route path='/profileDetails' exact render={
                     () => {
-                        return (<ProfileDetailsPage />);
+                        return (<ProfileDetails />);
+                    }
+                } />
+                <Route path='/castDetails' exact render={
+                    () => {
+                        return (<CastDetails />);
                     }
                 } />
                 <Route component={NotFound} />
             </Switch>
+            <Footer/>
         </Segment>
     </Router>
     , document.getElementById('root')

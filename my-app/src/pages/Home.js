@@ -18,7 +18,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <NavBar />
+               
                 <List horizontal>
                                <List.Item> 
                                 <Embed style={{ fontSize:'25px', width:225, height: 351}}
@@ -190,7 +190,6 @@ class Home extends Component {
                         </Segment>
                     </Grid.Column>
                 </Grid>
-                <Footer/>
             </div>
         );
     }

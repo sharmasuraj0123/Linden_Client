@@ -10,12 +10,10 @@ const panes = [
     { menuItem: 'TV Ratings', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
   ]
 
-class ProfileDetailsPage extends Component {
+class ProfileDetails extends Component {
     render() {
         return (
             <div>
-            <NavBar /> 
-
             <Grid columns>
             <Grid.Column width={3}>
                 <Menu vertical fluid>
@@ -42,10 +40,6 @@ class ProfileDetailsPage extends Component {
             </Grid.Column>
             <Grid.Column width={12}>
             <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-
-
-
-
             </Grid.Column>
             </Grid>
             </div>
@@ -53,4 +47,4 @@ class ProfileDetailsPage extends Component {
     }
 }
 
-export default ProfileDetailsPage;
+export default ProfileDetails

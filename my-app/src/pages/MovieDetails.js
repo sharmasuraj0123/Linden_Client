@@ -21,15 +21,12 @@ class MovieDetails extends Component {
     render() {
         return (
             <div>
-                < NavBar/>
                 <Grid columns>
                 <Grid.Column width={12}>
                     <Segment>
                         <List >
                             <List.Item >
                             <Segment inverted>
-                                 
-
                                 <Header as='h2' inverted floated='left'>  
                                     <Header.Content  style={{ fontSize:'60px'}} > GANDHI
                                     <Header.Subheader style={{ fontSize:'25px', paddingTop:'0.5em'}} >
@@ -225,27 +222,6 @@ class MovieDetails extends Component {
                              <List.Item>
                             <Divider horizontal style={{ fontSize:'20px'}}> Videos</Divider>
                             </List.Item>
-
-
-
-
-
-
-
-
-
-
-
-
-                           
-
-
-
-
-
-
-
-
                         </List>
                     </Segment>
                 </Grid.Column>
@@ -266,7 +242,7 @@ class MovieDetails extends Component {
                     </Grid.Column>
                 </Grid>
 
-                <Footer/>
+               
                 </div>
            
         );

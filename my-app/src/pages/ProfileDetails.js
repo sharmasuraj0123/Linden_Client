@@ -14,7 +14,7 @@ class ProfileDetails extends Component {
     render() {
         return (
             <div>
-            <Grid columns>
+            <Grid columns style={{ paddingTop:'1em' }}>
             <Grid.Column width={3}>
                 <Menu vertical fluid>
                      <Menu.Item>

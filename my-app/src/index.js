@@ -11,12 +11,14 @@ import RegisterForm from './components/RegisterForm';
 import NotFound from './pages/NotFound';
 import 'semantic-ui-css/semantic.min.css';
 
-
-import MovieDetails from './pages/MovieDetails';
-import ProfileDetails from './pages/ProfileDetails';
-import CastDetails from './pages/CastDetails';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+
+import MovieDetails from './pages/MovieDetails';
+import AboutUs from './pages/AboutUs';
+import ProfileDetails from './pages/ProfileDetails';
+import CastDetails from './pages/CastDetails';
+
 
 const SegmentStyle = {
     flex: 1,
@@ -65,6 +67,11 @@ ReactDOM.render(
                 <Route path='/castDetails' exact render={
                     () => {
                         return (<CastDetails />);
+                    }
+                } />
+                <Route path='/about' exact render={
+                    () => {
+                        return (<AboutUs />);
                     }
                 } />
                 <Route component={NotFound} />

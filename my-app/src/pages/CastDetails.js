@@ -14,24 +14,24 @@ class CastDetails extends Component {
         return (
             <div>
             <Grid columns>
-                <Grid.Column width={12}>
-                    <Segment raised >
+                <Grid.Column width={12} style={{ paddingTop:'2em' }}>
+                    <Segment raised style={{ height: 325 ,paddingTop:'0', paddingLeft: '0' }}>
 
                     <List horizontal>
                         <List.Item>
                             <img src= {require("../images/testActorImg.jpg")} 
-                            style={{ width: 216,height: 319,verticalAlign: 'bottom' }} />
+                            style={{ width: 216,height: 319 }} />
                         </List.Item>
                         <List.Item >
-                        <Table basic='very' >
+                        <Table basic='very'  style={{height: 300 }} >
                         <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell colSpan='3'>Robert Downey Jr.</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='3' style={{ fontSize:'3em'}}>Robert Downey Jr.</Table.HeaderCell>
                         </Table.Row>
                         </Table.Header>
-                        <Table.Body>
+                        <Table.Body style={{ fontSize:'1.5em'}}>
                             <Table.Row>
-                                <Table.Cell>Birthday:</Table.Cell>
+                                <Table.Cell bold><strong>Birthday:</strong></Table.Cell>
                                 <Table.Cell> Apr 4, 1965</Table.Cell>    
                             </Table.Row>
                             <Table.Row>

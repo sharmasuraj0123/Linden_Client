@@ -9,11 +9,7 @@ import Movies from '../components/Movies';
 import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
 import SideBarList from "../components/SideBarList";
 
-const SegmentStyle = {
-    flex: 1,
-    marginLeft: "3em",
-    marginRight: "3em",
-};
+
 
 
 class SearchResults extends Component {
@@ -66,7 +62,7 @@ class SearchResults extends Component {
     render() {
         return (
             <div>   
-                <Segment raised style={SegmentStyle}>
+               
                     <NavBar/>
                     <Grid divided style={{ paddingTop: '2em' }}>
                     <Grid.Column width={11}>
@@ -99,8 +95,7 @@ class SearchResults extends Component {
                         </Segment>
                     </Grid.Column>
                     </Grid>
-                    <Footer />
-                </Segment>   
+                    <Footer />  
             </div>
         );
     }

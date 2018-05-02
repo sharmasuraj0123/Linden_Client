@@ -6,11 +6,7 @@ import FeaturedCard from "../components/FeaturedCard";
 import DescriptionCard from "../components/DescriptionCard";
 import SideBarList from "../components/SideBarList";
 
-const SegmentStyle = {
-    flex: 1,
-    marginLeft: "16em",
-    marginRight: "16em",
-};
+
 
 const DividerStyle = {
     fontSize: '25px',
@@ -21,7 +17,7 @@ class Home extends Component {
 
     render() {
         return (
-            <Segment raised style={SegmentStyle}>
+            <div>
                 <NavBar />
                 <List horizontal>
                                <List.Item> 
@@ -195,7 +191,7 @@ class Home extends Component {
                     </Grid.Column>
                 </Grid>
                 <Footer/>
-            </Segment>
+            </div>
         );
     }
 }

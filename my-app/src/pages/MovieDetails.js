@@ -6,17 +6,6 @@ import FeaturedCard from "../components/FeaturedCard";
 import DescriptionCard from "../components/DescriptionCard";
 import SideBarList from "../components/SideBarList";
 
-const SegmentStyle = {
-    flex: 1,
-    marginLeft: "16em",
-    marginRight: "16em",
-};
-
-const DividerStyle = {
-    fontSize:'25px', 
-    paddingTop:'2em',  
-    paddingTop:'1em' 
-};
 
 const commentPanes = [
     { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}>Tab 1 Content</Tab.Pane> },
@@ -26,13 +15,12 @@ const commentPanes = [
     { menuItem: 'Winter', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
   ]
 
-const src = require('../images/Logo.png')
 
 class MovieDetails extends Component {
 
     render() {
         return (
-            <Segment raised style={SegmentStyle}>
+            <div>
                 < NavBar/>
                 <Grid columns>
                 <Grid.Column width={12}>
@@ -279,7 +267,8 @@ class MovieDetails extends Component {
                 </Grid>
 
                 <Footer/>
-            </Segment>
+                </div>
+           
         );
     }
 }

@@ -15,15 +15,15 @@ class CastDetails extends Component {
             <div>
             <Grid columns>
                 <Grid.Column width={12} style={{ paddingTop:'2em' }}>
-                    <Segment raised style={{ height: 325 ,paddingTop:'0', paddingLeft: '0' }}>
+                    <Segment raised  style={{ }}>
 
-                    <List horizontal>
+                    <List horizontal >
                         <List.Item>
                             <img src= {require("../images/testActorImg.jpg")} 
                             style={{ width: 216,height: 319 }} />
                         </List.Item>
                         <List.Item >
-                        <Table basic='very'  style={{height: 300 }} >
+                        <Table basic='very'  style={{height: 300 }}  >
                         <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell colSpan='3' style={{ fontSize:'3em'}}>Robert Downey Jr.</Table.HeaderCell>
@@ -47,8 +47,8 @@ class CastDetails extends Component {
                         </List.Item>
                     </List>
                     </Segment>
-                    <Divider horizontal style={{ fontSize:'20px'}}> FILMOGRAPHY</Divider>
-                    <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+                    <Divider horizontal inverted style={{ fontSize:'20px'}}> FILMOGRAPHY</Divider>
+                    <Tab menu={{ secondary: true, pointing: true, inverted:true }} panes={panes} />
 
 
 

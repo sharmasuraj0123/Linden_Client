@@ -5,18 +5,18 @@ import NavBar from "../components/NavBar";
 import BookmarkComponent from "../components/BookmarkComponent";
 
 const panes = [
-    { menuItem: 'Bookmarks', render: () => <Tab.Pane attached={false}> <BookmarkComponent/></Tab.Pane> },
-    { menuItem: 'Movie Ratings', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
-    { menuItem: 'TV Ratings', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
+    { menuItem: 'Bookmarks', render: () => <Tab.Pane attached={false} inverted> <BookmarkComponent/></Tab.Pane> },
+    { menuItem: 'Movie Ratings', render: () => <Tab.Pane attached={false} inverted>Tab 3 Content</Tab.Pane> },
+    { menuItem: 'TV Ratings', render: () => <Tab.Pane attached={false} inverted>Tab 3 Content</Tab.Pane> },
   ]
 
 class ProfileDetails extends Component {
     render() {
         return (
-            <div>
-            <Grid columns style={{ paddingTop:'1em' }}>
+            <div >
+            <Grid  columns style={{ paddingTop:'1em' }}>
             <Grid.Column width={3}>
-                <Menu vertical fluid>
+                <Menu vertical fluid inverted>
                      <Menu.Item>
                         <Menu.Header>SURAJ SHARMA</Menu.Header>
                         <Menu.Menu>
@@ -39,7 +39,7 @@ class ProfileDetails extends Component {
                 </Menu>
             </Grid.Column>
             <Grid.Column width={12}>
-            <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+            <Tab   menu={{ secondary: true, pointing: true, inverted : true }} panes={panes} />
             </Grid.Column>
             </Grid>
             </div>

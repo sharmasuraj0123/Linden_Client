@@ -28,7 +28,7 @@ const SegmentStyle = {
 
 ReactDOM.render(
     <Router>
-        <Segment raised style={SegmentStyle}>
+        <Segment inverted raised style={SegmentStyle}>
         <NavBar/>
             <Switch>
                 <Route path='/' exact render={

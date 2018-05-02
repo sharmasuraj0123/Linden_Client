@@ -10,7 +10,8 @@ import SideBarList from "../components/SideBarList";
 
 const DividerStyle = {
     fontSize: '25px',
-    paddingTop: '2em'
+    paddingTop: '2em',
+    
 };
 
 class Home extends Component {
@@ -72,7 +73,7 @@ class Home extends Component {
                                  </List> 
                 <Grid columns divided style={{ paddingTop: '' }}>
                     <Grid.Column width={12}>
-                        <Divider horizontal style={{ fontSize:'20px'}}> Fall Collections</Divider>
+                        <Divider horizontal inverted style={{ fontSize:'30px'}}> Fall Collections</Divider>
                         <List horizontal>
                         <List.Item>
                         </List.Item>
@@ -95,11 +96,11 @@ class Home extends Component {
                             </List.Item>
                            </List>
                           
-                           <Divider />
+                           <Divider inverted/>
 
                             <List horizontal >
                             <List.Item style={{ }}>
-                            <DescriptionCard imagesrc = {require('../images/Fall.png')} verticalAlign= 'top'/>
+                            <DescriptionCard imagesrc = {require('../images/FallCollection.png')} verticalAlign= 'top'/>
                             </List.Item>
                             <List.Item >
                                 <FeaturedCard verticalAlign= 'middle'/>
@@ -112,13 +113,13 @@ class Home extends Component {
                             </List.Item>
                             
                         </List>
-                        <Divider horizontal style={DividerStyle}>News and features</Divider>
+                        <Divider horizontal inverted style={DividerStyle}>News and features</Divider>
                         <Image.Group size='small' divided>
                             {/* <Image src={require('../images/new1.png')} style={{ width: 320, height: 250 }} />
                             <Image src={require('../images/new4.png')} style={{ width: 320, height: 250 }} />
                             <Image src={require('../images/new3.png')} style={{ width: 320, height: 250 }} /> */}
                         </Image.Group>
-                        <Divider horizontal style={DividerStyle}>Headlines Today</Divider>
+                        <Divider horizontal inverted style={DividerStyle}>Headlines Today</Divider>
                         <Feed>
                             <Feed.Event>
                                 <Feed.Label>

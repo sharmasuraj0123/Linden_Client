@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {Segment,Grid,Menu, Tab } from 'semantic-ui-react';
 
 import NavBar from "../components/NavBar";
+import UserFollowModal from "../components/UserFollowModal";
 import BookmarkComponent from "../components/BookmarkComponent";
+
 
 const panes = [
     { menuItem: 'Bookmarks', render: () => <Tab.Pane attached={false} inverted> <BookmarkComponent/></Tab.Pane> },
@@ -27,7 +29,7 @@ class ProfileDetails extends Component {
                     <Menu.Item>
                         <Menu.Header>ACTIVITY</Menu.Header>
                         <Menu.Menu>
-                            <Menu.Item> Followers: 22</Menu.Item>
+                            <Menu.Item> <UserFollowModal/></Menu.Item>
                             <Menu.Item> Following: 22</Menu.Item>
                         </Menu.Menu>
                     </Menu.Item>

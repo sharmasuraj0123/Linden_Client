@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { Line, Circle } from 'rc-progress';
 import GridColumn, { Container, Divider, Dropdown, Tab,Table,Grid, Button,Form,Header, Image, List, Progress,Menu, Rating,Card,Segment, Sidebar, Pagination, Feed, Embed } from 'semantic-ui-react'
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import FeaturedCard from "../components/FeaturedCard";
 import DescriptionCard from "../components/DescriptionCard";
 import SideBarList from "../components/SideBarList";
+
+
 
 
 const commentPanes = [
@@ -19,10 +22,22 @@ const commentPanes = [
 class MovieDetails extends Component {
 
     render() {
+        var options = {
+            strokeWidth: 2
+        };
+
+        // For demo purposes so the container has some dimensions.
+        // Otherwise progress bar won't be shown
+        var containerStyle = {
+            width: '200px',
+            height: '200px'
+        };
+
         return (
             <div>
                 <Grid columns>
                 <Grid.Column width={12}>
+                
                     <Segment inverted>
                         <List vertical>
                             <List.Item >
@@ -58,6 +73,7 @@ class MovieDetails extends Component {
                                         <Table.Row>
                                             <Table.Cell>Rating:</Table.Cell>
                                             <Table.Cell>PG</Table.Cell>
+            
                                             
                                         </Table.Row>
                                         <Table.Row>
@@ -81,87 +97,45 @@ class MovieDetails extends Component {
                                 
 
                                <Grid columns>
-                                <Grid.Column width={6}>
-                                <List> 
-                                    <List.Item >
-                                    <Header  style={{ fontSize:'30px',color: '#ffffff'}}>
-                                        LINDOMETER
-                                        </Header> 
-                                    </List.Item>
-                                    <List.Item >
-                                        <List horizontal>
-                                        <List.Item>
-                                    <Image floated='left' size='tiny' src={require('../images/Fall.png')}  />
-                                    </List.Item>
-                                    <List.Item >
-                                        <Header style={{ fontSize:'80px', color: '#ffffff'}} >
-                                            98%
-                                        </Header> 
-                                        </List.Item>
-                                        </List>
-                                    </List.Item>
-                                    <List.Item>
-                                        <p> Review Considered: 22</p>
-                                    </List.Item>
-                                    <List.Item>
-                                        <p>  Average Rating: 4.6/10</p>
-                                    </List.Item>
-                                    <List.Item>
-                                        <p> Winter: 30</p>
-                                    </List.Item>
-                                    <List.Item>
-                                        <p> Fall: 22</p>
-                                    </List.Item>
+                               
+                                
 
-                                    </List>
-                                    
-                                </Grid.Column>
-
-                            
-                                <Grid.Column width={6}>
-                                <List>
-                                    <List.Item>
-                                    <Header style={{ fontSize:'30px', color: '#ffffff'}}>
-                                        Current Score
-                                        </Header> 
-                                    </List.Item>
-                                    <List.Item>
-                                        <List horizontal>
-                                        <List.Item>
-                                    <Image floated='left' size='tiny' src={require('../images/FallCollection.png')}  />
-                                    </List.Item>
-                                    <List.Item>
-                                        <Header style={{ fontSize:'80px',color: '#ffffff'}}>
-                                            98%
-                                        </Header> 
-                                        </List.Item>
-                                        </List>
-                                    </List.Item>
-                                    <List.Item>
-                                        <p> Review Considered: 22</p>
-                                    </List.Item>
-                                    <List.Item>
-                                        <p>  Average Rating: 4.6/10</p>
-                                    </List.Item>
-                                    <List.Item>
-                                        <p> Winter: 30</p>
-                                    </List.Item>
-                                    <List.Item>
-                                        <p> Fall: 22</p>
-                                    </List.Item>
-
-                                    </List>
-                                </Grid.Column>
-
-                                 <Grid.Column width={8}>
-                                    <Progress percent={98} inverted/>
-                                    <List  horizontal divided>
+                    
+                                 <Grid.Column width={6}>
+                                 <List  horizontal divided>
                                         <List.Item as='a'  >Critics</List.Item>
                                         <List.Item as='a'>Top Critics</List.Item>
                                     </List>
-                                    <List.Item as='p'>Critics Thought:</List.Item>
-                                    <List.Item as='p'>Director Richard Attenborough is typically sympathetic and sure-handed, but it's Ben Kingsley's magnetic performance that acts as the linchpin for this sprawling, lengthy biopic.</List.Item>
-                                </Grid.Column>
+                                    <Circle percent="98" strokeWidth="5" 
+                                    strokeColor="white" 
+                                    strokeColor = 'blue'
+                                    prefixCls ='98'
+                                    strokeLinecap = "butt"
+                                    style={{ width:'100',height:'100'}}/>
+                                    <Progress percent={98}  inverted progress='percent' size='medium' >
+                                    <Header  style={{ fontSize:'30px',color: '#ffffff'}}>
+                                        LINDOMETER
+                                        </Header> 
+                                    </Progress>
+                                    <Rating  defaultRating={3} maxRating={5}   inverted disabled size='massive'/> 
+                                    <Header  style={{ fontSize:'30px',color: '#ffffff'}}>
+                                        Score
+                                        </Header> 
+                                    
+                                    <List.Item>
+                                        <p> Review Considered: 22</p>
+                                        
+                                    </List.Item>
+                                    <List.Item>
+                                        <p>  Average Rating: 4.6/10</p>
+                                    </List.Item>
+                                    <List.Item>
+                                        <p> Winter: 30</p>
+                                    </List.Item>
+                                    <List.Item>
+                                        <p> Fall: 22</p>
+                                    </List.Item>
+                                     </Grid.Column>
 
 
                                 <Grid.Column width={8}>
@@ -174,10 +148,10 @@ class MovieDetails extends Component {
                                     <List.Item>
                                         <List horizontal>
                                         <List.Item>
-                                    <Image floated='left' size='tiny' src={require('../images/dhoni.jpeg')}  />
+                                    <Image floated='left'  size='tiny' src={require('../images/dhoni.jpeg')}  />
                                     </List.Item>
-                                    <List.Item>
-                                    <Rating maxRating={5} clearable size='massive' /> 
+                                    <List.Item >
+                                    <Rating maxRating={5} clearable  size='massive'  style={{ color: 'white'}}/> 
                                     <Form reply fluid>
                                         <Form.TextArea width={100}/>
                                         <Button content='Post A Review' labelPosition='left' icon='edit'  />

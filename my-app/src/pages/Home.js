@@ -20,59 +20,22 @@ class Home extends Component {
         return (
             <div>
                
-                <List horizontal>
-                               <List.Item> 
-                                <Embed style={{ fontSize:'25px', width:225, height: 351}}
-                                autoplay='true'
-                                brandedUI
-                                id='uMDVa4yoCWw'
-                                placeholder={require("../images/featured.jpg")}
-                                source='youtube'
-                                />
-                                </List.Item>
-
-                                <List.Item>   
-                                <Embed style={{ fontSize:'25px', width:225, height: 351}}
-                                autoplay='true'
-                                brandedUI
-                                id='coOKvrsmQiI'
-                                placeholder={require("../images/certifiedmovie1.jpg")}
-                                source='youtube'
-                                /> 
-                                 </List.Item>
-
-                                 <List.Item>   
-                                <Embed style={{ fontSize:'25px', width:225, height: 351}}
-                                autoplay='true'
-                                brandedUI
-                                id='coOKvrsmQiI'
-                                placeholder={require("../images/certifiedmovie1.jpg")}
-                                source='youtube'
-                                /> 
-                                 </List.Item>
-                                 <List.Item>   
-                                <Embed style={{ fontSize:'25px', width:225, height: 351}}
-                                autoplay='true'
-                                brandedUI
-                                id='coOKvrsmQiI'
-                                placeholder={require("../images/certifiedmovie1.jpg")}
-                                source='youtube'
-                                /> 
-                                 </List.Item>
-
-                            
-                                 <List.Item>   
-                                <Embed style={{ fontSize:'25px', width:225, height: 351}}
-                                autoplay='true'
-                                brandedUI
-                                id='coOKvrsmQiI'
-                                placeholder={require("../images/certifiedmovie2.jpg")}
-                                source='youtube'
-                                />   
-                                 </List.Item>
-                                 </List> 
+                
                 <Grid columns divided style={{ paddingTop: '' }}>
                     <Grid.Column width={12}>
+                    <List>
+                               <List.Item> 
+                               <Embed 
+                                    id='O6Xo21L0ybE'
+                                    icon='play'
+                                    placeholder= {require("../images/testMovieTrailer.jpg")}
+                                    source='youtube'
+                                 /> 
+                                </List.Item>
+
+                                
+                                
+                                 </List> 
                         <Divider horizontal inverted style={{ fontSize:'30px'}}> Fall Collections</Divider>
                         <List horizontal>
                         <List.Item>
@@ -113,67 +76,7 @@ class Home extends Component {
                             </List.Item>
                             
                         </List>
-                        <Divider horizontal inverted style={DividerStyle}>News and features</Divider>
-                        <Image.Group size='small' divided>
-                            {/* <Image src={require('../images/new1.png')} style={{ width: 320, height: 250 }} />
-                            <Image src={require('../images/new4.png')} style={{ width: 320, height: 250 }} />
-                            <Image src={require('../images/new3.png')} style={{ width: 320, height: 250 }} /> */}
-                        </Image.Group>
-                        <Divider horizontal inverted style={DividerStyle}>Headlines Today</Divider>
-                        <Feed>
-                            <Feed.Event>
-                                <Feed.Label>
-                                </Feed.Label>
-                                <Feed.Content>
-                                    You added Elliot Fu to the group <a>Coworkers</a>
-                                </Feed.Content>
-                            </Feed.Event>
-                        </Feed>
-                        <Feed>
-                            <Feed.Event>
-                                <Feed.Content>
-                                    You added Elliot Fu to the group <a>Coworkers</a>
-                                </Feed.Content>
-                            </Feed.Event>
-                            <Feed.Event>
-                                <Feed.Content>
-                                    You added Elliot Fu to the group <a>Coworkers</a>
-                                </Feed.Content>
-                            </Feed.Event>
-                            <Feed.Event>
-                                <Feed.Content>
-                                    You added Elliot Fu to the group <a>Coworkers</a>
-                                </Feed.Content>
-                            </Feed.Event>
-                            <Feed.Event>
-                                <Feed.Content>
-                                    You added Elliot Fu to the group <a>Coworkers</a>
-                                </Feed.Content>
-                            </Feed.Event>
-                            <Feed.Event>
-                                <Feed.Content>
-                                    You added Elliot Fu to the group <a>Coworkers</a>
-                                </Feed.Content>
-                            </Feed.Event>
-                        </Feed>
-                        <Feed>
-                            <Feed.Event>
-                                <Feed.Label>
-                                </Feed.Label>
-                                <Feed.Content>
-                                    You added Elliot Fu to the group <a>Coworkers</a>
-                                </Feed.Content>
-                            </Feed.Event>
-                        </Feed>
-                        <Feed>
-                            <Feed.Event>
-                                <Feed.Label>
-                                </Feed.Label>
-                                <Feed.Content>
-                                    You added Elliot Fu to the group <a>Coworkers</a>
-                                </Feed.Content>
-                            </Feed.Event>
-                        </Feed>
+                   
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Segment raised>

@@ -22,8 +22,8 @@ import CastDetails from './pages/CastDetails';
 
 const SegmentStyle = {
     flex: 1,
-    marginLeft: "16em",
-    marginRight: "16em",
+    marginLeft: "15em",
+    marginRight: "15em",
 };
 
 ReactDOM.render(

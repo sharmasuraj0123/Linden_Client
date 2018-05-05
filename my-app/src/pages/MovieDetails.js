@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Line, Circle } from 'rc-progress';
 import StarRatingComponent from 'react-star-rating-component';
-import GridColumn, { Divider, Tab,Table,Grid, Button,Form,Header, Image, List,Menu, Rating,Card,Segment, Sidebar, Pagination, Embed } from 'semantic-ui-react'
+import GridColumn, { Divider, Icon,Tab,Table,Grid, Button,Form,Header, Image, List,Menu, Rating,Card,Segment, Sidebar, Pagination, Embed } from 'semantic-ui-react'
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import FeaturedCard from "../components/FeaturedCard";
@@ -46,10 +46,17 @@ class MovieDetails extends Component {
                                     </Menu.Item>
                                     <Menu.Item>
                                         <Header  as='h2'   inverted style={{ fontSize:'3em',   color: '#ffffff',}}>Gandhi</Header>
+                                        <Icon color='white' name='time' size='huge'/>
                                 </Menu.Item>
                                 <Menu.Item position='right'>
-                                    <List.Icon  name='bookmark'   color='white' size='huge'  />
-                                    <List.Icon name='dont'   color='white' size='huge' verticalAlign='middle' />
+                                <Icon.Group size='huge'>
+                                        <Icon color='white' name='bookmark' />
+                                        <Icon size='tiny' color='grey' name='plus'/>       
+                                 </Icon.Group>
+
+                                <Icon color='white' name='hide' size='huge'/>
+                               
+                                    
                                 </Menu.Item>
                                 </Menu>
                             </List.Item>

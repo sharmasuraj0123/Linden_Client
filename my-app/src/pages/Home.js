@@ -74,13 +74,16 @@ class Home extends Component {
                         <Segment raised>
                             <List divided>
                             <List.Item>
-                            <SideBarList title='Opening This week' />
+                            <SideBarList title='OPENING THIS WEEK' data='Avengers'/>
                             </List.Item>
                             <List.Item>
-                            <SideBarList title='Coming Soon' />
+                            <SideBarList title='COMING SOON' data='Avengers 8'/>
                             </List.Item>
                             <List.Item>
-                            <SideBarList title='Critic Picks' />
+                            <SideBarList title='CRITIC PICKS' data='Avengers 5'/>
+                            </List.Item>
+                            <List.Item>
+                            <SideBarList title='TOP BOX OFFICE' data='Avengers 1'/>
                             </List.Item>
                             </List>
                         </Segment>

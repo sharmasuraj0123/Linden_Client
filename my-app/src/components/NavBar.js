@@ -5,6 +5,7 @@ import SearchInput from './SearchInput';
 import FeaturedCard from "../components/FeaturedCard";
 
 import FeaturedMovieCarousal from "../components/FeaturedMovieCarousal";
+import SideBarList from "../components/SideBarList";
 
 class NavBar extends Component {
   render() {
@@ -22,15 +23,10 @@ class NavBar extends Component {
           <Menu.Item >
             <div>
               <div >
-                <Button size='big' circular color='blue' inverted icon='facebook' />
-                <Button size='big' circular color='black' icon='instagram' />
-                <Button size='big' circular color='black' icon='google plus' />
-                <Button size='big' circular color='black' icon='youtube play' />
-                <Button size='big' circular color='black' icon='pinterest' />
-                <Button size='big' circular color='black' icon='twitter' />
-                <Button size='big' circular color='black' icon='tumblr' />
+              
+                <SearchInput /> 
               </div>
-              <Menu inverted style={{ fontSize:'19px', verticalAlign: 'bottom'}}>
+              <Menu inverted style={{ fontSize:'25px', verticalAlign: 'bottom'}}>
                 <Dropdown item simple text='Movies' >
                 <Dropdown.Menu style={{ fontSize:'16px', width:650}}>
                   <Dropdown.Item>  
@@ -64,20 +60,32 @@ class NavBar extends Component {
                             <List.Header as='a'>Top Rated Movies</List.Header>
                           </List.Item>
                           <List.Item>
-                            <List.Header as='a'>Most Popular Movies</List.Header>
-                             
+                            <List.Header as='a'>Most Popular Movies</List.Header>          
                           </List.Item>
-                        </List>
-                          
+                        </List>        
                     </Grid.Column > 
-                    
-                    
                     <Grid.Column width={10}>
-                   
+                      <List.Header style={{ fontSize:'18px',paddingBottom:'0.5em'}}>FEATURED MOVIES</List.Header>
                     <FeaturedMovieCarousal/>
                     </Grid.Column >  
                      </Grid>  
+                    </Dropdown.Item> 
+                </Dropdown.Menu> 
+                </Dropdown>
 
+
+
+                <Dropdown item simple text='TV Shows'>
+                <Dropdown.Menu style={{ fontSize:'16px', width:650}}>
+                  <Dropdown.Item>  
+                    <Grid columns={2} divided >
+                      <Grid.Column width={6}>   
+                    </Grid.Column > 
+                    <Grid.Column width={10}>
+                      <List.Header style={{ fontSize:'18px',paddingBottom:'0.5em'}}>FEATURED TV</List.Header>
+                    <FeaturedMovieCarousal/>
+                    </Grid.Column >  
+                     </Grid>  
                     </Dropdown.Item> 
                 </Dropdown.Menu> 
                 </Dropdown>
@@ -85,95 +93,17 @@ class NavBar extends Component {
 
 
 
-                <Dropdown item simple text='TV Shows'>
-                  <Dropdown.Menu style={{ fontSize:'12px', width:550, height: 350}}>
-                    <Dropdown.Item fluid={'true'}>List Item</Dropdown.Item>
-                    <Dropdown.Item>List Item</Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Header>Header Item</Dropdown.Header>
-                    <Dropdown.Item>
-                      <i className='dropdown icon' />
-                      <span className='text'>Submenu</span>
-                      <Dropdown.Menu>
-                        <Dropdown.Item>List Item</Dropdown.Item>
-                        <Dropdown.Item>List Item</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown.Item>
-                    <Dropdown.Item>List Item</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-                <Dropdown item simple text='News'>
-                  <Dropdown.Menu>
-                    <Dropdown.Item>
-                    </Dropdown.Item>
-                    <Dropdown.Item>List Item</Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Header>Header Item</Dropdown.Header>
-                    <Dropdown.Item>
-                      <i className='dropdown icon' />
-                      <span className='text'>Submenu</span>
-                      <Dropdown.Menu>
-                        <Dropdown.Item>
-                          <Grid relaxed columns={4}>
-                            <Grid.Column >
-                              <Header as='h3'>Opening this week</Header>
-                              <List>
-                                <List.Item>
-                                  <List.Content>
-                                    <List.Header as='a'>Opening This Week</List.Header>
-                                  </List.Content>
-                                  <List.Content>
-                                    <List.Header as='a'>Opening This Week</List.Header>
-                                  </List.Content>
-                                  <List.Content>
-                                    <List.Header as='a'>Opening This Week</List.Header>
-                                  </List.Content>
-                                  <List.Content>
-                                    <List.Header as='a'>Opening This Week</List.Header>
-                                  </List.Content>
-                                  <List.Content>
-                                    <List.Header as='a'>Opening This Week</List.Header>
-                                  </List.Content>
-                                </List.Item>
-                              </List>
-                            </Grid.Column>
-                            <Grid.Column>
-                              <Header as='h3'>Opening this week</Header>
-                              <List>
-                                <List.Item>
-                                  <List.Content>
-                                    <List.Header as='a'>Opening This Week</List.Header>
-                                  </List.Content>
-                                </List.Item>
-                              </List>
-                            </Grid.Column>
-                            <Grid.Column>
-                              <Header as='h3'>Opening this week</Header>
-                              <List>
-                                <List.Item>
-                                  <List.Content>
-                                    <List.Header as='a'>Opening This Week</List.Header>
-                                  </List.Content>
-                                </List.Item>
-                              </List>
-                            </Grid.Column>
-                          </Grid>
-                        </Dropdown.Item>
-                        <Dropdown.Item>List Item</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown.Item>
-                    <Dropdown.Item>List Item</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
+               
               </Menu>
             </div>
           </Menu.Item>
           
-          <Menu.Item>
-            <div>
-              <NavbarModals />
-              <SearchInput />
-            </div>
+          <Menu.Item position='right' style={{ fontSize:'12px'}}>
+          <div>
+            <NavbarModals />
+            <Button size='huge' circular color='black'  icon='facebook' />
+                <Button size='huge' circular color='black' icon='instagram' />
+              </div>
           </Menu.Item>
         </Menu>
       </div>

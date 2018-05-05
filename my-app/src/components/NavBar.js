@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { Menu, Dropdown, Image, Header, List, Grid, Button } from 'semantic-ui-react'
+import  { Menu, Dropdown, Image, Header, List, Grid, Button,Segment, Divider } from 'semantic-ui-react'
 import NavbarModals from './NavbarModals';
 import SearchInput from './SearchInput';
+import FeaturedCard from "../components/FeaturedCard";
 
-import MovieDropDownComponent from './MovieDropDownComponent';
 
 class NavBar extends Component {
   render() {
     return (
       <div >
-        <Menu top={'true'} inverted >
+        <Menu top={'true'} inverted borderless>
           <Menu.Item>
             <Image
               src={require('../images/LogoNew.png')}
@@ -31,15 +31,59 @@ class NavBar extends Component {
               </div>
               <Menu inverted style={{ fontSize:'19px', verticalAlign: 'bottom'}}>
                 <Dropdown item simple text='Movies' >
-                  
-                  
-                    {/* <Grid columns>
-                    <Grid.columns>
-                    </Grid.columns>
-                     </Grid> */}
+                <Dropdown.Menu style={{ fontSize:'16px', width:650}}>
+                  <Dropdown.Item>  
+                    <Grid columns={2}>
+                      <Grid.Column width={4}>
+                            <List>
+                              <List.Header style={{ fontSize:'18px',paddingBottom:'0.5em'}}>NEW</List.Header>
+                            <List.Item>
+                              <List.Header as='a'>Opening This Week</List.Header>
+                            </List.Item>
+                            <List.Item>
+                              <List.Header as='a'>Top Box Office</List.Header>
+                            </List.Item>
+                            <List.Item>
+                              <List.Header as='a'>Coming Soon to Theaters</List.Header>
+                            </List.Item>
+                            <List.Item>
+                              <List.Header as='a'>Certified Fresh Movies</List.Header>
+                            </List.Item>
+                          </List>
+                        
+                          <List>
+                            <List.Header style={{ fontSize:'18px',paddingBottom:'0.5em'}}>ALL TIME</List.Header>
+                          <List.Item>
+                            <List.Header as='a'>Box Office</List.Header>
+                          </List.Item>
+                          <List.Item>
+                            <List.Header as='a'>Oscar Winners</List.Header>
+                          </List.Item>
+                          <List.Item>
+                            <List.Header as='a'>Top Rated Movies</List.Header>
+                          </List.Item>
+                          <List.Item>
+                            <List.Header as='a'>Most Popular Movies</List.Header>
+                             
+                          </List.Item>
+                        </List>
+                          
+                    </Grid.Column > 
+                    
+                    
+                    <Grid.Column width={10}>
                    
-                  
+                      <FeaturedCard/>
+                    </Grid.Column >  
+                     </Grid>  
+
+                    </Dropdown.Item> 
+                </Dropdown.Menu> 
                 </Dropdown>
+
+
+
+
                 <Dropdown item simple text='TV Shows'>
                   <Dropdown.Menu style={{ fontSize:'12px', width:550, height: 350}}>
                     <Dropdown.Item fluid={'true'}>List Item</Dropdown.Item>

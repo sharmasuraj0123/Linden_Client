@@ -5,8 +5,9 @@ import Footer from "../components/Footer";
 import FeaturedCard from "../components/FeaturedCard";
 import DescriptionCard from "../components/DescriptionCard";
 import SideBarList from "../components/SideBarList";
+import { Carousel } from 'react-responsive-carousel';
 
-
+import FeaturedMovieCarousal from "../components/FeaturedMovieCarousal";
 
 const DividerStyle = {
     fontSize: '25px',
@@ -18,17 +19,13 @@ class Home extends Component {
 
     render() {
         return (
-            <div>       
+            <div>
+                
                 <Grid columns divided style={{ paddingTop: '' }}>
                     <Grid.Column width={12}>
                     <List>
                                <List.Item> 
-                               <Embed 
-                                    id='O6Xo21L0ybE'
-                                    icon='play'
-                                    placeholder= {require("../images/testMovieTrailer.jpg")}
-                                    source='youtube'
-                                 /> 
+                               <FeaturedMovieCarousal/>
                                 </List.Item>             
                                  </List> 
                         <Divider horizontal inverted style={{ fontSize:'30px'}}> Summer Collections</Divider>

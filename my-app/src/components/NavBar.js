@@ -4,6 +4,7 @@ import NavbarModals from './NavbarModals';
 import SearchInput from './SearchInput';
 import FeaturedCard from "../components/FeaturedCard";
 
+import FeaturedMovieCarousal from "../components/FeaturedMovieCarousal";
 
 class NavBar extends Component {
   render() {
@@ -33,8 +34,8 @@ class NavBar extends Component {
                 <Dropdown item simple text='Movies' >
                 <Dropdown.Menu style={{ fontSize:'16px', width:650}}>
                   <Dropdown.Item>  
-                    <Grid columns={2}>
-                      <Grid.Column width={4}>
+                    <Grid columns={2} divided >
+                      <Grid.Column width={6}>
                             <List>
                               <List.Header style={{ fontSize:'18px',paddingBottom:'0.5em'}}>NEW</List.Header>
                             <List.Item>
@@ -73,7 +74,7 @@ class NavBar extends Component {
                     
                     <Grid.Column width={10}>
                    
-                      <FeaturedCard/>
+                    <FeaturedMovieCarousal/>
                     </Grid.Column >  
                      </Grid>  
 

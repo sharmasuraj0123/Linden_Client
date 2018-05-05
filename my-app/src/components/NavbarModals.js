@@ -20,7 +20,6 @@ class NavbarModals extends Component {
 
     return (
       <div fluid={'true'} style={{ paddingBottom: '1em' }}>
-        <Button color='blue' inverted size='tiny' href='about' style={{ maxWidth: 80 }}>Seasons</Button>
         <Button color='black' size='tiny' href='about' style={{}}>About Linden</Button>
         <Button color='black' size='tiny' href='lindenCritics' style={{ maxWidth: 150 }}>Meet Our Critics</Button>
         <Modal trigger={<Button color='black' size='tiny' onClick={this.showContactUs('blurring')}>Contact Us</Button>}

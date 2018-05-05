@@ -61,9 +61,7 @@ class SearchResults extends Component {
 
     render() {
         return (
-            <div>   
-               
-                   
+            <div>              
                     <Grid divided style={{ paddingTop: '2em' }}>
                     <Grid.Column width={11}>
                         <Segment raised>

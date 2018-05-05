@@ -22,6 +22,12 @@ class UserFollowModal extends Component {
                     <List.Item>
                         <ProfileCard/>
                     </List.Item>
+                    <List.Item>
+                        <ProfileCard/>
+                    </List.Item>
+                    <List.Item>
+                        <ProfileCard/>
+                    </List.Item>
                 </List>
              </Modal.Content>
              <Modal.Actions>

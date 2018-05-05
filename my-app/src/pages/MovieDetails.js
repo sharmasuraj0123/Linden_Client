@@ -6,12 +6,13 @@ import Footer from "../components/Footer";
 import FeaturedCard from "../components/FeaturedCard";
 import DescriptionCard from "../components/DescriptionCard";
 import SideBarList from "../components/SideBarList";
+import ReviewCard from "../components/ReviewCard";
 
 
 
 
 const commentPanes = [
-    { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}>Tab 1 Content</Tab.Pane> },
+    { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><ReviewCard/></Tab.Pane> },
     { menuItem: 'Top Critics', render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane> },
     { menuItem: 'Audience', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
     { menuItem: 'Fall', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },

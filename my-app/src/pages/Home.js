@@ -18,9 +18,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-               
-                
+            <div>       
                 <Grid columns divided style={{ paddingTop: '' }}>
                     <Grid.Column width={12}>
                     <List>
@@ -31,12 +29,9 @@ class Home extends Component {
                                     placeholder= {require("../images/testMovieTrailer.jpg")}
                                     source='youtube'
                                  /> 
-                                </List.Item>
-
-                                
-                                
+                                </List.Item>             
                                  </List> 
-                        <Divider horizontal inverted style={{ fontSize:'30px'}}> Fall Collections</Divider>
+                        <Divider horizontal inverted style={{ fontSize:'30px'}}> Summer Collections</Divider>
                         <List horizontal>
                         <List.Item>
                         </List.Item>
@@ -46,7 +41,7 @@ class Home extends Component {
                         </List>
                         <List horizontal>
                             <List.Item style={{ }}>
-                            <DescriptionCard imagesrc = {require('../images/VerifiedFall.png')} verticalAlign= 'top'/>
+                            <DescriptionCard imagesrc = {require('../images/Fall.png')} verticalAlign= 'top'/>
                             </List.Item >
                             <List.Item >
                                 <FeaturedCard verticalAlign= 'middle'/>
@@ -63,7 +58,7 @@ class Home extends Component {
 
                             <List horizontal >
                             <List.Item style={{ }}>
-                            <DescriptionCard imagesrc = {require('../images/FallCollection.png')} verticalAlign= 'top'/>
+                            <DescriptionCard imagesrc = {require('../images/Winter.png')} verticalAlign= 'top'/>
                             </List.Item>
                             <List.Item >
                                 <FeaturedCard verticalAlign= 'middle'/>

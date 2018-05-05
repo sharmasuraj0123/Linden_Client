@@ -3,6 +3,8 @@ import { Menu, Dropdown, Image, Header, List, Grid, Button } from 'semantic-ui-r
 import NavbarModals from './NavbarModals';
 import SearchInput from './SearchInput';
 
+import MovieDropDownComponent from './MovieDropDownComponent';
+
 class NavBar extends Component {
   render() {
     return (
@@ -29,8 +31,14 @@ class NavBar extends Component {
               </div>
               <Menu inverted style={{ fontSize:'19px', verticalAlign: 'bottom'}}>
                 <Dropdown item simple text='Movies' >
-                  <Dropdown.Menu fluid={'true'} selection={'true'}>
-                  </Dropdown.Menu>
+                  
+                  
+                    {/* <Grid columns>
+                    <Grid.columns>
+                    </Grid.columns>
+                     </Grid> */}
+                   
+                  
                 </Dropdown>
                 <Dropdown item simple text='TV Shows'>
                   <Dropdown.Menu style={{ fontSize:'12px', width:550, height: 350}}>

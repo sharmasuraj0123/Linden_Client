@@ -3,14 +3,9 @@ import { Segment, Pagination,Grid } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import queryString from 'query-string';
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 import Movies from '../components/Movies';
 import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
 import SideBarList from "../components/SideBarList";
-
-
-
 
 class SearchResults extends Component {
     constructor(props) {

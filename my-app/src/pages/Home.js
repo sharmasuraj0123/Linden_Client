@@ -1,47 +1,44 @@
 import React, { Component } from 'react'
+// eslint-disable-next-line
 import { Divider, Grid, Header, Image, List, Segment, Feed, Embed } from 'semantic-ui-react'
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 import FeaturedCard from "../components/FeaturedCard";
 import DescriptionCard from "../components/DescriptionCard";
 import SideBarList from "../components/SideBarList";
-import { Carousel } from 'react-responsive-carousel';
 
 import FeaturedMovieCarousal from "../components/FeaturedMovieCarousal";
 
-const DividerStyle = {
-    fontSize: '25px',
-    paddingTop: '2em',
-    
-};
+// const DividerStyle = {
+//     fontSize: '25px',
+//     paddingTop: '2em',
+// };
 
 class Home extends Component {
 
     render() {
         return (
             <div>
-                
+
                 <Grid columns divided style={{ paddingTop: '' }}>
                     <Grid.Column width={12}>
-                    <List>
-                               <List.Item> 
-                               <FeaturedMovieCarousal/>
-                                </List.Item>             
-                                 </List> 
-                        <Divider horizontal inverted style={{ fontSize:'30px'}}> Summer Collections</Divider>
+                        <List>
+                            <List.Item>
+                                <FeaturedMovieCarousal />
+                            </List.Item>
+                        </List>
+                        <Divider horizontal inverted style={{ fontSize: '30px' }}> Summer Collections</Divider>
                         <List horizontal>
-                        <List.Item>
-                        </List.Item>
-                        <List.Item>
-                        {/* <DescriptionCard imagesrc = {require('../images/Fall.png')}/> */}
-                        </List.Item>
+                            <List.Item>
+                            </List.Item>
+                            <List.Item>
+                                {/* <DescriptionCard imagesrc = {require('../images/Fall.png')}/> */}
+                            </List.Item>
                         </List>
                         <List horizontal>
-                            <List.Item style={{ }}>
-                            <DescriptionCard imagesrc = {require('../images/Fall.png')} verticalAlign= 'top'/>
+                            <List.Item style={{}}>
+                                <DescriptionCard imagesrc={require('../images/Fall.png')} verticalAlign='top' />
                             </List.Item >
                             <List.Item >
-                                <FeaturedCard verticalAlign= 'middle'/>
+                                <FeaturedCard verticalAlign='middle' />
                             </List.Item>
                             <List.Item>
                                 <FeaturedCard />
@@ -49,16 +46,16 @@ class Home extends Component {
                             <List.Item>
                                 <FeaturedCard />
                             </List.Item>
-                           </List>
-                          
-                           <Divider inverted/>
+                        </List>
 
-                            <List horizontal >
-                            <List.Item style={{ }}>
-                            <DescriptionCard imagesrc = {require('../images/Winter.png')} verticalAlign= 'top'/>
+                        <Divider inverted />
+
+                        <List horizontal >
+                            <List.Item style={{}}>
+                                <DescriptionCard imagesrc={require('../images/Winter.png')} verticalAlign='top' />
                             </List.Item>
                             <List.Item >
-                                <FeaturedCard verticalAlign= 'middle'/>
+                                <FeaturedCard verticalAlign='middle' />
                             </List.Item>
                             <List.Item>
                                 <FeaturedCard />
@@ -66,25 +63,25 @@ class Home extends Component {
                             <List.Item>
                                 <FeaturedCard />
                             </List.Item>
-                            
+
                         </List>
-                   
+
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Segment raised>
                             <List divided>
-                            <List.Item>
-                            <SideBarList title='OPENING THIS WEEK' data='Avengers'/>
-                            </List.Item>
-                            <List.Item>
-                            <SideBarList title='COMING SOON' data='Avengers 8'/>
-                            </List.Item>
-                            <List.Item>
-                            <SideBarList title='CRITIC PICKS' data='Avengers 5'/>
-                            </List.Item>
-                            <List.Item>
-                            <SideBarList title='TOP BOX OFFICE' data='Avengers 1'/>
-                            </List.Item>
+                                <List.Item>
+                                    <SideBarList title='OPENING THIS WEEK' data='Avengers' />
+                                </List.Item>
+                                <List.Item>
+                                    <SideBarList title='COMING SOON' data='Avengers 8' />
+                                </List.Item>
+                                <List.Item>
+                                    <SideBarList title='CRITIC PICKS' data='Avengers 5' />
+                                </List.Item>
+                                <List.Item>
+                                    <SideBarList title='TOP BOX OFFICE' data='Avengers 1' />
+                                </List.Item>
                             </List>
                         </Segment>
                     </Grid.Column>

@@ -16,7 +16,9 @@ class Movies extends Component {
             <Item style={ItemStyle}>
               <Item.Image src={movie.imageURL} />
               <Item.Content>
-                <Item.Header as='a'>{movie.name}</Item.Header>
+                <Item.Header href={'/movie/' + movie.contentId}>
+                  {movie.name}
+                </Item.Header>
                 <Item.Meta>
                   <span className='cinema'>{movie.year}</span>
                 </Item.Meta>

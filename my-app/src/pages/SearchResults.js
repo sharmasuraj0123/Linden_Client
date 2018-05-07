@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Pagination,Grid } from 'semantic-ui-react'
+import { Segment, Pagination, Grid } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import queryString from 'query-string';
@@ -28,6 +28,7 @@ class SearchResults extends Component {
         axios.get('http://localhost:8080/search?keywords=' + keywords + '&page=' + page)
             .then(function (response) {
                 let movieList = response.data.movies;
+                console.log(movieList);
                 let resultCountResponse = response.data.resultCount;
                 let listLength = 0;
                 let totalPages = Math.ceil(response.data.resultCount.all / 10.0);
@@ -56,8 +57,8 @@ class SearchResults extends Component {
 
     render() {
         return (
-            <div>              
-                    <Grid divided style={{ paddingTop: '2em' }}>
+            <div>
+                <Grid divided style={{ paddingTop: '2em' }}>
                     <Grid.Column width={11}>
                         <Segment raised>
                             <StepExampleLinkClickable resultCount={this.state.resultCount} />
@@ -73,9 +74,9 @@ class SearchResults extends Component {
                                 }}
                                 activePage={this.state.page}
                                 totalPages={this.state.totalPages}
-                                />
+                            />
                         </Segment>
-                     </Grid.Column>
+                    </Grid.Column>
                     <Grid.Column width={5}>
                         <Segment raised >
                             <SideBarList title='Opening This week' />
@@ -87,8 +88,8 @@ class SearchResults extends Component {
                             <SideBarList title='Critic Picks' />
                         </Segment>
                     </Grid.Column>
-                    </Grid>
-                   
+                </Grid>
+
             </div>
         );
     }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Segment, Grid, List, Tab, Divider, Table } from 'semantic-ui-react';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 import SideBarList from "../components/SideBarList";
 
 const panes = [
@@ -8,10 +10,31 @@ const panes = [
 ]
 
 class CastDetails extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: ''
+        }
+    }
+
+    componentDidMount() {
+        let id = this.props.match.params.id;
+        axios.get('http://localhost:8080/cast/' + id)
+            .then(function (response) {
+                let data = response.data;
+                let cast = data.actors[0].cast;
+                console.log(data);
+                this.setState({
+                    name: cast.firstName + ' ' + cast.lastName
+                });
+            }.bind(this));
+    }
+
     render() {
         return (
             <div>
-                <Grid columns>
+                <Grid>
                     <Grid.Column width={12} style={{ paddingTop: '2em' }}>
                         <Segment raised>
                             <List horizontal >
@@ -23,12 +46,12 @@ class CastDetails extends Component {
                                     <Table basic='very' style={{ height: 300 }}  >
                                         <Table.Header>
                                             <Table.Row>
-                                                <Table.HeaderCell colSpan='3' style={{ fontSize: '3em' }}>Robert Downey Jr.</Table.HeaderCell>
+                                                <Table.HeaderCell colSpan='3' style={{ fontSize: '3em' }}>{this.state.name}</Table.HeaderCell>
                                             </Table.Row>
                                         </Table.Header>
                                         <Table.Body style={{ fontSize: '1.5em' }}>
                                             <Table.Row>
-                                                <Table.Cell bold><strong>Birthday:</strong></Table.Cell>
+                                                <Table.Cell><strong>Birthday:</strong></Table.Cell>
                                                 <Table.Cell> Apr 4, 1965</Table.Cell>
                                             </Table.Row>
                                             <Table.Row>
@@ -46,10 +69,6 @@ class CastDetails extends Component {
                         </Segment>
                         <Divider horizontal inverted style={{ fontSize: '20px' }}> FILMOGRAPHY</Divider>
                         <Tab menu={{ secondary: true, pointing: true, inverted: true }} panes={panes} />
-
-
-
-
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Segment raised>
@@ -72,4 +91,4 @@ class CastDetails extends Component {
     }
 }
 
-export default CastDetails;
+export default withRouter(CastDetails);

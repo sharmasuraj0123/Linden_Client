@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { Circle } from 'rc-progress';
+import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 // eslint-diasble-next-line
 import { Divider, Icon, Tab, Table, Grid, Button, Form, Header, Image, List, Menu, Rating, Segment, Embed } from 'semantic-ui-react'
 import SideBarList from "../components/SideBarList";
 import ReviewCard from "../components/ReviewCard";
 import CastCard from "../components/CastCard";
+import Genre from "../components/Genres"
 
 const commentPanes = [
     { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><ReviewCard /></Tab.Pane> },
@@ -14,15 +17,40 @@ const commentPanes = [
     { menuItem: 'Winter', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
 ]
 
+
 class MovieDetails extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            genre: [],
+            cast: []
+        }
+    }
+
+    componentDidMount() {
+        let id = this.props.match.params.id;
+        axios.get('http://localhost:8080/movie/' + id)
+            .then(function (response) {
+                let movie = response.data;
+                console.log(movie);
+                this.setState({
+                    name: movie.name,
+                    overview: movie.details,
+                    cast: movie.cast,
+                    genre: movie.genre
+                });
+                console.log(this.state.cast);
+            }.bind(this));
+    }
 
     render() {
         return (
             <div>
-                <Grid columns>
+                <Grid>
                     <Grid.Column width={12}>
                         <Segment inverted>
-                            <List vertical>
+                            <List vertical='true'>
                                 <List.Item >
                                     <List.Item >
                                         <Menu inverted borderless>
@@ -33,16 +61,17 @@ class MovieDetails extends Component {
                                                 />
                                             </Menu.Item>
                                             <Menu.Item>
-                                                <Header as='h2' inverted style={{ fontSize: '3em', color: '#ffffff', }}>Gandhi</Header>
-                                                <Icon color='white' name='time' size='huge' />
+                                                <Header as='h6' inverted style={{ fontSize: '3em', color: '#ffffff', }}>
+                                                    {this.state.name}
+                                                </Header>
+                                                <Icon name='time' size='huge' />
                                             </Menu.Item>
                                             <Menu.Item position='right'>
                                                 <Icon.Group size='huge'>
-                                                    <Icon color='white' name='bookmark' />
+                                                    <Icon name='bookmark' />
                                                     <Icon size='tiny' color='grey' name='plus' />
                                                 </Icon.Group>
-
-                                                <Icon color='white' name='hide' size='huge' />
+                                                <Icon name='hide' size='huge' />
                                             </Menu.Item>
                                         </Menu>
                                     </List.Item>
@@ -54,7 +83,7 @@ class MovieDetails extends Component {
                                         />
                                     </List.Item>
                                     <List.Item>
-                                        <Grid columns >
+                                        <Grid>
                                             <Grid.Column width={5}>
                                                 <Image bordered
                                                     src={require("../images/certifiedmovie2.jpg")}
@@ -63,8 +92,7 @@ class MovieDetails extends Component {
                                             </Grid.Column>
                                             <Grid.Column width={10}>
                                                 <Divider horizontal inverted style={{ fontSize: '20px', }}> INFO</Divider>
-                                                <List.Item as='p'>It was Richard Attenborough's lifelong dream to bring the life story of Indian political and spiritual leader Mahatma Gandhi to the screen. When it finally reached fruition in 1982, the 188-minute, Oscar-winning Gandhi was one of the most exhaustively thorough biopics ever made. The film begins in the early part of the 20th century, when Mohandas K. Gandhi (Ben Kingsley), a British-trained lawyer, forsakes all worldly possessions to take up the cause of Indian independence. Faced with armed resistance from the British government, Gandhi adopts a policy of "passive resistance," endeavoring to win freedom for his people without resorting to bloodshed. In the horrendous "slaughter" sequence, more extras appear on screen than in any previous historical epic. The supporting cast includes Candice Bergen as photographer Margaret Bourke-White, Athol Fugard as General Smuts, John Gielgud as Lord Irwin, John Mills as the viceroy, Martin Sheen as Walker, Trevor Howard as Judge Broomfield, and, in a tiny part as a street bully, star-to-be Daniel Day-Lewis. Gandhi won eight Academy Awards, including Best Picture, Best Actor, and Best Director.
-                                    </List.Item>
+                                                <List.Item as='p'>{this.state.overview}</List.Item>
                                                 <Table basic='very' inverted >
                                                     <Table.Body>
                                                         <Table.Row>
@@ -73,7 +101,9 @@ class MovieDetails extends Component {
                                                         </Table.Row>
                                                         <Table.Row>
                                                             <Table.Cell>Genre:</Table.Cell>
-                                                            <Table.Cell>Classics, Drama</Table.Cell>
+                                                            <Table.Cell>
+                                                                <Genre genres={this.state.genre} />
+                                                            </Table.Cell>
                                                         </Table.Row>
                                                         <Table.Row>
                                                             <Table.Cell>Runtime:</Table.Cell>
@@ -95,7 +125,7 @@ class MovieDetails extends Component {
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Performance</Divider>
-                                    <Grid columns textAlign={'center'}>
+                                    <Grid textAlign={'center'}>
                                         <Grid.Column width={4}>
 
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
@@ -122,10 +152,9 @@ class MovieDetails extends Component {
                                                 98 %</Header>
                                         </Grid.Column>
                                         <Grid.Column width={8}>
-
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                                 Add your Rating
-                                        </Header>
+                                            </Header>
                                             <List>
                                                 <List.Item>
                                                     <List horizontal>
@@ -134,7 +163,7 @@ class MovieDetails extends Component {
                                                         </List.Item>
                                                         <List.Item >
                                                             <Rating maxRating={5} clearable size='large' style={{ color: 'white' }} />
-                                                            <Form reply fluid size='large'>
+                                                            <Form reply fluid='true' size='large'>
                                                                 <Form.TextArea />
                                                                 <Button content='Post A Review' labelPosition='left' icon='edit' />
                                                             </Form>
@@ -147,7 +176,7 @@ class MovieDetails extends Component {
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> CASTS</Divider>
-                                    <CastCard />
+                                    <CastCard casts={this.state.cast}/>
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Reviews</Divider>
@@ -190,4 +219,4 @@ class MovieDetails extends Component {
     }
 }
 
-export default MovieDetails;
+export default withRouter(MovieDetails);

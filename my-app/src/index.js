@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Segment } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Home from './pages/Home';
@@ -29,13 +29,11 @@ const SegmentStyle = {
 ReactDOM.render(
     <Router>
         <Segment inverted raised style={SegmentStyle}>
-        <NavBar/>
+            <NavBar />
             <Switch>
                 <Route path='/' exact render={
                     () => {
-                        return (
-                        <Home/>
-                    );
+                        return (<Home />);
                     }
                 } />
                 <Route path='/search' exact render={
@@ -54,7 +52,7 @@ ReactDOM.render(
                     }
                 } />
 
-                <Route path='/movieDetails' exact render={
+                <Route path='/movie/:id' exact render={
                     () => {
                         return (<MovieDetails />);
                     }
@@ -64,7 +62,7 @@ ReactDOM.render(
                         return (<ProfileDetails />);
                     }
                 } />
-                <Route path='/castDetails' exact render={
+                <Route path='/cast/:id' exact render={
                     () => {
                         return (<CastDetails />);
                     }
@@ -76,7 +74,7 @@ ReactDOM.render(
                 } />
                 <Route component={NotFound} />
             </Switch>
-            <Footer/>
+            <Footer />
         </Segment>
     </Router>
     , document.getElementById('root')

@@ -7,7 +7,8 @@ import { Divider, Icon, Tab, Table, Grid, Button, Form, Header, Image, List, Men
 import SideBarList from "../components/SideBarList";
 import ReviewCard from "../components/ReviewCard";
 import CastCard from "../components/CastCard";
-import Genre from "../components/Genres"
+import Genre from "../components/Genres";
+import Cookies from 'universal-cookie';
 
 const commentPanes = [
     { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><ReviewCard /></Tab.Pane> },
@@ -16,6 +17,10 @@ const commentPanes = [
     { menuItem: 'Fall', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
     { menuItem: 'Winter', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
 ]
+
+
+
+let details = ' '
 
 
 class MovieDetails extends Component {
@@ -27,6 +32,33 @@ class MovieDetails extends Component {
             cast: []
         }
     }
+
+
+     handlePostReview() {
+        const cookies = new Cookies(cookies);
+        let id = this.props.match.params.id;
+        let token =  cookies.get('obj').token;
+        axios.post('http://localhost:8080/user/postReview',{
+        token: token,
+        contentId : id,
+        contentType : "MOVIE",
+        rating : 4,
+        details : details
+      })
+          .then(function (response) {
+            response = response.data;
+            if (response.status === 'ERROR') {
+              console.log('Cannot Log-Out');
+            } else {
+              response = response.obj;    
+              cookies.remove('obj');
+            }
+            window.location.reload();
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
 
     componentDidMount() {
         let id = this.props.match.params.id;
@@ -53,6 +85,11 @@ class MovieDetails extends Component {
                             <List vertical='true'>
                                 <List.Item >
                                     <List.Item >
+                                    <Header as='h6' inverted style={{ fontSize: '2.5em', color: '#ffffff', }}>
+                                                    {this.state.name}
+                                                </Header>
+                                    </List.Item >
+                                    <List.Item >
                                         <Menu inverted borderless>
                                             <Menu.Item>
                                                 <Image circular
@@ -61,9 +98,7 @@ class MovieDetails extends Component {
                                                 />
                                             </Menu.Item>
                                             <Menu.Item>
-                                                <Header as='h6' inverted style={{ fontSize: '3em', color: '#ffffff', }}>
-                                                    {this.state.name}
-                                                </Header>
+                                                
                                                 <Icon name='time' size='huge' />
                                             </Menu.Item>
                                             <Menu.Item position='right'>
@@ -164,8 +199,10 @@ class MovieDetails extends Component {
                                                         <List.Item >
                                                             <Rating maxRating={5} clearable size='large' style={{ color: 'white' }} />
                                                             <Form reply fluid='true' size='large'>
-                                                                <Form.TextArea />
-                                                                <Button content='Post A Review' labelPosition='left' icon='edit' />
+                                                                <Form.TextArea onChange={(e, data) => details = data.value}/>
+                                                                <Button content='Post A Review' 
+                                                                onClick={(event, data) => this.handlePostReview()}
+                                                                labelPosition='left' icon='edit' />
                                                             </Form>
                                                         </List.Item>
                                                     </List>
@@ -181,20 +218,7 @@ class MovieDetails extends Component {
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Reviews</Divider>
                                     <Tab menu={{ secondary: true, pointing: true, inverted: true }} panes={commentPanes} />
-                                </List.Item>
-                                <List.Item>
-                                    <Divider horizontal inverted style={{ fontSize: '20px' }}> Photos</Divider>
-                                    <Image.Group size='small'>
-                                        <Image src={require('../images/dhoni.jpeg')} />
-                                        <Image src={require('../images/dhoni.jpeg')} />
-                                        <Image src={require('../images/dhoni.jpeg')} />
-                                        <Image src={require('../images/dhoni.jpeg')} />
-                                        <Image src={require('../images/dhoni.jpeg')} />
-                                    </Image.Group>
-                                </List.Item>
-                                <List.Item>
-                                    <Divider horizontal inverted style={{ fontSize: '20px' }}> Videos</Divider>
-                                </List.Item>
+                                </List.Item>    
                             </List>
                         </Segment>
                     </Grid.Column>

@@ -15,8 +15,8 @@ class NavbarModals extends Component {
   render() {
     const { dimmer, openContactUs } = this.state
     const cookies = new Cookies();    
-    let LoginButton = cookies.get('username') ?    (<UserMenu/>) :(<LoginForm/> );
-    let RegisterButton = cookies.get('username') ?   (<div />): (<RegisterForm />);
+    let LoginButton = cookies.get('obj') ?    (<UserMenu/>) :(<LoginForm/> );
+    let RegisterButton = cookies.get('obj') ?   (<div/>): (<RegisterForm />);
 
     return (
       <div fluid={'true'} style={{ paddingBottom: '1em' }}>

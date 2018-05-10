@@ -14,6 +14,7 @@ class LoginForm extends Component {
     showLogin = dimmer => () => this.setState({ dimmer, openLogin: true })
     closeLogin = () => this.setState({ openLogin: false, error: null })
     handleLogin() {
+     
         axios.post('http://localhost:8080/login',{
             email: email,
             password: password,
@@ -24,8 +25,10 @@ class LoginForm extends Component {
                 } else {
                     response = response.obj;
                     const cookies = new Cookies();
-                    cookies.set('username', response.firstName);
-                    console.log(cookies.get('username'));
+                    console.log(response);
+                    cookies.set('obj', response);
+                    console.log(cookies.get('obj').token);
+
                     window.location.reload();
                 }
             }).then(this.closeLogin)

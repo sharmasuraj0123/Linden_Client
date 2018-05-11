@@ -81,12 +81,7 @@ class SearchResults extends Component {
                         <Segment raised >
                             <SideBarList title='Opening This week' />
                         </Segment>
-                        <Segment raised >
-                            <SideBarList title='Coming Soon' />
-                        </Segment>
-                        <Segment raised >
-                            <SideBarList title='Critic Picks' />
-                        </Segment>
+                        
                     </Grid.Column>
                 </Grid>
 

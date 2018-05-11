@@ -16,7 +16,11 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
 import MovieDetails from './pages/MovieDetails';
+import TvShowDetails from './pages/TvShowDetails';
+import SeasonDetails from './pages/SeasonDetails';
 import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
+import TermsAndCondition from './pages/TermsAndCondition';
 import ProfileDetails from './pages/ProfileDetails';
 import CastDetails from './pages/CastDetails';
 
@@ -59,6 +63,16 @@ ReactDOM.render(
                         return (<MovieDetails />);
                     }
                 } />
+                <Route path='/tvShow/:id' exact render={
+                    () => {
+                        return (<TvShowDetails />);
+                    }
+                } />
+                <Route path='/tvShow/:tvShowId/season/:seasonNumber' exact render={
+                    () => {
+                        return (<SeasonDetails />);
+                    }
+                } />
                 <Route path='/profileDetails' exact render={
                     () => {
                         return (<ProfileDetails />);
@@ -72,6 +86,16 @@ ReactDOM.render(
                 <Route path='/about' exact render={
                     () => {
                         return (<AboutUs />);
+                    }
+                } />
+                <Route path='/contactUs' exact render={
+                    () => {
+                        return (<ContactUs />);
+                    }
+                } />
+                <Route path='/terms' exact render={
+                    () => {
+                        return (<TermsAndCondition />);
                     }
                 } />
                 <Route component={NotFound} />

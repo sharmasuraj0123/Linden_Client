@@ -7,7 +7,9 @@ import { Divider, Icon, Tab, Table, Grid, Button, Form, Header, Image, List, Men
 import SideBarList from "../components/SideBarList";
 import ReviewCard from "../components/ReviewCard";
 import CastCard from "../components/CastCard";
+import SeasonsList from "../components/SeasonsList";
 import Genre from "../components/Genres";
+
 import Cookies from 'universal-cookie';
 
 const commentPanes = [
@@ -23,13 +25,14 @@ const commentPanes = [
 let details = ' '
 
 
-class MovieDetails extends Component {
+class TvShowDetails extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             genre: [],
-            cast: []
+            cast: [], 
+            seasons :[]
         }
     }
 
@@ -62,15 +65,19 @@ class MovieDetails extends Component {
 
     componentDidMount() {
         let id = this.props.match.params.id;
-        axios.get('http://localhost:8080/movie/' + id)
+        axios.get('http://localhost:8080/tvShow/' + id)
             .then(function (response) {
-                let movie = response.data;
-                console.log(movie);
+                let tvShow = response.data.tvShow;
+                console.log(tvShow);
                 this.setState({
-                    name: movie.name,
-                    overview: movie.details,
-                    cast: movie.cast,
-                    genre: movie.genre
+                    name: tvShow.name,
+                    overview: tvShow.details,
+                    cast: tvShow.cast,
+                    genre: tvShow.genre,
+                    poster: 'https://image.tmdb.org/t/p/w500' + tvShow.poster,
+                    releaseDate: tvShow.releaseDate,
+                    seasons: tvShow.seasons
+                    
                 });
                 console.log(this.state.cast);
             }.bind(this));
@@ -110,18 +117,12 @@ class MovieDetails extends Component {
                                             </Menu.Item>
                                         </Menu>
                                     </List.Item>
-                                    <List.Item>
-                                        <Embed
-                                            id='O6Xo21L0ybE'
-                                            placeholder={require("../images/testMovieTrailer.jpg")}
-                                            source='youtube'
-                                        />
-                                    </List.Item>
+                                    
                                     <List.Item>
                                         <Grid>
                                             <Grid.Column width={5}>
                                                 <Image bordered
-                                                    src={require("../images/certifiedmovie2.jpg")}
+                                                    src= {this.state.poster}
                                                     style={{ width: 280, verticalAlign: 'bottom' }}
                                                 />
                                             </Grid.Column>
@@ -135,25 +136,23 @@ class MovieDetails extends Component {
                                                             <Table.Cell>PG</Table.Cell>
                                                         </Table.Row>
                                                         <Table.Row>
+                                                            <Table.Cell>Release Date:</Table.Cell>
+                                                            <Table.Cell>{this.state.releaseDate}</Table.Cell>
+                                                        </Table.Row>
+                                                        <Table.Row>
                                                             <Table.Cell>Genre:</Table.Cell>
                                                             <Table.Cell>
                                                                 <Genre genres={this.state.genre} />
                                                             </Table.Cell>
                                                         </Table.Row>
-                                                        <Table.Row>
-                                                            <Table.Cell>Runtime:</Table.Cell>
-                                                            <Table.Cell>191 minutes</Table.Cell>
-                                                        </Table.Row>
-                                                        <Table.Row>
-                                                            <Table.Cell>Release Date:</Table.Cell>
-                                                            <Table.Cell>May 4, 2018</Table.Cell>
-                                                        </Table.Row>
-                                                        <Table.Row>
-                                                            <Table.Cell>Box Office Collection:</Table.Cell>
-                                                            <Table.Cell>$80,000,000</Table.Cell>
-                                                        </Table.Row>
                                                     </Table.Body>
                                                 </Table>
+                                                <List.Item>
+                                    <Divider inverted horizontal style={{ fontSize: '20px' }}> SEASONS</Divider>
+                                            <List horizontal>
+                                            <SeasonsList seasons={this.state.seasons} id ={this.props.match.params.id}/>
+                                            </List>
+                                            </List.Item>
                                             </Grid.Column>
                                         </Grid>
                                     </List.Item>
@@ -214,11 +213,10 @@ class MovieDetails extends Component {
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> CASTS</Divider>
                                     <List horizontal>
-                                        
-                                            <CastCard casts={this.state.cast}/>
-                                        
+                                            <CastCard casts={this.state.cast}/>     
                                     </List>
                                 </List.Item>
+                                 
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Reviews</Divider>
                                     <Tab menu={{ secondary: true, pointing: true, inverted: true }} panes={commentPanes} />
@@ -237,4 +235,4 @@ class MovieDetails extends Component {
     }
 }
 
-export default withRouter(MovieDetails);
+export default withRouter(TvShowDetails);

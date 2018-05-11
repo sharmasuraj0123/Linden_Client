@@ -22,12 +22,7 @@ class NavbarModals extends Component {
       <div fluid={'true'} style={{ paddingBottom: '1em' }}>
         <Button color='black' size='tiny' href='about' style={{}}>About Linden</Button>
         <Button color='black' size='tiny' href='lindenCritics' style={{ maxWidth: 150 }}>Meet Our Critics</Button>
-        <Modal trigger={<Button color='black' size='tiny' onClick={this.showContactUs('blurring')}>Contact Us</Button>}
-          dimmer={dimmer} open={openContactUs} onClose={this.closeContactUs} style={{ marginTop: '8em', marginLeft: "30em", maxWidth: 450 }}>
-          <Modal.Content>
-            <ContactUsForm/>
-          </Modal.Content>
-        </Modal>
+        <Button color='black' size='tiny' href='contactUs' style={{}}>Contact Linden</Button>
         {LoginButton}
         {RegisterButton}
       </div>

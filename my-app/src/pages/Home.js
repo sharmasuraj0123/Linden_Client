@@ -69,20 +69,9 @@ class Home extends Component {
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Segment raised>
-                            <List divided>
-                                <List.Item>
-                                    <SideBarList title='OPENING THIS WEEK' data='Avengers' />
-                                </List.Item>
-                                <List.Item>
-                                    <SideBarList title='COMING SOON' data='Avengers 8' />
-                                </List.Item>
-                                <List.Item>
-                                    <SideBarList title='CRITIC PICKS' data='Avengers 5' />
-                                </List.Item>
-                                <List.Item>
-                                    <SideBarList title='TOP BOX OFFICE' data='Avengers 1' />
-                                </List.Item>
-                            </List>
+                            
+                            <SideBarList title='OPENING THIS WEEK' data='Avengers' />
+                          
                         </Segment>
                     </Grid.Column>
                 </Grid>

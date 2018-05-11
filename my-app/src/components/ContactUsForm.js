@@ -24,40 +24,7 @@ const ContactUsForm = () => (
                 <Header as='h2' color='grey' textAlign='center'>
                     {' '}Contact Us
         </Header>
-                <Form size='large'>
-                    <Segment stacked>
-                        <Form.Group widths='equal'>
-                            <Form.Input fluid id='form-subcomponent-shorthand-input-first-name' label='First name' placeholder='First name' />
-                            <Form.Input fluid id='form-subcomponent-shorthand-input-last-name' label='Last name' placeholder='Last name' />
-                        </Form.Group>
-                        <Form.Input
-                            fluid
-                            icon='user'
-                            iconPosition='left'
-                            placeholder='E-mail address'
-                            label='E-mail address'
-                        />
-                        <Form.Group inline >
-                            <Form.Field >
-                                <label>Phone Number</label>
-                                <Input placeholder='(xxx)' style={{ width: 75 }} />
-                            </Form.Field>
-                            <Form.Field>
-                                <Input placeholder='xxx' style={{ width: 75 }} />
-                            </Form.Field>
-                            <Form.Field>
-                                <Input placeholder='xxxx' style={{ width: 75 }} />
-                            </Form.Field>
-                        </Form.Group>
-                        <Form.TextArea label='About' placeholder='Tell us more about reason for Contact' />
-                        <Form.Field
-                            control={Checkbox}
-                            label={<label>I agree to the Terms and Conditions</label>}
-                            fluid
-                        />
-                        <Button color='black' fluid size='large'>Send</Button>
-                    </Segment>
-                </Form>
+                
                 <Message>
                     Want to become a Critic? <a href='critics/apply'>Apply here</a>
                 </Message>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Message, Segment, Checkbox, Input } from 'semantic-ui-react'
+import { Grid, Header, Message } from 'semantic-ui-react'
 
 const ContactUsForm = () => (
     <div className='contactUs-form'>
@@ -24,7 +24,7 @@ const ContactUsForm = () => (
                 <Header as='h2' color='grey' textAlign='center'>
                     {' '}Contact Us
         </Header>
-                
+
                 <Message>
                     Want to become a Critic? <a href='critics/apply'>Apply here</a>
                 </Message>

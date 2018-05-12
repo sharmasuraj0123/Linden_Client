@@ -1,23 +1,21 @@
 import React, { Component } from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import LoginForm from "./LoginLayout";
 import RegisterForm from "./RegisterForm";
-import ContactUsForm from "./ContactUsForm";
 import Cookies from 'universal-cookie';
 import UserMenu from "./UserMenu";
 
 class NavbarModals extends Component {
 
-  state = { openLogin: false, openRegister: false, openContactUs: false }  
+  state = { openLogin: false, openRegister: false, openContactUs: false }
   showContactUs = dimmer => () => this.setState({ dimmer, openContactUs: true })
   closeContactUs = () => this.setState({ openContactUs: false })
 
   render() {
-    const { dimmer, openContactUs } = this.state
-    const cookies = new Cookies();    
-    let LoginButton = cookies.get('obj') ?    (<UserMenu/>) :(<LoginForm/> );
-    let RegisterButton = cookies.get('obj') ?   (<div/>): (<RegisterForm />);
-
+    // const { dimmer, openContactUs } = this.state
+    const cookies = new Cookies();
+    let LoginButton = cookies.get('obj') ? (<UserMenu />) : (<LoginForm />);
+    let RegisterButton = cookies.get('obj') ? (<div />) : (<RegisterForm />);
     return (
       <div fluid={'true'} style={{ paddingBottom: '1em' }}>
         <Button color='black' size='tiny' href='about' style={{}}>About Linden</Button>

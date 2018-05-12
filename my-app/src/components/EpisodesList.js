@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Rating, Card, Item, Label, Divider } from 'semantic-ui-react';
-import Genres from './Genres';
-import Cast from './Cast';
+import { Card, Item } from 'semantic-ui-react';
 
 const ItemStyle = {
   padding: '10px'

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Segment, Pagination, Grid } from 'semantic-ui-react'
+import { Tab, Segment, Pagination, Grid, Menu, Label } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import queryString from 'query-string';
-import Movies from '../components/Movies';
-import StepExampleLinkClickable from "../components/StepExampleLinkClickable";
+import ContentCard from '../components/SearchResultsCards/ContentCard';
+import ActorsCard from '../components/SearchResultsCards/ActorsCard';
 import SideBarList from "../components/SideBarList";
 
 class SearchResults extends Component {
@@ -12,6 +12,8 @@ class SearchResults extends Component {
         super(props);
         this.state = {
             movies: [],
+            tvShows: [],
+            actors: [],
             page: 1,
             totalPages: 0,
             keywords: '',
@@ -20,27 +22,45 @@ class SearchResults extends Component {
                 'movies': 0,
                 'tvShows': 0,
                 'actors': 0
-            }
+            },
+            activeItem: 'moviesTab'
         };
     }
 
     createSearchRequest(keywords, page) {
         axios.get('http://localhost:8080/search?keywords=' + keywords + '&page=' + page)
             .then(function (response) {
-                let movieList = response.data.movies;
-                console.log(movieList);
-                let resultCountResponse = response.data.resultCount;
-                let listLength = 0;
-                let totalPages = Math.ceil(response.data.resultCount.all / 10.0);
+                response = response.data;
+                let movieList = response.movies;
+                let tvShowList = response.tvShows;
+                let actorsList = response.actors;
+                let resultCountResponse = response.resultCount;
+                let totalPages = Math.ceil(
+                    Math.max(
+                        Math.max(resultCountResponse.movies,
+                            resultCountResponse.tvShows),
+                        resultCountResponse.actors) / 10.0);
                 movieList.forEach(function (element) {
                     element.year = element.releaseDate.split('-')[0];
                     element.imageURL = require("../images/Logo.png");
-                    listLength++;
+                    element.type = 'movie';
+                });
+                tvShowList.forEach(function (element) {
+                    element.year = element.releaseDate.split('-')[0];
+                    element.imageURL = require("../images/Logo.png");
+                    element.type = 'tvShow';
+                });
+                actorsList.forEach(function (element) {
+                    element.imageURL = require("../images/Logo.png");
                 });
                 this.setState({
                     movies: movieList,
-                    numberOfmovies: listLength,
-                    resultCount: resultCountResponse,
+                    tvShows: tvShowList,
+                    actors: actorsList,
+                    numberOfMovies: resultCountResponse.movies,
+                    numberOfTvShows: resultCountResponse.tvShows,
+                    numberOfActors: resultCountResponse.actors,
+                    all: resultCountResponse.all,
                     totalPages: totalPages,
                     keywords: keywords,
                     page: page
@@ -61,8 +81,38 @@ class SearchResults extends Component {
                 <Grid divided style={{ paddingTop: '2em' }}>
                     <Grid.Column width={11}>
                         <Segment raised>
-                            <StepExampleLinkClickable resultCount={this.state.resultCount} />
-                            <Movies className='Movies' movies={this.state.movies} />
+                            <Tab panes={[
+                                {
+                                    menuItem: <Menu.Item >All<Label>{this.state.all}</Label></Menu.Item>,
+                                    render: () =>
+                                        <Tab.Pane>
+                                            <ContentCard contents={this.state.movies} />
+                                            <ContentCard contents={this.state.tvShows} />
+                                            <ActorsCard actors={this.state.actors} />
+                                        </Tab.Pane>
+                                },
+                                {
+                                    menuItem: <Menu.Item >Movies<Label>{this.state.numberOfMovies}</Label></Menu.Item>,
+                                    render: () =>
+                                        <Tab.Pane>
+                                            <ContentCard contents={this.state.movies} />
+                                        </Tab.Pane>
+                                },
+                                {
+                                    menuItem: <Menu.Item>TV Shows<Label>{this.state.numberOfTvShows}</Label></Menu.Item>,
+                                    render: () =>
+                                        <Tab.Pane>
+                                            <ContentCard contents={this.state.tvShows} />
+                                        </Tab.Pane>
+                                },
+                                {
+                                    menuItem: <Menu.Item>Actors<Label>{this.state.numberOfActors}</Label></Menu.Item>,
+                                    render: () =>
+                                        <Tab.Pane>
+                                            <ActorsCard actors={this.state.actors} />
+                                        </Tab.Pane>
+                                }]}
+                            />
                             <Pagination
                                 onPageChange={(e, data) => {
                                     this.props.history.push('/search?keywords=' + this.state.keywords + '&page=' + data.activePage);
@@ -81,10 +131,8 @@ class SearchResults extends Component {
                         <Segment raised >
                             <SideBarList title='Opening This week' />
                         </Segment>
-                        
                     </Grid.Column>
                 </Grid>
-
             </div>
         );
     }

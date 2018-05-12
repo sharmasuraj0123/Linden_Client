@@ -6,7 +6,7 @@ class Genres extends Component {
         let i = 0;
         return (
             this.props.genres.map((genre) =>
-                <Label as='a' key={i++} color='teal' tag> {genre} </Label>
+                <Label key={i++} color='teal' tag> {genre} </Label>
             )
         );
     }

@@ -25,7 +25,7 @@ class CastDetails extends Component {
         axios.get('http://localhost:8080/cast/' + id)
             .then(function (response) {
                 let data = response.data;
-                let cast = data.actors[0].cast;
+                let cast = data.actors[0];
                 console.log(data);
                 this.setState({
                     name: cast.firstName + ' ' + cast.lastName,

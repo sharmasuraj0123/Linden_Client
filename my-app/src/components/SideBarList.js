@@ -30,19 +30,16 @@ class SideBarList extends Component {
         <List>
           <List.Item>
             <List divided relaxed>
-      <Header as='h2' size='medium'>Opening This Week</Header>
+      <Header as='h2' size='medium'>OPENING THIS WEEK</Header>
         <List.Item>
             <MovieList className='MovieList' movies={this.state.movies} />
-        </List.Item>
-        <List.Item>
           <Header as='a' floated={'right'} size='tiny'>See more >></Header>
         </List.Item>
       </List>
       </List.Item>
-
       <List.Item>
             <List divided relaxed>
-      <Header as='h2' size='medium'>Coming Soon</Header>
+      <Header as='h2' size='medium'>COMING SOON</Header>
         <List.Item>
           <List.Icon name='bookmark'  size='large' verticalAlign='middle' />
           <List.Content>
@@ -57,15 +54,13 @@ class SideBarList extends Component {
 
       <List.Item>
             <List divided relaxed>
-      <Header as='h2' size='medium'>{this.props.title}</Header>
+      <Header as='h2' size='medium'>TOP BOX OFFICE</Header>
         <List.Item>
           <List.Icon name='bookmark'  size='large' verticalAlign='middle' />
           <List.Content>
             <List.Header as='a' size='huge'>{this.props.data}</List.Header>
+            <Header as='a' floated={'right'} size='tiny'>See more >></Header>
           </List.Content>
-        </List.Item>
-        <List.Item>
-          <Header as='a' floated={'right'} size='tiny'>See more >></Header>
         </List.Item>
       </List>
       </List.Item>

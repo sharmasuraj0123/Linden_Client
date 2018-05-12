@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Divider, Table, Grid, Header, Image, List, Segment } from 'semantic-ui-react'
 import SideBarList from "../components/SideBarList";
 import EpisodesList from "../components/EpisodesList";
+import SeasonsList from "../components/SeasonsList";
 
 class SeasonDetails extends Component {
 
@@ -12,7 +13,8 @@ class SeasonDetails extends Component {
         this.state = {
             genre: [],
             cast: [],
-            episodes: []
+            episodes: [],
+            seasons:[]
         }
     }
 
@@ -75,6 +77,8 @@ class SeasonDetails extends Component {
                                                         </Table.Row>
                                                     </Table.Body>
                                                 </Table>
+                                               
+                                            
 
                                             </Grid.Column>
                                         </Grid>

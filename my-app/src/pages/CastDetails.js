@@ -5,10 +5,8 @@ import { withRouter } from 'react-router-dom';
 import SideBarList from "../components/SideBarList";
 import Movies from '../components/Movies';
 
-const panes = [
-    { menuItem: 'Movies', render: () => <Tab.Pane attached={false}> <Movies className='Movies' movies={this.props.movies} /></Tab.Pane> },
-    { menuItem: 'TV Shows', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
-]
+
+  
 
 class CastDetails extends Component {
 
@@ -71,7 +69,12 @@ class CastDetails extends Component {
                             </List>
                         </Segment>
                         <Divider horizontal inverted style={{ fontSize: '20px' }}> FILMOGRAPHY</Divider>
-                        <Tab movies ={this.state.movies} menu={{ secondary: true, pointing: true, inverted: true }} panes={panes} />
+                        <Tab  menu={{ secondary: true, pointing: true, inverted: true }} 
+                        panes={[
+                               { menuItem: 'Movies', render: () => <Tab.Pane attached={false}> <Movies className='Movies' movies={this.state.movies} /></Tab.Pane> },
+                               { menuItem: 'TV Shows', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> }
+                            ]}
+                            />
                         
                     </Grid.Column>
                     <Grid.Column width={4}>
@@ -80,12 +83,7 @@ class CastDetails extends Component {
                                 <List.Item>
                                     <SideBarList title='Opening This week' />
                                 </List.Item>
-                                <List.Item>
-                                    <SideBarList title='Coming Soon' />
-                                </List.Item>
-                                <List.Item>
-                                    <SideBarList title='Critic Picks' />
-                                </List.Item>
+                                
                             </List>
                         </Segment>
                     </Grid.Column>

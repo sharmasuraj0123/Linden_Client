@@ -74,7 +74,7 @@ ReactDOM.render(
                         return (<SeasonDetails />);
                     }
                 } />
-                <Route path='/profileDetails' exact render={
+                <Route path='/user/:id' exact render={
                     () => {
                         return (<ProfileDetails />);
                     }

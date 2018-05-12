@@ -29,36 +29,38 @@ class MovieDetails extends Component {
         super(props);
         this.state = {
             genre: [],
-            cast: []
+            cast: [],
+            watchList: false,
+            notInterested: false
         }
     }
 
 
-     handlePostReview() {
+    handlePostReview() {
         const cookies = new Cookies();
         let id = this.props.match.params.id;
-        let token =  cookies.get('obj').token;
-        axios.post('http://localhost:8080/user/postReview',{
-        token: token,
-        contentId : id,
-        contentType : "MOVIE",
-        rating : 4,
-        details : details
-      })
-          .then(function (response) {
-            response = response.data;
-            if (response.status === 'ERROR') {
-              console.log('Cannot Log-Out');
-            } else {
-              response = response.obj;    
-              cookies.remove('obj');
-            }
-            window.location.reload();
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
-      }
+        let token = cookies.get('obj').token;
+        axios.post('http://localhost:8080/user/postReview', {
+            token: token,
+            contentId: id,
+            contentType: "MOVIE",
+            rating: 4,
+            details: details
+        })
+            .then(function (response) {
+                response = response.data;
+                if (response.status === 'ERROR') {
+                    console.log('Cannot Log-Out');
+                } else {
+                    response = response.obj;
+                    cookies.remove('obj');
+                }
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+    }
 
     componentDidMount() {
         let id = this.props.match.params.id;
@@ -76,7 +78,33 @@ class MovieDetails extends Component {
             }.bind(this));
     }
 
+    addToWishList() {
+        let curState = this.state;
+        curState.watchList = !curState.watchList;
+        this.setState(curState);
+    }
+
+    addToNotInterested() {
+        let curState = this.state;
+        curState.notInterested = !curState.notInterested;
+        this.setState(curState);
+    }
+
     render() {
+        let watchListButton = !this.state.watchList ?
+            (<Button icon labelPosition='left' positive onClick={(e, data) => this.addToWishList()}>
+                <Icon name='bookmark' />
+                Add to Watchlist</Button>) :
+            ((<Button icon labelPosition='left' negative onClick={(e, data) => this.addToWishList()}>
+                <Icon name='bookmark' />
+                Remove from Watchlist</Button>));
+        let notInterestedButton = !this.state.notInterested ?
+            (<Button icon labelPosition='left' positive onClick={(e, data) => this.addToNotInterested()}>
+                <Icon name='hide' />
+                Add to Not Interested</Button>) :
+            ((<Button icon labelPosition='left' negative onClick={(e, data) => this.addToNotInterested()}>
+                <Icon name='hide' />
+                Remove from Not Interested</Button>));
         return (
             <div>
                 <Grid>
@@ -85,11 +113,11 @@ class MovieDetails extends Component {
                             <List vertical='true'>
                                 <List.Item >
                                     <List.Item >
-                                    <Header as='h6' inverted style={{ fontSize: '2.5em', color: '#ffffff', }}>
-                                                    {this.state.name}
-                                                </Header>
-                                    </List.Item >
-                                    <List.Item >
+                                        <Header as='h6' inverted style={{ fontSize: '2.5em', color: '#ffffff', }}>
+                                            {this.state.name}
+                                        </Header>
+                                    </List.Item>
+                                    <List.Item>
                                         <Menu inverted borderless>
                                             <Menu.Item>
                                                 <Image circular
@@ -98,15 +126,11 @@ class MovieDetails extends Component {
                                                 />
                                             </Menu.Item>
                                             <Menu.Item>
-                                                
                                                 <Icon name='time' size='huge' />
                                             </Menu.Item>
                                             <Menu.Item position='right'>
-                                                <Icon.Group size='huge'>
-                                                    <Icon name='bookmark' />
-                                                    <Icon size='tiny' color='grey' name='plus' />
-                                                </Icon.Group>
-                                                <Icon name='hide' size='huge' />
+                                                {watchListButton}
+                                                {notInterestedButton}
                                             </Menu.Item>
                                         </Menu>
                                     </List.Item>
@@ -199,10 +223,10 @@ class MovieDetails extends Component {
                                                         <List.Item >
                                                             <Rating maxRating={5} clearable size='large' style={{ color: 'white' }} />
                                                             <Form reply fluid='true' size='large'>
-                                                                <Form.TextArea onChange={(e, data) => details = data.value}/>
-                                                                <Button content='Post A Review' 
-                                                                onClick={(event, data) => this.handlePostReview()}
-                                                                labelPosition='left' icon='edit' />
+                                                                <Form.TextArea onChange={(e, data) => details = data.value} />
+                                                                <Button content='Post A Review'
+                                                                    onClick={(event, data) => this.handlePostReview()}
+                                                                    labelPosition='left' icon='edit' />
                                                             </Form>
                                                         </List.Item>
                                                     </List>
@@ -214,21 +238,21 @@ class MovieDetails extends Component {
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> CASTS</Divider>
                                     <List horizontal>
-                                        
-                                            <CastCard casts={this.state.cast}/>
-                                        
+
+                                        <CastCard casts={this.state.cast} />
+
                                     </List>
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Reviews</Divider>
                                     <Tab menu={{ secondary: true, pointing: true, inverted: true }} panes={commentPanes} />
-                                </List.Item>    
+                                </List.Item>
                             </List>
                         </Segment>
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Segment raised>
-                                    <SideBarList title='Opening This week' />
+                            <SideBarList title='Opening This week' />
                         </Segment>
                     </Grid.Column>
                 </Grid>

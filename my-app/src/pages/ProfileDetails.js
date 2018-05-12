@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Menu, Tab } from 'semantic-ui-react';
-
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 import UserFollowModal from "../components/UserFollowModal";
 import BookmarkComponent from "../components/BookmarkComponent";
 
@@ -11,6 +12,30 @@ const panes = [
 ]
 
 class ProfileDetails extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            email: '',
+            notInterested: [],
+            wantsToSee: []
+        };
+    }
+
+    componentDidMount() {
+        let id = this.props.match.params.id;
+        axios.get('http://localhost:8080/user/' + id)
+            .then(function (response) {
+                response = response.data.obj;
+                console.log(response);
+                this.setState({
+                    name: response.firstName + ' ' + response.lastName,
+                    email: response.email
+                });
+            }.bind(this));
+    }
+
     render() {
         return (
             <div >
@@ -18,22 +43,10 @@ class ProfileDetails extends Component {
                     <Grid.Column width={3}>
                         <Menu vertical fluid inverted>
                             <Menu.Item>
-                                <Menu.Header>SURAJ SHARMA</Menu.Header>
+                                <Menu.Header as='h1'>{this.state.name}</Menu.Header>
                                 <Menu.Menu>
                                     <img alt={''} src={require("../images/defaultPicture.jpg")} width={200} />
                                     <Menu.Item name='Manage Account' />
-                                </Menu.Menu>
-                            </Menu.Item>
-                            <Menu.Item>
-                                <Menu.Header>ACTIVITY</Menu.Header>
-                                <Menu.Menu>
-                                    <Menu.Item> <UserFollowModal /></Menu.Item>
-                                    <Menu.Item> Following: 22</Menu.Item>
-                                </Menu.Menu>
-                            </Menu.Item>
-                            <Menu.Item>
-                                <Menu.Header>ABOUT</Menu.Header>
-                                <Menu.Menu>
                                 </Menu.Menu>
                             </Menu.Item>
                         </Menu>
@@ -47,4 +60,4 @@ class ProfileDetails extends Component {
     }
 }
 
-export default ProfileDetails
+export default withRouter(ProfileDetails);

@@ -24,7 +24,8 @@ import TermsAndCondition from './pages/TermsAndCondition';
 import ProfileDetails from './pages/ProfileDetails';
 import CastDetails from './pages/CastDetails';
 import AccountVerification from './pages/AccountVerification';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SegmentStyle = {
     flex: 1,
@@ -36,6 +37,7 @@ const SegmentStyle = {
 ReactDOM.render(
     <Router>
         <Segment inverted raised style={SegmentStyle}>
+            <ToastContainer />
             <NavBar />
             <Switch>
                 <Route path='/' exact render={

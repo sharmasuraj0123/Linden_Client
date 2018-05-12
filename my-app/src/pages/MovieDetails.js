@@ -9,6 +9,7 @@ import ReviewCard from "../components/ReviewCard";
 import CastCard from "../components/CastCard";
 import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
+import { toast } from 'react-toastify';
 
 const commentPanes = [
     { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><ReviewCard /></Tab.Pane> },
@@ -18,10 +19,7 @@ const commentPanes = [
     { menuItem: 'Winter', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
 ]
 
-
-
 let details = ' '
-
 
 class MovieDetails extends Component {
 
@@ -30,11 +28,24 @@ class MovieDetails extends Component {
         this.state = {
             genre: [],
             cast: [],
-            watchList: false,
-            notInterested: false
+            watchList: null,
+            notInterested: null
         }
     }
 
+    componentDidMount() {
+        let id = this.props.match.params.id;
+        axios.get('http://localhost:8080/movie/' + id)
+            .then(function (response) {
+                let movie = response.data;
+                this.setState({
+                    name: movie.name,
+                    overview: movie.details,
+                    cast: movie.cast,
+                    genre: movie.genre
+                });
+            }.bind(this));
+    }
 
     handlePostReview() {
         const cookies = new Cookies();
@@ -50,61 +61,62 @@ class MovieDetails extends Component {
             .then(function (response) {
                 response = response.data;
                 if (response.status === 'ERROR') {
-                    console.log('Cannot Log-Out');
-                } else {
-                    response = response.obj;
-                    cookies.remove('obj');
+                    console.log(response);
                 }
-                window.location.reload();
             })
             .catch(function (error) {
                 console.log(error)
-            })
-    }
-
-    componentDidMount() {
-        let id = this.props.match.params.id;
-        axios.get('http://localhost:8080/movie/' + id)
-            .then(function (response) {
-                let movie = response.data;
-                console.log(movie);
-                this.setState({
-                    name: movie.name,
-                    overview: movie.details,
-                    cast: movie.cast,
-                    genre: movie.genre
-                });
-                console.log(this.state.cast);
             }.bind(this));
     }
 
-    addToWishList() {
-        let curState = this.state;
-        curState.watchList = !curState.watchList;
-        this.setState(curState);
+    addToWatchList() {
+        console.log('here');
+        const cookies = new Cookies();
+        if (!cookies.get('obj')) {
+            toast.error('Please Log In!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        else if (!this.state.watchList) {
+            const token = cookies.get('obj').token;
+            let id = this.props.match.params.id;
+            console.log(token+'   '+id);
+            axios.post('http://localhost:8080/user/addToWantToSee', {
+                token: token,
+                contentId: id,
+                contentType: "MOVIE"
+            })
+                .then(function (response) {
+                    if (response.status === 'OK') {
+                        let curState = this.state;
+                        curState.notInterested = curState.watchList;
+                        curState.watchList = !curState.watchList;
+                        this.setState(curState);
+                        toast.success('Added!', {
+                            position: toast.POSITION.TOP_CENTER
+                        });
+                    } else {
+                        toast.error(response.message, {
+                            position: toast.POSITION.TOP_CENTER
+                        });
+                    }
+                })
+        }
     }
 
     addToNotInterested() {
-        let curState = this.state;
-        curState.notInterested = !curState.notInterested;
-        this.setState(curState);
+        toast.error('Please Log In!', {
+            position: toast.POSITION.TOP_CENTER
+        });
+        if (!this.state.notInterested) {
+            let curState = this.state;
+            curState.watchList = curState.notInterested;
+            curState.notInterested = !curState.notInterested;
+            this.setState(curState);
+        }
     }
 
     render() {
-        let watchListButton = !this.state.watchList ?
-            (<Button icon labelPosition='left' positive onClick={(e, data) => this.addToWishList()}>
-                <Icon name='bookmark' />
-                Add to Watchlist</Button>) :
-            ((<Button icon labelPosition='left' negative onClick={(e, data) => this.addToWishList()}>
-                <Icon name='bookmark' />
-                Remove from Watchlist</Button>));
-        let notInterestedButton = !this.state.notInterested ?
-            (<Button icon labelPosition='left' positive onClick={(e, data) => this.addToNotInterested()}>
-                <Icon name='hide' />
-                Add to Not Interested</Button>) :
-            ((<Button icon labelPosition='left' negative onClick={(e, data) => this.addToNotInterested()}>
-                <Icon name='hide' />
-                Remove from Not Interested</Button>));
         return (
             <div>
                 <Grid>
@@ -129,8 +141,23 @@ class MovieDetails extends Component {
                                                 <Icon name='time' size='huge' />
                                             </Menu.Item>
                                             <Menu.Item position='right'>
-                                                {watchListButton}
-                                                {notInterestedButton}
+                                                <Button.Group>
+                                                    <Button icon labelPosition='left'
+                                                        toggle
+                                                        active={this.state.watchList}
+                                                        onClick={(e, data) => this.addToWatchList()}>
+                                                        <Icon name='bookmark' />
+                                                        Watchlist
+                                                    </Button>
+                                                    <Button.Or />
+                                                    <Button icon labelPosition='left'
+                                                        toggle
+                                                        negative={this.state.notInterested}
+                                                        onClick={(e, data) => this.addToNotInterested()}>
+                                                        <Icon name='hide' />
+                                                        Not Interested
+                                                        </Button>
+                                                </Button.Group>
                                             </Menu.Item>
                                         </Menu>
                                     </List.Item>

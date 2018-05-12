@@ -24,6 +24,7 @@ import TermsAndCondition from './pages/TermsAndCondition';
 import ProfileDetails from './pages/ProfileDetails';
 import CastDetails from './pages/CastDetails';
 import AccountVerification from './pages/AccountVerification';
+import ResendVerification from './pages/ResendVerification';
 
 
 const SegmentStyle = {
@@ -102,6 +103,11 @@ ReactDOM.render(
                 <Route path='/verify/:userId/:token' exact render={
                     () => {
                         return (<AccountVerification />);
+                    }
+                } />
+                <Route path='/resendVerify' exact render={
+                    () => {
+                        return (<ResendVerification />);
                     }
                 } />
                 <Route component={NotFound} />

@@ -92,7 +92,8 @@ class RegisterForm extends Component {
                                     </Segment>
                                 </Form>
                                 <Message>
-                                    Already have an Account? <a href='login'>Log in here</a>
+                                    Already have an Account? <a href='login'>Log in here</a><br/>
+                                    Didn't Recieve Verification email? <a href='resendVerify'>Verify here</a>
                                 </Message>
                             </Grid.Column>
                         </Grid>

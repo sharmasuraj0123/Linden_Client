@@ -23,6 +23,7 @@ import ContactUs from './pages/ContactUs';
 import TermsAndCondition from './pages/TermsAndCondition';
 import ProfileDetails from './pages/ProfileDetails';
 import CastDetails from './pages/CastDetails';
+import AccountVerification from './pages/AccountVerification';
 
 
 const SegmentStyle = {
@@ -96,6 +97,11 @@ ReactDOM.render(
                 <Route path='/terms' exact render={
                     () => {
                         return (<TermsAndCondition />);
+                    }
+                } />
+                <Route path='/verify/:userId/:token' exact render={
+                    () => {
+                        return (<AccountVerification />);
                     }
                 } />
                 <Route component={NotFound} />

@@ -83,7 +83,6 @@ class CastDetails extends Component {
                                 <List.Item>
                                     <SideBarList title='Opening This week' />
                                 </List.Item>
-                                
                             </List>
                         </Segment>
                     </Grid.Column>

@@ -35,7 +35,7 @@ class MovieDetails extends Component {
 
 
      handlePostReview() {
-        const cookies = new Cookies(cookies);
+        const cookies = new Cookies();
         let id = this.props.match.params.id;
         let token =  cookies.get('obj').token;
         axios.post('http://localhost:8080/user/postReview',{

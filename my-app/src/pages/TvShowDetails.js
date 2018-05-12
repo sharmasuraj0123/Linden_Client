@@ -3,7 +3,7 @@ import { Circle } from 'rc-progress';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 // eslint-diasble-next-line
-import { Divider, Icon, Tab, Table, Grid, Button, Form, Header, Image, List, Menu, Rating, Segment, Embed } from 'semantic-ui-react'
+import { Divider, Icon, Tab, Table, Grid, Button, Form, Header, Image, List, Menu, Rating, Segment } from 'semantic-ui-react'
 import SideBarList from "../components/SideBarList";
 import ReviewCard from "../components/ReviewCard";
 import CastCard from "../components/CastCard";
@@ -20,10 +20,7 @@ const commentPanes = [
     { menuItem: 'Winter', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
 ]
 
-
-
 let details = ' '
-
 
 class TvShowDetails extends Component {
 
@@ -38,7 +35,7 @@ class TvShowDetails extends Component {
 
 
      handlePostReview() {
-        const cookies = new Cookies(cookies);
+        const cookies = new Cookies();
         let id = this.props.match.params.id;
         let token =  cookies.get('obj').token;
         axios.post('http://localhost:8080/user/postReview',{

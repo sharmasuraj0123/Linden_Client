@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import { Label } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 
 class Cast extends Component {
-    render() {
+    render() {    
         return (
             this.props.cast.map((actor) =>
-                <Label as='a' key={actor.id} color='teal' basic> {actor.firstName+' '+actor.lastName} </Label>
+                <Label 
+                onClick={(e, data) =>  {
+                    this.props.history.push('/cast/'+actor.id);
+                }} 
+                as='a' 
+                key={actor.id} 
+                color='teal' 
+                basic> 
+                {actor.firstName + ' ' + actor.lastName} 
+                </Label>
             )
         );
     }
 }
 
-export default Cast;
+export default withRouter(Cast);

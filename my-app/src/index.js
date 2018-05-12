@@ -10,7 +10,7 @@ import LoginForm from './components/LoginLayout';
 import RegisterForm from './components/RegisterForm';
 import NotFound from './pages/NotFound';
 import 'semantic-ui-css/semantic.min.css';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Segment, Grid, List, Tab, Divider, Table } from 'semantic-ui-react';
+import Menu, { Segment, Grid, List, Tab, Divider, Table } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import SideBarList from "../components/SideBarList";
+import Movies from '../components/Movies';
 
 const panes = [
-    { menuItem: 'Movies', render: () => <Tab.Pane attached={false}></Tab.Pane> },
+    { menuItem: 'Movies', render: () => <Tab.Pane attached={false}> <Movies className='Movies' movies={this.props.movies} /></Tab.Pane> },
     { menuItem: 'TV Shows', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
 ]
 
@@ -14,7 +15,8 @@ class CastDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: ''
+            name: '',
+            movies: []
         }
     }
 
@@ -26,7 +28,8 @@ class CastDetails extends Component {
                 let cast = data.actors[0].cast;
                 console.log(data);
                 this.setState({
-                    name: cast.firstName + ' ' + cast.lastName
+                    name: cast.firstName + ' ' + cast.lastName,
+                    movies: data.movies
                 });
             }.bind(this));
     }
@@ -68,7 +71,8 @@ class CastDetails extends Component {
                             </List>
                         </Segment>
                         <Divider horizontal inverted style={{ fontSize: '20px' }}> FILMOGRAPHY</Divider>
-                        <Tab menu={{ secondary: true, pointing: true, inverted: true }} panes={panes} />
+                        <Tab movies ={this.state.movies} menu={{ secondary: true, pointing: true, inverted: true }} panes={panes} />
+                        
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Segment raised>

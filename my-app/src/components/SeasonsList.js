@@ -15,7 +15,6 @@ class SeasonsList extends Component {
     return (
         
       this.props.seasons.map((season) =>
-        
             <List.Item>
                 <Item.Header href={ this.props.id + '/season/' + season.seasonNumber}>
                   {season.seasonNumber}

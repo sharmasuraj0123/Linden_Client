@@ -10,7 +10,6 @@ const Footer = () => (
         >
             <Container textAlign='center'>
                 <Divider inverted section />
-                
                 <List horizontal inverted divided link>
                     <List.Item as='a' href='#'>Site Map</List.Item>
                     <List.Item as='a' href='#'>Contact Us</List.Item>

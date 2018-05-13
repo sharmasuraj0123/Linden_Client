@@ -70,7 +70,6 @@ class MovieDetails extends Component {
     }
 
     addToWatchList() {
-        console.log('here');
         const cookies = new Cookies();
         if (!cookies.get('obj')) {
             toast.error('Please Log In!', {
@@ -80,39 +79,64 @@ class MovieDetails extends Component {
         else if (!this.state.watchList) {
             const token = cookies.get('obj').token;
             let id = this.props.match.params.id;
-            console.log(token+'   '+id);
+            let app = this;
             axios.post('http://localhost:8080/user/addToWantToSee', {
                 token: token,
-                contentId: id,
-                contentType: "MOVIE"
+                obj: {
+                    id: id,
+                    contentType: "MOVIE"
+                }
             })
                 .then(function (response) {
-                    if (response.status === 'OK') {
-                        let curState = this.state;
+                    console.log(response);
+                    if (response.data.status == 'OK') {
+                        let curState = app.state;
                         curState.notInterested = curState.watchList;
                         curState.watchList = !curState.watchList;
-                        this.setState(curState);
+                        app.setState(curState);
                         toast.success('Added!', {
-                            position: toast.POSITION.TOP_CENTER
-                        });
-                    } else {
-                        toast.error(response.message, {
                             position: toast.POSITION.TOP_CENTER
                         });
                     }
                 })
+                .catch(function (error) {
+                    console.log('ERROR ' + error);
+                });
         }
     }
 
     addToNotInterested() {
-        toast.error('Please Log In!', {
-            position: toast.POSITION.TOP_CENTER
-        });
-        if (!this.state.notInterested) {
-            let curState = this.state;
-            curState.watchList = curState.notInterested;
-            curState.notInterested = !curState.notInterested;
-            this.setState(curState);
+        const cookies = new Cookies();
+        if (!cookies.get('obj')) {
+            toast.error('Please Log In!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        else if (!this.state.notInterested) {
+            const token = cookies.get('obj').token;
+            let id = this.props.match.params.id;
+            let app = this;
+            axios.post('http://localhost:8080/user/addToNotInterested', {
+                token: token,
+                obj: {
+                    id: id,
+                    contentType: "MOVIE"
+                }
+            })
+                .then(function (response) {
+                    if (response.data.status == 'OK') {
+                        let curState = app.state;
+                        curState.watchList = curState.notInterested;
+                        curState.notInterested = !curState.notInterested;
+                        app.setState(curState);
+                        toast.success('Added!', {
+                            position: toast.POSITION.TOP_CENTER
+                        });
+                    }
+                })
+                .catch(function (error) {
+                    console.log('ERROR ' + error);
+                }.bind(this));
         }
     }
 

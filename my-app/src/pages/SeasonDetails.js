@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Divider, Table, Grid, Header, Image, List, Segment } from 'semantic-ui-react'
 import SideBarList from "../components/SideBarList";
 import EpisodesList from "../components/EpisodesList";
-import SeasonsList from "../components/SeasonsList";
 
 class SeasonDetails extends Component {
 

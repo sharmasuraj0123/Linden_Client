@@ -36,7 +36,7 @@ class MovieDetails extends Component {
     componentDidMount() {
         const cookies = new Cookies();
         let id = this.props.match.params.id;
-        let token = cookies.get('obj').token;
+        let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
         axios.get('http://localhost:8080/movie/' + id,
             {
                 headers: {
@@ -59,7 +59,7 @@ class MovieDetails extends Component {
     handlePostReview() {
         const cookies = new Cookies();
         let id = this.props.match.params.id;
-        let token = cookies.get('obj').token;
+        let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
         axios.post('http://localhost:8080/user/postReview', {
             token: token,
             contentId: id,
@@ -75,7 +75,7 @@ class MovieDetails extends Component {
             })
             .catch(function (error) {
                 console.log(error)
-            }.bind(this));
+            }).bind(this);
     }
 
     addToWantToSee() {
@@ -98,7 +98,7 @@ class MovieDetails extends Component {
             })
                 .then(function (response) {
                     console.log(response);
-                    if (response.data.status == 'OK') {
+                    if (response.data.status === 'OK') {
                         let curState = app.state;
                         curState.notInterested = curState.wantToSee;
                         curState.wantToSee = !curState.wantToSee;
@@ -110,7 +110,7 @@ class MovieDetails extends Component {
                 })
                 .catch(function (error) {
                     console.log('ERROR ' + error);
-                });
+                }).bind(this);
         }
     }
 
@@ -122,7 +122,7 @@ class MovieDetails extends Component {
             });
         }
         else if (!this.state.notInterested) {
-            const token = cookies.get('obj').token;
+            const token = (cookies.get('obj')) ? cookies.get('obj').token : null;
             let id = this.props.match.params.id;
             let app = this;
             axios.post('http://localhost:8080/user/addToNotInterested', {
@@ -133,7 +133,7 @@ class MovieDetails extends Component {
                 }
             })
                 .then(function (response) {
-                    if (response.data.status == 'OK') {
+                    if (response.data.status === 'OK') {
                         let curState = app.state;
                         curState.wantToSee = curState.notInterested;
                         curState.notInterested = !curState.notInterested;
@@ -145,7 +145,7 @@ class MovieDetails extends Component {
                 })
                 .catch(function (error) {
                     console.log('ERROR ' + error);
-                }.bind(this));
+                }).bind(this);
         }
     }
 

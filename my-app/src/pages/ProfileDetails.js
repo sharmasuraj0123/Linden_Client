@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Menu, Tab } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import UserFollowModal from "../components/UserFollowModal";
 import BookmarkComponent from "../components/BookmarkComponent";
 
 const panes = [

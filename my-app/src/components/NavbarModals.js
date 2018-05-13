@@ -4,6 +4,7 @@ import LoginForm from "./LoginLayout";
 import RegisterForm from "./RegisterForm";
 import Cookies from 'universal-cookie';
 import UserMenu from "./UserMenu";
+import ApplyPromotionModal from "./ApplyPromotionModal";
 
 import axios from 'axios';
 
@@ -14,28 +15,10 @@ class NavbarModals extends Component {
   showContactUs = dimmer => () => this.setState({ dimmer, openContactUs: true })
   closeContactUs = () => this.setState({ openContactUs: false })
 
-
-  handleApplyForPromotion() {
-    axios.post('http://localhost:8080/user/applyForPromotion', {
-      token: cookies.get('obj').token,
-    })
-      .then(function (response) {
-        response = response.data;
-        if (response.status === 'ERROR') {
-          console.log('Cannot Log-Out');
-        } else {
-          response = response.obj;    
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
-
   render() {
     // const { dimmer, openContactUs } = this.state
     const cookies = new Cookies();
-    let LoginButton = cookies.get('obj') ? (<Button color='black' size='tiny' onClick= {(event, data) => this.handleApplyForPromotion() } style={{}}>Apply For Critic</Button>) : (<LoginForm />);
+    let LoginButton = cookies.get('obj') ? (<ApplyPromotionModal/>) : (<LoginForm />);
     let RegisterButton = cookies.get('obj') ? (<UserMenu />)  : (<RegisterForm />);
     return (
       <div fluid={'true'} style={{ paddingBottom: '1em' }}>

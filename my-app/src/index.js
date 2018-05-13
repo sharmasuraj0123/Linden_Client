@@ -20,11 +20,14 @@ import TvShowDetails from './pages/TvShowDetails';
 import SeasonDetails from './pages/SeasonDetails';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
+import LindenCritics from './pages/LindenCritics';
+
 import TermsAndCondition from './pages/TermsAndCondition';
 import ProfileDetails from './pages/ProfileDetails';
 import CastDetails from './pages/CastDetails';
 import AccountVerification from './pages/AccountVerification';
 import ResendVerification from './pages/ResendVerification';
+
 
 
 const SegmentStyle = {
@@ -98,6 +101,11 @@ ReactDOM.render(
                 <Route path='/terms' exact render={
                     () => {
                         return (<TermsAndCondition />);
+                    }
+                } />
+                <Route path='/lindenCritics' exact render={
+                    () => {
+                        return (<LindenCritics />);
                     }
                 } />
                 <Route path='/verify/:userId/:token' exact render={

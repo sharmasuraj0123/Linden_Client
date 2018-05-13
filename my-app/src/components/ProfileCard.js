@@ -4,8 +4,8 @@ import { Card, Image, Icon } from 'semantic-ui-react';
 class ProfileCard extends Component {
   render() {
     return (
-      <Card width={100}>
-        <Image src={require("../images/defaultPicture.jpg")} width={100} />
+      <Card style={{ width: 200, height: 250, verticalAlign: 'top' }}>
+        <Image src={require("../images/defaultPicture.jpg")} style={{ width: 200, height: 200, verticalAlign: 'top' }} />
         <Card.Content>
           <Card.Header>
             Matthew

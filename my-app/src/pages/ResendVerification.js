@@ -3,11 +3,8 @@ import { Form, Button } from 'semantic-ui-react'
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-
 let email = '';
     class ResendVerification extends Component {
-
-        
         handleresendVerify() {
             axios.get('http://localhost:8080/resendVerificationEmail?email='+ email, {       
             })
@@ -22,11 +19,8 @@ let email = '';
                 .catch(function (error) {
                     console.log(error)
                 })
-        }      
-        
-
-        render() {
-            
+        }          
+        render() {           
           return (
             <div>
                 <Form error>

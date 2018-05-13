@@ -27,7 +27,8 @@ import ProfileDetails from './pages/ProfileDetails';
 import CastDetails from './pages/CastDetails';
 import AccountVerification from './pages/AccountVerification';
 import ResendVerification from './pages/ResendVerification';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SegmentStyle = {
@@ -40,6 +41,7 @@ const SegmentStyle = {
 ReactDOM.render(
     <Router>
         <Segment inverted raised style={SegmentStyle}>
+            <ToastContainer />
             <NavBar />
             <Switch>
                 <Route path='/' exact render={
@@ -78,7 +80,7 @@ ReactDOM.render(
                         return (<SeasonDetails />);
                     }
                 } />
-                <Route path='/profileDetails' exact render={
+                <Route path='/user/:id' exact render={
                     () => {
                         return (<ProfileDetails />);
                     }

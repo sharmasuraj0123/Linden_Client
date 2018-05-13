@@ -22,14 +22,14 @@ class SearchResults extends Component {
                 'movies': 0,
                 'tvShows': 0,
                 'actors': 0
-            },
-            activeItem: 'moviesTab'
+            }
         };
     }
 
     createSearchRequest(keywords, page) {
         axios.get('http://localhost:8080/search?keywords=' + keywords + '&page=' + page)
             .then(function (response) {
+                console.log(response);
                 response = response.data;
                 let movieList = response.movies;
                 let tvShowList = response.tvShows;

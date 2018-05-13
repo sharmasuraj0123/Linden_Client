@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import Menu, { Segment, Grid, List, Tab, Divider, Table } from 'semantic-ui-react';
+import { Segment, Grid, List, Tab, Divider, Table } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import SideBarList from "../components/SideBarList";
 import Movies from '../components/Movies';
-
-
-  
 
 class CastDetails extends Component {
 
@@ -69,13 +66,12 @@ class CastDetails extends Component {
                             </List>
                         </Segment>
                         <Divider horizontal inverted style={{ fontSize: '20px' }}> FILMOGRAPHY</Divider>
-                        <Tab  menu={{ secondary: true, pointing: true, inverted: true }} 
-                        panes={[
-                               { menuItem: 'Movies', render: () => <Tab.Pane attached={false}> <Movies className='Movies' movies={this.state.movies} /></Tab.Pane> },
-                               { menuItem: 'TV Shows', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> }
+                        <Tab menu={{ secondary: true, pointing: true, inverted: true }}
+                            panes={[
+                                { menuItem: 'Movies', render: () => <Tab.Pane attached={false}> <Movies className='Movies' movies={this.state.movies} /></Tab.Pane> },
+                                { menuItem: 'TV Shows', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> }
                             ]}
-                            />
-                        
+                        />
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Segment raised>

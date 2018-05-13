@@ -9,6 +9,7 @@ import ReviewCard from "../components/ReviewCard";
 import CastCard from "../components/CastCard";
 import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
+import { toast } from 'react-toastify';
 
 const commentPanes = [
     { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><ReviewCard /></Tab.Pane> },
@@ -18,10 +19,7 @@ const commentPanes = [
     { menuItem: 'Winter', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
 ]
 
-
-
 let details = ' '
-
 
 class MovieDetails extends Component {
 
@@ -29,51 +27,126 @@ class MovieDetails extends Component {
         super(props);
         this.state = {
             genre: [],
-            cast: []
+            cast: [],
+            wantToSee: null,
+            notInterested: null
         }
     }
 
-
-     handlePostReview() {
+    componentDidMount() {
         const cookies = new Cookies();
         let id = this.props.match.params.id;
-        let token =  cookies.get('obj').token;
-        axios.post('http://localhost:8080/user/postReview',{
-        token: token,
-        contentId : id,
-        contentType : "MOVIE",
-        rating : 4,
-        details : details
-      })
-          .then(function (response) {
-            response = response.data;
-            if (response.status === 'ERROR') {
-              console.log('Cannot Log-Out');
-            } else {
-              response = response.obj;    
-              cookies.remove('obj');
-            }
-            window.location.reload();
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
-      }
-
-    componentDidMount() {
-        let id = this.props.match.params.id;
-        axios.get('http://localhost:8080/movie/' + id)
+        let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
+        axios.get('http://localhost:8080/movie/' + id,
+            {
+                headers: {
+                    token: token
+                }
+            })
             .then(function (response) {
-                let movie = response.data;
-                console.log(movie);
+                let movie = response.data.movie;
                 this.setState({
                     name: movie.name,
                     overview: movie.details,
                     cast: movie.cast,
-                    genre: movie.genre
+                    genre: movie.genre,
+                    wantToSee: response.data.isWantToSee,
+                    notInterested: response.data.isNotInterested
                 });
-                console.log(this.state.cast);
             }.bind(this));
+    }
+
+    handlePostReview() {
+        const cookies = new Cookies();
+        let id = this.props.match.params.id;
+        let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
+        axios.post('http://localhost:8080/user/postReview', {
+            token: token,
+            contentId: id,
+            contentType: "MOVIE",
+            rating: 4,
+            details: details
+        })
+            .then(function (response) {
+                response = response.data;
+                if (response.status === 'ERROR') {
+                    console.log(response);
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            }).bind(this);
+    }
+
+    addToWantToSee() {
+        const cookies = new Cookies();
+        if (!cookies.get('obj')) {
+            toast.error('Please Log In!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        else if (!this.state.wantToSee) {
+            const token = cookies.get('obj').token;
+            let id = this.props.match.params.id;
+            let app = this;
+            axios.post('http://localhost:8080/user/addToWantToSee', {
+                token: token,
+                obj: {
+                    id: id,
+                    contentType: "MOVIE"
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.data.status === 'OK') {
+                        let curState = app.state;
+                        curState.notInterested = curState.wantToSee;
+                        curState.wantToSee = !curState.wantToSee;
+                        app.setState(curState);
+                        toast.success('Added!', {
+                            position: toast.POSITION.TOP_CENTER
+                        });
+                    }
+                })
+                .catch(function (error) {
+                    console.log('ERROR ' + error);
+                }).bind(this);
+        }
+    }
+
+    addToNotInterested() {
+        const cookies = new Cookies();
+        if (!cookies.get('obj')) {
+            toast.error('Please Log In!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        else if (!this.state.notInterested) {
+            const token = (cookies.get('obj')) ? cookies.get('obj').token : null;
+            let id = this.props.match.params.id;
+            let app = this;
+            axios.post('http://localhost:8080/user/addToNotInterested', {
+                token: token,
+                obj: {
+                    id: id,
+                    contentType: "MOVIE"
+                }
+            })
+                .then(function (response) {
+                    if (response.data.status === 'OK') {
+                        let curState = app.state;
+                        curState.wantToSee = curState.notInterested;
+                        curState.notInterested = !curState.notInterested;
+                        app.setState(curState);
+                        toast.success('Added!', {
+                            position: toast.POSITION.TOP_CENTER
+                        });
+                    }
+                })
+                .catch(function (error) {
+                    console.log('ERROR ' + error);
+                }).bind(this);
+        }
     }
 
     render() {
@@ -85,11 +158,11 @@ class MovieDetails extends Component {
                             <List vertical='true'>
                                 <List.Item >
                                     <List.Item >
-                                    <Header as='h6' inverted style={{ fontSize: '2.5em', color: '#ffffff', }}>
-                                                    {this.state.name}
-                                                </Header>
-                                    </List.Item >
-                                    <List.Item >
+                                        <Header as='h6' inverted style={{ fontSize: '2.5em', color: '#ffffff', }}>
+                                            {this.state.name}
+                                        </Header>
+                                    </List.Item>
+                                    <List.Item>
                                         <Menu inverted borderless>
                                             <Menu.Item>
                                                 <Image circular
@@ -98,15 +171,26 @@ class MovieDetails extends Component {
                                                 />
                                             </Menu.Item>
                                             <Menu.Item>
-                                                
                                                 <Icon name='time' size='huge' />
                                             </Menu.Item>
                                             <Menu.Item position='right'>
-                                                <Icon.Group size='huge'>
-                                                    <Icon name='bookmark' />
-                                                    <Icon size='tiny' color='grey' name='plus' />
-                                                </Icon.Group>
-                                                <Icon name='hide' size='huge' />
+                                                <Button.Group>
+                                                    <Button icon labelPosition='left'
+                                                        toggle
+                                                        active={this.state.wantToSee}
+                                                        onClick={(e, data) => this.addToWantToSee()}>
+                                                        <Icon name='bookmark' />
+                                                        Want To See
+                                                    </Button>
+                                                    <Button.Or />
+                                                    <Button icon labelPosition='left'
+                                                        toggle
+                                                        negative={this.state.notInterested}
+                                                        onClick={(e, data) => this.addToNotInterested()}>
+                                                        <Icon name='hide' />
+                                                        Not Interested
+                                                        </Button>
+                                                </Button.Group>
                                             </Menu.Item>
                                         </Menu>
                                     </List.Item>
@@ -199,10 +283,10 @@ class MovieDetails extends Component {
                                                         <List.Item >
                                                             <Rating maxRating={5} clearable size='large' style={{ color: 'white' }} />
                                                             <Form reply fluid='true' size='large'>
-                                                                <Form.TextArea onChange={(e, data) => details = data.value}/>
-                                                                <Button content='Post A Review' 
-                                                                onClick={(event, data) => this.handlePostReview()}
-                                                                labelPosition='left' icon='edit' />
+                                                                <Form.TextArea onChange={(e, data) => details = data.value} />
+                                                                <Button content='Post A Review'
+                                                                    onClick={(event, data) => this.handlePostReview()}
+                                                                    labelPosition='left' icon='edit' />
                                                             </Form>
                                                         </List.Item>
                                                     </List>
@@ -214,21 +298,21 @@ class MovieDetails extends Component {
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> CASTS</Divider>
                                     <List horizontal>
-                                        
-                                            <CastCard casts={this.state.cast}/>
-                                        
+
+                                        <CastCard casts={this.state.cast} />
+
                                     </List>
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Reviews</Divider>
                                     <Tab menu={{ secondary: true, pointing: true, inverted: true }} panes={commentPanes} />
-                                </List.Item>    
+                                </List.Item>
                             </List>
                         </Segment>
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Segment raised>
-                                    <SideBarList title='Opening This week' />
+                            <SideBarList title='Opening This week' />
                         </Segment>
                     </Grid.Column>
                 </Grid>

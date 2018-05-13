@@ -54,7 +54,7 @@ class MovieDetails extends Component {
                 let audienceReviews = [];
                 let criticsReviews = [];
                 let myReview= [];
-                let allReviews = movie.reviews;
+                let allReviews = (movie.reviews) ?(movie.reviews): ([]);
                 
                 
                 allReviews.forEach((review) => {

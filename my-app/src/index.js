@@ -21,6 +21,8 @@ import SeasonDetails from './pages/SeasonDetails';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import LindenCritics from './pages/LindenCritics';
+import Admin from './pages/Admin';
+
 
 import TermsAndCondition from './pages/TermsAndCondition';
 import ProfileDetails from './pages/ProfileDetails';
@@ -118,6 +120,11 @@ ReactDOM.render(
                 <Route path='/resendVerify' exact render={
                     () => {
                         return (<ResendVerification />);
+                    }
+                } />
+                <Route path='/admin' exact render={
+                    () => {
+                        return (<Admin />);
                     }
                 } />
                 <Route component={NotFound} />

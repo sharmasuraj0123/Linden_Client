@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Divider, Icon, Tab, Table, Grid, Button, Form, Header, Image, List, Menu, Rating, Segment, Embed } from 'semantic-ui-react'
 import SideBarList from "../components/SideBarList";
 import ReviewCard from "../components/ReviewCard";
+import MyReview from "../components/MyReview";
 import CastCard from "../components/CastCard";
 import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
@@ -94,17 +95,19 @@ class MovieDetails extends Component {
             token: token,
             contentId: id,
             contentType: "MOVIE",
-            rating: 1,
+            rating: 5,
             details: details
         })
             .then(function (response) {
                 response = response.data;
+                window.location.reload();
                 if (response.status === 'ERROR') {
                     console.log(response);
                 }
             })
             .catch(function (error) {
                 console.log(error)
+                
             });
     }
 
@@ -223,7 +226,7 @@ class MovieDetails extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <Embed
-                                            id='O6Xo21L0ybE'
+                                            id='51nZS-a7mMY'
                                             placeholder={require("../images/testMovieTrailer.jpg")}
                                             source='youtube'
                                         />
@@ -325,19 +328,17 @@ class MovieDetails extends Component {
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> CASTS</Divider>
                                     <List horizontal>
-
                                         <CastCard casts={this.state.cast} />
-
                                     </List>
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Reviews</Divider>
                                     <Tab menu={{ secondary: true, pointing: true, inverted: true }}  
                                     panes = {[
-                                        { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.reviews}/></List></Tab.Pane> },
-                                        { menuItem: 'Top Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.criticsReviews}/></List></Tab.Pane> },
+                                        { menuItem: 'All', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.reviews}/></List></Tab.Pane> },
+                                        { menuItem: 'Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.criticsReviews}/></List></Tab.Pane> },
                                         { menuItem: 'Audience', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.audienceReviews}/></List></Tab.Pane> },
-                                        { menuItem: 'My Review', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.myReview}/></List></Tab.Pane> },
+                                        { menuItem: 'My Review', render: () => <Tab.Pane attached={false}><List horizontal><MyReview reviews={this.state.myReview}/></List></Tab.Pane> },
                                     ]} />
                                 </List.Item>
                             </List>

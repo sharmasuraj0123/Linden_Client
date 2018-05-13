@@ -14,8 +14,9 @@ import { toast } from 'react-toastify';
 
 
 let details = ' '
-let AudienceReview = []
-let CriticsReview = []
+
+
+
 
 class MovieDetails extends Component {
 
@@ -26,8 +27,9 @@ class MovieDetails extends Component {
             cast: [],
             wantToSee: null,
             notInterested: null,
-            AudienceReview:[],
-            CriticsReview: [],
+            audienceReviews:[],
+            criticsReviews: [],
+            myReview:[],
             reviews:[],
             lindenMeter: 0
         }
@@ -37,6 +39,8 @@ class MovieDetails extends Component {
         const cookies = new Cookies();
         let id = this.props.match.params.id;
         let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
+        let email = (cookies.get('obj')) ? cookies.get('obj').email : null;
+
         axios.get('http://localhost:8080/movie/' + id,
             {
                 headers: {
@@ -45,6 +49,26 @@ class MovieDetails extends Component {
             })
             .then(function (response) {
                 let movie = response.data.movie;
+
+                let audienceReviews = [];
+                let criticsReviews = [];
+                let myReview= [];
+                let allReviews = movie.reviews;
+                
+                
+                allReviews.forEach((review) => {
+                if(review.postedBy.email === email){
+                    myReview.push(review);
+                }
+                else if(review.reviewType==='AUDIENCE'){
+                            audienceReviews.push(review);
+                   }else if(review.reviewType==='CRITIC'){
+                    criticsReviews.push(review);
+                   }    
+                  })
+
+                  console.log(audienceReviews);
+
                 this.setState({
                     name: movie.name,
                     overview: movie.details,
@@ -53,7 +77,11 @@ class MovieDetails extends Component {
                     wantToSee: response.data.isWantToSee,
                     notInterested: response.data.isNotInterested,
                     reviews: movie.reviews,
-                    lindenMeter: movie.lindenMeter
+                    lindenMeter: movie.lindenMeter,
+                    audienceReviews : audienceReviews,
+                    criticsReviews: criticsReviews,
+                    myReview: myReview
+
                 });
             }.bind(this));
     }
@@ -307,8 +335,9 @@ class MovieDetails extends Component {
                                     <Tab menu={{ secondary: true, pointing: true, inverted: true }}  
                                     panes = {[
                                         { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.reviews}/></List></Tab.Pane> },
-                                        { menuItem: 'Top Critics', render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane> },
-                                        { menuItem: 'Audience', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
+                                        { menuItem: 'Top Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.criticsReviews}/></List></Tab.Pane> },
+                                        { menuItem: 'Audience', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.audienceReviews}/></List></Tab.Pane> },
+                                        { menuItem: 'My Review', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.myReview}/></List></Tab.Pane> },
                                     ]} />
                                 </List.Item>
                             </List>

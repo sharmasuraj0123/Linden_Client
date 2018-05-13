@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import  { Label,Card, Button, Rating, List } from 'semantic-ui-react';
+import ReportModal from '../components/ReportModal';
 
 
 
 
 class ReviewCard extends Component {
     render() {
-        return (
-            
+        return (   
             this.props.reviews.map((review) =>
             <List.Item>
             <Card width={75}>
@@ -22,7 +22,7 @@ class ReviewCard extends Component {
                 </Card.Content>
                 <Card.Content extra>
                     <div className='ui two buttons'>
-                        <Button color='black'>Report</Button>
+                       <ReportModal review={review}/>
                     </div>
                 </Card.Content>
             </Card>

@@ -16,6 +16,7 @@ import { toast } from 'react-toastify';
 
 
 let ReviewField = null;
+let lindoIcon = null;
 
 
 class MovieDetails extends Component {
@@ -69,6 +70,7 @@ class MovieDetails extends Component {
                  
 
                 ReviewField = myReview[0] ? (<MyReview reviews={myReview}/>)  : (<PostAReview id = {this.props.match.params.id} />);
+                lindoIcon = (movie.lindenMeter >=75) ? (require("../images/Fall.png")) :(require("../images/Winter.png"));
                   console.log(audienceReviews);
 
                 this.setState({
@@ -86,7 +88,7 @@ class MovieDetails extends Component {
 
                 });
             
-
+                
            
             console.log(ReviewField);
             }.bind(this));
@@ -180,7 +182,7 @@ class MovieDetails extends Component {
                                         <Menu inverted borderless>
                                             <Menu.Item>
                                                 <Image circular
-                                                    src={require("../images/Fall.png")}
+                                                    src={lindoIcon}
                                                     style={{ width: 70, verticalAlign: 'bottom' }}
                                                 />
                                             </Menu.Item>

@@ -13,7 +13,7 @@ class AdminReviewCard extends Component {
             <Card >
             <Grid colums>
             <Grid.Column width={8}> 
-
+                <Header>Review </Header>
                     <Header>{review.postedBy.firstName} {review.postedBy.lastName} </Header>   
                     <Rating defaultRating={review.rating} maxRating={5} disabled />  
               
@@ -23,9 +23,9 @@ class AdminReviewCard extends Component {
                
             </Grid.Column>
             <Grid.Column width={8}>      
-                
+            <Header>Reported By </Header>
                 <Header>{review.postedBy.firstName} {review.postedBy.lastName} </Header>   
-                <List.Content description={review.details}  style={{ color: '#000' }}/>
+                 <List.Content description={review.details}  style={{ color: '#000' }}/>
                 <div className='ui two buttons'>
                        <DeleteReviewModal review={review}/>
                     </div>

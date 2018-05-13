@@ -21,7 +21,7 @@ class PostAReview extends Component {
             token: token,
             contentId: id,
             contentType: "MOVIE",
-            rating: 5,
+            rating: 1,
             details: details
         })
             .then(function (response) {

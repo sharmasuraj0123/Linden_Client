@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
-import { Card, Button, Rating } from 'semantic-ui-react';
+import  { Label,Card, Button, Rating, List } from 'semantic-ui-react';
 
-const description = [
-    'Amy is a violinist with 2 years experience in the wedding industry.',
-    'She enjoys the outdoors and currently resides in upstate New York.',
-].join(' ')
+
 
 
 class ReviewCard extends Component {
     render() {
         return (
+            
+            this.props.reviews.map((review) =>
+            <List.Item>
             <Card width={75}>
                 <Card.Content>
-                    <Card.Header>Matthew</Card.Header>
+                    <Card.Header>{review.postedBy.firstName} {review.postedBy.lastName}  <Label>{review.reviewType}</Label></Card.Header>   
                     <Card.Meta>
-                        <Rating defaultRating={3} maxRating={5} disabled />
+                        <Rating defaultRating={review.rating} maxRating={5} disabled />      
                     </Card.Meta>
                 </Card.Content>
                 <Card.Content>
-                    <Card.Content description={description} />
+                    <Card.Content description={review.details} />
                 </Card.Content>
                 <Card.Content extra>
                     <div className='ui two buttons'>
@@ -26,9 +26,14 @@ class ReviewCard extends Component {
                     </div>
                 </Card.Content>
             </Card>
+            </List.Item>
+)   
+            
         );
     }
 }
+
+
 
 
 export default ReviewCard;

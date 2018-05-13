@@ -11,15 +11,11 @@ import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
 import { toast } from 'react-toastify';
 
-const commentPanes = [
-    { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><ReviewCard /></Tab.Pane> },
-    { menuItem: 'Top Critics', render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane> },
-    { menuItem: 'Audience', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
-    { menuItem: 'Fall', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
-    { menuItem: 'Winter', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
-]
+
 
 let details = ' '
+let AudienceReview = []
+let CriticsReview = []
 
 class MovieDetails extends Component {
 
@@ -29,7 +25,11 @@ class MovieDetails extends Component {
             genre: [],
             cast: [],
             wantToSee: null,
-            notInterested: null
+            notInterested: null,
+            AudienceReview:[],
+            CriticsReview: [],
+            reviews:[],
+            lindenMeter: 0
         }
     }
 
@@ -51,7 +51,9 @@ class MovieDetails extends Component {
                     cast: movie.cast,
                     genre: movie.genre,
                     wantToSee: response.data.isWantToSee,
-                    notInterested: response.data.isNotInterested
+                    notInterested: response.data.isNotInterested,
+                    reviews: movie.reviews,
+                    lindenMeter: movie.lindenMeter
                 });
             }.bind(this));
     }
@@ -64,7 +66,7 @@ class MovieDetails extends Component {
             token: token,
             contentId: id,
             contentType: "MOVIE",
-            rating: 4,
+            rating: 1,
             details: details
         })
             .then(function (response) {
@@ -75,7 +77,7 @@ class MovieDetails extends Component {
             })
             .catch(function (error) {
                 console.log(error)
-            }).bind(this);
+            });
     }
 
     addToWantToSee() {
@@ -110,7 +112,7 @@ class MovieDetails extends Component {
                 })
                 .catch(function (error) {
                     console.log('ERROR ' + error);
-                }).bind(this);
+                });
         }
     }
 
@@ -145,7 +147,7 @@ class MovieDetails extends Component {
                 })
                 .catch(function (error) {
                     console.log('ERROR ' + error);
-                }).bind(this);
+                });
         }
     }
 
@@ -169,9 +171,6 @@ class MovieDetails extends Component {
                                                     src={require("../images/Fall.png")}
                                                     style={{ width: 70, verticalAlign: 'bottom' }}
                                                 />
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                <Icon name='time' size='huge' />
                                             </Menu.Item>
                                             <Menu.Item position='right'>
                                                 <Button.Group>
@@ -250,13 +249,13 @@ class MovieDetails extends Component {
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                                 LINDOMETER
                                         </Header>
-                                            <Circle percent="98" strokeWidth="10"
+                                            <Circle percent={this.state.lindenMeter} strokeWidth="10"
                                                 strokeColor="white"
-                                                prefixCls='98'
+                                                prefixCls='0'
                                                 strokeLinecap="butt"
                                                 style={{ width: '150', height: '150' }} />
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
-                                                98 %</Header>
+                                            {this.state.lindenMeter} %</Header>
                                         </Grid.Column>
                                         <Grid.Column width={4}>
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
@@ -264,7 +263,7 @@ class MovieDetails extends Component {
                                         </Header>
                                             <Circle percent="98" strokeWidth="10"
                                                 strokeColor="white"
-                                                prefixCls='98'
+                                                prefixCls='1'
                                                 strokeLinecap="butt"
                                                 style={{ width: '150', height: '150' }} />
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
@@ -305,7 +304,12 @@ class MovieDetails extends Component {
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Reviews</Divider>
-                                    <Tab menu={{ secondary: true, pointing: true, inverted: true }} panes={commentPanes} />
+                                    <Tab menu={{ secondary: true, pointing: true, inverted: true }}  
+                                    panes = {[
+                                        { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.reviews}/></List></Tab.Pane> },
+                                        { menuItem: 'Top Critics', render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane> },
+                                        { menuItem: 'Audience', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
+                                    ]} />
                                 </List.Item>
                             </List>
                         </Segment>

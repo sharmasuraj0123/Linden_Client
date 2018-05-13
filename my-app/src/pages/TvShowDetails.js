@@ -27,7 +27,7 @@ class TvShowDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            genre: [],
+            genres: [],
             cast: [], 
             seasons :[]
         }
@@ -64,19 +64,19 @@ class TvShowDetails extends Component {
         let id = this.props.match.params.id;
         axios.get('http://localhost:8080/tvShow/' + id)
             .then(function (response) {
-                let tvShow = response.data.tvShow;
-                console.log(tvShow);
+                let tvShow = response.data.tvShow.tvShow;
+                console.log(response.data);
                 this.setState({
                     name: tvShow.name,
                     overview: tvShow.details,
                     cast: tvShow.cast,
-                    genre: tvShow.genre,
+                    genres: tvShow.genre,
                     poster: 'https://image.tmdb.org/t/p/w500' + tvShow.poster,
                     releaseDate: tvShow.releaseDate,
                     seasons: tvShow.seasons
                     
                 });
-                console.log(this.state.cast);
+                console.log(this.state.genres);
             }.bind(this));
     }
 
@@ -102,8 +102,6 @@ class TvShowDetails extends Component {
                                                 />
                                             </Menu.Item>
                                             <Menu.Item>
-                                                
-                                                <Icon name='time' size='huge' />
                                             </Menu.Item>
                                             <Menu.Item position='right'>
                                                 <Icon.Group size='huge'>
@@ -139,7 +137,7 @@ class TvShowDetails extends Component {
                                                         <Table.Row>
                                                             <Table.Cell>Genre:</Table.Cell>
                                                             <Table.Cell>
-                                                                <Genre genres={this.state.genre} />
+                                                                <Genre genres={this.state.genres} />
                                                             </Table.Cell>
                                                         </Table.Row>
                                                     </Table.Body>

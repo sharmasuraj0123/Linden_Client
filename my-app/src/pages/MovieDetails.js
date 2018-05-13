@@ -28,21 +28,30 @@ class MovieDetails extends Component {
         this.state = {
             genre: [],
             cast: [],
-            watchList: null,
+            wantToSee: null,
             notInterested: null
         }
     }
 
     componentDidMount() {
+        const cookies = new Cookies();
         let id = this.props.match.params.id;
-        axios.get('http://localhost:8080/movie/' + id)
+        let token = cookies.get('obj').token;
+        axios.get('http://localhost:8080/movie/' + id,
+            {
+                headers: {
+                    token: token
+                }
+            })
             .then(function (response) {
-                let movie = response.data;
+                let movie = response.data.movie;
                 this.setState({
                     name: movie.name,
                     overview: movie.details,
                     cast: movie.cast,
-                    genre: movie.genre
+                    genre: movie.genre,
+                    wantToSee: response.data.isWantToSee,
+                    notInterested: response.data.isNotInterested
                 });
             }.bind(this));
     }
@@ -69,14 +78,14 @@ class MovieDetails extends Component {
             }.bind(this));
     }
 
-    addToWatchList() {
+    addToWantToSee() {
         const cookies = new Cookies();
         if (!cookies.get('obj')) {
             toast.error('Please Log In!', {
                 position: toast.POSITION.TOP_CENTER
             });
         }
-        else if (!this.state.watchList) {
+        else if (!this.state.wantToSee) {
             const token = cookies.get('obj').token;
             let id = this.props.match.params.id;
             let app = this;
@@ -91,8 +100,8 @@ class MovieDetails extends Component {
                     console.log(response);
                     if (response.data.status == 'OK') {
                         let curState = app.state;
-                        curState.notInterested = curState.watchList;
-                        curState.watchList = !curState.watchList;
+                        curState.notInterested = curState.wantToSee;
+                        curState.wantToSee = !curState.wantToSee;
                         app.setState(curState);
                         toast.success('Added!', {
                             position: toast.POSITION.TOP_CENTER
@@ -126,7 +135,7 @@ class MovieDetails extends Component {
                 .then(function (response) {
                     if (response.data.status == 'OK') {
                         let curState = app.state;
-                        curState.watchList = curState.notInterested;
+                        curState.wantToSee = curState.notInterested;
                         curState.notInterested = !curState.notInterested;
                         app.setState(curState);
                         toast.success('Added!', {
@@ -168,10 +177,10 @@ class MovieDetails extends Component {
                                                 <Button.Group>
                                                     <Button icon labelPosition='left'
                                                         toggle
-                                                        active={this.state.watchList}
-                                                        onClick={(e, data) => this.addToWatchList()}>
+                                                        active={this.state.wantToSee}
+                                                        onClick={(e, data) => this.addToWantToSee()}>
                                                         <Icon name='bookmark' />
-                                                        Watchlist
+                                                        Want To See
                                                     </Button>
                                                     <Button.Or />
                                                     <Button icon labelPosition='left'

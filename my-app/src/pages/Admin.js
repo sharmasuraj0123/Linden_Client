@@ -3,6 +3,8 @@ import { Grid, Menu, Tab } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import AdminReviewCard from "../components/AdminReviewCard";
+import PromotionApplicationCard from "../components/PromotionApplicationCard";
+
 
 let review = [{
     "id": 2196,
@@ -78,8 +80,9 @@ class Admin extends Component {
                         <Tab menu={{ secondary: true, pointing: true, inverted: true }} 
                         panes = {[
                             { menuItem: 'Reports', render: () => <Tab.Pane attached={false} inverted> <AdminReviewCard reviews = {review}/></Tab.Pane> },
-                            { menuItem: 'Application', render: () => <Tab.Pane attached={false} inverted>Tab 3 Content</Tab.Pane> },
+                            { menuItem: 'Application', render: () => <Tab.Pane attached={false} inverted><PromotionApplicationCard/></Tab.Pane> },
                         ]} />
+
                     </Grid.Column>
                 </Grid>
             </div>

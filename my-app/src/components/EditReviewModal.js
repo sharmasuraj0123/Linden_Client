@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 
-let EditReview = '';
+let details = '';
 const cookies = new Cookies();
 class EditReviewModal extends Component {
     constructor(props) {
@@ -20,11 +20,13 @@ class EditReviewModal extends Component {
         let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
         axios.post('http://localhost:8080/user/editReview/'+ reviewId,{
            token: token,
-            EditReview: EditReview,
+           rating: 4,
+            details : details,
+            contentType: this.props.review.contentType
         }).then(function (response) {
                 response = response.data;
                 if (response.status === 'ERROR') {
-                    console.log('Cant EditReview');
+                    console.log('Cant Edit Review');
                 } else {
                     response = response.obj;
                     window.location.reload();
@@ -38,7 +40,7 @@ class EditReviewModal extends Component {
         const { openEditReview, dimmer } = this.state
 
         return (
-            <Modal trigger={<Button color='black' size='small' onClick={this.showEditReview('blurring')}>Edit</Button>}
+            <Modal trigger={<Button basic color='green' size='small' onClick={this.showEditReview('blurring')}>Edit</Button>}
                 dimmer={dimmer} open={openEditReview} onClose={this.closeEditReview.bind(this)} style={{ marginTop: '17em', marginLeft: "30em", maxWidth: 450 }}>
                 <Modal.Content>
                     <div className='EditReview-form'>
@@ -68,11 +70,10 @@ class EditReviewModal extends Component {
                                         <Rating  maxRating={5}/> 
                                         <Form.Input
                                             fluid
-                                            
                                             icon='write'
                                             iconPosition='left'
                                             placeholder={this.state.review.details}
-                                            onChange={(e, data) => EditReview = data.value}
+                                            onChange={(e, data) => details = data.value}
                                         />   
                                         <Button color='black' fluid size='large' onClick={(event, data) => this.handleEditReview()}>Edit Review</Button>
                                     </Segment>

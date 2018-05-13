@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message,  Modal, Card, Label,Rating } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message,  Modal } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 

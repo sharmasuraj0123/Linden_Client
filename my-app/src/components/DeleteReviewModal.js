@@ -38,7 +38,7 @@ class DeleteReviewModal extends Component {
         const { openDeleteReview, dimmer } = this.state
 
         return (
-            <Modal trigger={<Button color='black' size='small' onClick={this.showDeleteReview('blurring')}>Delete</Button>}
+            <Modal trigger={<Button basic color='red' size='small' onClick={this.showDeleteReview('blurring')}>Delete</Button>}
                 dimmer={dimmer} open={openDeleteReview} onClose={this.closeDeleteReview.bind(this)} style={{ marginTop: '17em', marginLeft: "30em", maxWidth: 550 }}>
                 <Modal.Content>
                     <div className='DeleteReview-form'>
@@ -61,7 +61,7 @@ class DeleteReviewModal extends Component {
                                 </Message>
                                 <Form size='large'>
                                     
-                                        <Button color='black' fluid size='large' onClick={(event, data) => this.handleDeleteReview()}>Delete Review</Button>
+                                        <Button color='red' fluid size='large' onClick={(event, data) => this.handleDeleteReview()}>Delete Review</Button>
                                     
                                 </Form>
                             </Grid.Column>

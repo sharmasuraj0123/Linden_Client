@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 
-let report = '';
+let justification = '';
 const cookies = new Cookies();
 class ReportModal extends Component {
     constructor(props) {
@@ -19,8 +19,9 @@ class ReportModal extends Component {
         let reviewId = this.props.review.id
         let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
         axios.post('http://localhost:8080/user/reportReview/'+ reviewId,{
-           token: token,
-            report: report,
+            token: token,
+            review : this.props.review,
+            justification: justification
         }).then(function (response) {
                 response = response.data;
                 if (response.status === 'ERROR') {
@@ -38,7 +39,7 @@ class ReportModal extends Component {
         const { openReport, dimmer } = this.state
 
         return (
-            <Modal trigger={<Button color='black' size='small' onClick={this.showReport('blurring')}>Report</Button>}
+            <Modal trigger={<Button basic color='red' size='small' onClick={this.showReport('blurring')}>Report</Button>}
                 dimmer={dimmer} open={openReport} onClose={this.closeReport.bind(this)} style={{ marginTop: '17em', marginLeft: "30em", maxWidth: 450 }}>
                 <Modal.Content>
                     <div className='Report-form'>
@@ -65,7 +66,7 @@ class ReportModal extends Component {
                                             icon='write'
                                             iconPosition='left'
                                             placeholder='description'
-                                            onChange={(e, data) => report = data.value}
+                                            onChange={(e, data) => justification = data.value}
                                         />
                                         
                                         <Button color='black' fluid size='large' onClick={(event, data) => this.handleReport()}>Report</Button>

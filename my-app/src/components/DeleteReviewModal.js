@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message, Segment, Modal, Card, Label,Rating } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message,  Modal, Card, Label,Rating } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 
-let DeleteReview = '';
+
 const cookies = new Cookies();
 class DeleteReviewModal extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ class DeleteReviewModal extends Component {
         const { openDeleteReview, dimmer } = this.state
 
         return (
-            <Modal trigger={<Button color='black' size='small' onClick={this.showDeleteReview('blurring')}>Delete Your Review</Button>}
+            <Modal trigger={<Button color='black' size='small' onClick={this.showDeleteReview('blurring')}>Delete</Button>}
                 dimmer={dimmer} open={openDeleteReview} onClose={this.closeDeleteReview.bind(this)} style={{ marginTop: '17em', marginLeft: "30em", maxWidth: 550 }}>
                 <Modal.Content>
                     <div className='DeleteReview-form'>

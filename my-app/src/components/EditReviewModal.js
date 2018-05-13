@@ -38,7 +38,7 @@ class EditReviewModal extends Component {
         const { openEditReview, dimmer } = this.state
 
         return (
-            <Modal trigger={<Button color='black' size='small' onClick={this.showEditReview('blurring')}>Edit Your Review</Button>}
+            <Modal trigger={<Button color='black' size='small' onClick={this.showEditReview('blurring')}>Edit</Button>}
                 dimmer={dimmer} open={openEditReview} onClose={this.closeEditReview.bind(this)} style={{ marginTop: '17em', marginLeft: "30em", maxWidth: 450 }}>
                 <Modal.Content>
                     <div className='EditReview-form'>

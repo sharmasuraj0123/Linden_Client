@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  { Label,Card, Button, Rating, List } from 'semantic-ui-react';
+import  { Label,Card, Rating, List } from 'semantic-ui-react';
 import ReportModal from '../components/ReportModal';
 
 

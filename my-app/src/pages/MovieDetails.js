@@ -3,20 +3,19 @@ import { Circle } from 'rc-progress';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 // eslint-diasble-next-line
-import { Divider, Icon, Tab, Table, Grid, Button, Form, Header, Image, List, Menu, Rating, Segment, Embed } from 'semantic-ui-react'
+import { Divider, Icon, Tab, Table, Grid, Button, Header, Image, List, Menu, Segment, Embed } from 'semantic-ui-react'
 import SideBarList from "../components/SideBarList";
 import ReviewCard from "../components/ReviewCard";
 import MyReview from "../components/MyReview";
 import CastCard from "../components/CastCard";
+import PostAReview from "../components/PostAReview";
 import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
 import { toast } from 'react-toastify';
 
 
 
-let details = ' '
-
-
+let ReviewField = null;
 
 
 class MovieDetails extends Component {
@@ -67,7 +66,9 @@ class MovieDetails extends Component {
                     criticsReviews.push(review);
                    }    
                   })
+                 
 
+                ReviewField = myReview[0] ? (<MyReview reviews={myReview}/>)  : (<PostAReview id = {this.props.match.params.id} />);
                   console.log(audienceReviews);
 
                 this.setState({
@@ -84,31 +85,11 @@ class MovieDetails extends Component {
                     myReview: myReview
 
                 });
-            }.bind(this));
-    }
+            
 
-    handlePostReview() {
-        const cookies = new Cookies();
-        let id = this.props.match.params.id;
-        let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
-        axios.post('http://localhost:8080/user/postReview', {
-            token: token,
-            contentId: id,
-            contentType: "MOVIE",
-            rating: 5,
-            details: details
-        })
-            .then(function (response) {
-                response = response.data;
-                window.location.reload();
-                if (response.status === 'ERROR') {
-                    console.log(response);
-                }
-            })
-            .catch(function (error) {
-                console.log(error)
-                
-            });
+           
+            console.log(ReviewField);
+            }.bind(this));
     }
 
     addToWantToSee() {
@@ -301,27 +282,9 @@ class MovieDetails extends Component {
                                                 98 %</Header>
                                         </Grid.Column>
                                         <Grid.Column width={8}>
-                                            <Header style={{ fontSize: '20px', color: '#ffffff' }}>
-                                                Add your Rating
-                                            </Header>
-                                            <List>
-                                                <List.Item>
-                                                    <List horizontal>
-                                                        <List.Item>
-                                                            <Image floated='left' style={{ width: 150, height: 150, verticalAlign: 'bottom' }} src={require('../images/defaultPicture.jpg')} />
-                                                        </List.Item>
-                                                        <List.Item >
-                                                            <Rating maxRating={5} clearable size='large' style={{ color: 'white' }} />
-                                                            <Form reply fluid='true' size='large'>
-                                                                <Form.TextArea onChange={(e, data) => details = data.value} />
-                                                                <Button content='Post A Review'
-                                                                    onClick={(event, data) => this.handlePostReview()}
-                                                                    labelPosition='left' icon='edit' />
-                                                            </Form>
-                                                        </List.Item>
-                                                    </List>
-                                                </List.Item>
-                                            </List>
+
+                                           {ReviewField}
+
                                         </Grid.Column>
                                     </Grid>
                                 </List.Item>
@@ -338,7 +301,6 @@ class MovieDetails extends Component {
                                         { menuItem: 'All', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.reviews}/></List></Tab.Pane> },
                                         { menuItem: 'Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.criticsReviews}/></List></Tab.Pane> },
                                         { menuItem: 'Audience', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.audienceReviews}/></List></Tab.Pane> },
-                                        { menuItem: 'My Review', render: () => <Tab.Pane attached={false}><List horizontal><MyReview reviews={this.state.myReview}/></List></Tab.Pane> },
                                     ]} />
                                 </List.Item>
                             </List>

@@ -68,8 +68,18 @@ class CastDetails extends Component {
                         <Divider horizontal inverted style={{ fontSize: '20px' }}> FILMOGRAPHY</Divider>
                         <Tab menu={{ secondary: true, pointing: true, inverted: true }}
                             panes={[
-                                { menuItem: 'Movies', render: () => <Tab.Pane attached={false}> <Movies className='Movies' movies={this.state.movies} /></Tab.Pane> },
-                                { menuItem: 'TV Shows', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> }
+                                {
+                                    menuItem: 'Movies', render: () =>
+                                        <Tab.Pane attached={false}>
+                                            <Movies className='Movies' movies={this.state.movies} />
+                                        </Tab.Pane>
+                                },
+                                {
+                                    menuItem: 'TV Shows', render: () =>
+                                        <Tab.Pane attached={false}>
+                                            Tab 3 Content
+                                    </Tab.Pane>
+                                }
                             ]}
                         />
                     </Grid.Column>

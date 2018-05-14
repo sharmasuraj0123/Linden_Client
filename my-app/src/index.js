@@ -22,8 +22,8 @@ import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import LindenCritics from './pages/LindenCritics';
 import Admin from './pages/Admin';
-
-
+import ForgotPassword from './pages/forgotPassword';
+import EditProfile from './pages/EditProfile';
 import TermsAndCondition from './pages/TermsAndCondition';
 import ProfileDetails from './pages/ProfileDetails';
 import CastDetails from './pages/CastDetails';
@@ -66,7 +66,11 @@ ReactDOM.render(
                         return (<RegisterForm />);
                     }
                 } />
-
+                <Route path='/forgotPassword' exact render={
+                    () => {
+                        return (<ForgotPassword />);
+                    }
+                } />
                 <Route path='/movie/:id' exact render={
                     () => {
                         return (<MovieDetails />);
@@ -125,6 +129,11 @@ ReactDOM.render(
                 <Route path='/admin' exact render={
                     () => {
                         return (<Admin />);
+                    }
+                } />
+                <Route path='/editProfile' exact render={
+                    () => {
+                        return (<EditProfile />);
                     }
                 } />
                 <Route component={NotFound} />

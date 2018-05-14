@@ -15,7 +15,8 @@ class ProfileDetails extends Component {
             notInterested: [],
             wantsToSee: [],
             movies: [],
-            tvShows: []
+            tvShows: [],
+            profileImage: ''
         };
     }
 
@@ -27,6 +28,7 @@ class ProfileDetails extends Component {
                 let st = this.state;
                 st.name = response.firstName + ' ' + response.lastName;
                 st.email = response.email;
+                st.profileImage = (response.profileImage) ? response.profileImage : require('../images/defaultPicture.jpg');
                 this.setState(st);
             }.bind(this));
 
@@ -68,7 +70,7 @@ class ProfileDetails extends Component {
                             <Menu.Item>
                                 <Menu.Header as='h1'>{this.state.name}</Menu.Header>
                                 <Menu.Menu>
-                                    <img alt={''} src={require("../images/defaultPicture.jpg")} width={200} />
+                                    <img alt={''} src={this.state.profileImage} width={200} />
                                 </Menu.Menu>
                             </Menu.Item>
                         </Menu>

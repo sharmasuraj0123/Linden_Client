@@ -14,24 +14,27 @@ class LoginForm extends Component {
     showLogin = dimmer => () => this.setState({ dimmer, openLogin: true })
     closeLogin = () => this.setState({ openLogin: false, error: null })
     handleLogin() {
-     
-        axios.post('http://localhost:8080/login',{
+
+        axios.post('http://localhost:8080/login', {
             email: email,
             password: password,
         }).then(function (response) {
-                response = response.data;
-                if (response.status === 'ERROR') {
-                    console.log('Invalid Creds!');
-                } else {
-                    response = response.obj;
-                    const cookies = new Cookies();
-                    console.log(response);
-                    cookies.set('obj', response);
-                    console.log(cookies.get('obj').token);
-
-                    window.location.reload();
-                }
-            }).then(this.closeLogin)
+            response = response.data;
+            if (response.status === 'ERROR') {
+                console.log('Invalid Creds!');
+            } else {
+                response = response.obj;
+                const cookies = new Cookies();
+                let obj = {
+                    token: response.token,
+                    firstName: response.firstName,
+                    lastName: response.lastName
+                };
+                cookies.set('obj', obj);
+                console.log(cookies.get('obj').token);
+                window.location.reload();
+            }
+        }).then(this.closeLogin)
             .catch(function (error) {
                 console.log(error)
             })
@@ -71,6 +74,18 @@ class LoginForm extends Component {
                                 </Form>
                                 <Message>
                                     New to Linden? <a href='register'>Sign Up</a>
+                                </Message>
+                                <Message>
+                                    Forgot Password?
+                                    <a href='http://localhost:3000/forgotPassword'>
+                                        Forgot Password
+                                    </a>
+                                </Message>
+                                <Message>
+                                    Did not recieve Verification e-mail?
+                                    <a href='http://localhost:3000/resendVerify'>
+                                        Resend Verification
+                                    </a>
                                 </Message>
                             </Grid.Column>
                         </Grid>

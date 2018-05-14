@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message, Segment, Modal, Checkbox } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Segment, Modal, Checkbox } from 'semantic-ui-react';
 import axios from 'axios';
 
 let poster = '';

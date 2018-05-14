@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 
-
+let reason =' '
 const cookies = new Cookies();
 class ApplyPromotionModal extends Component {
     constructor(props) {
@@ -15,16 +15,18 @@ class ApplyPromotionModal extends Component {
     showApplyPromotion = dimmer => () => this.setState({ dimmer, openApplyPromotion: true })
     closeApplyPromotion = () => this.setState({ openApplyPromotion: false, error: null })
 
-    handleApplyForPromotion() {
+    handleApplyPromotion() {
         axios.post('http://localhost:8080/user/applyForPromotion', {
           token: cookies.get('obj').token,
+          reason: reason,
         })
           .then(function (response) {
             response = response.data;
             if (response.status === 'ERROR') {
               console.log('Cannot Log-Out');
             } else {
-              response = response.obj;    
+              response = response.obj;
+              window.location.reload();    
             }
           })
           .catch(function (error) {
@@ -50,8 +52,15 @@ class ApplyPromotionModal extends Component {
                                    Please read the document carefully before applying
                                 </Message>
                                 <Form size='large'>
-                                        <Button color='black' fluid size='large' onClick={(event, data) => this.handleApplyPromotion()}>Apply</Button>
-                                    
+                                <Form.Input
+                                            fluid
+                                            icon='write'
+                                            label='Explain in 50 words why you deserve to become a critic'
+                                            iconPosition='left'
+                                            placeholder='Write here'
+                                            onChange={(e, data) => reason = data.value}
+                                        /> 
+                                        <Button color='black' fluid size='large' onClick={(event, data) => this.handleApplyPromotion()}>Apply</Button>           
                                 </Form>
                             </Grid.Column>
                         </Grid>

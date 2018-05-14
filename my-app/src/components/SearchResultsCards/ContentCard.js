@@ -15,9 +15,9 @@ class ContentCard extends Component {
         <Card fluid key={content.id}>
           <Item.Group>
             <Item style={ItemStyle}>
-              <Item.Image src={content.imageURL} />
+              <Item.Image src={content.poster} />
               <Item.Content>
-                <Link to={'/' + content.type + '/' + content.id}>
+                <Link to={'/' + content.contentType + '/' + content.id}>
                   <Item.Header as='h1'>
                     {content.name}
                   </Item.Header>

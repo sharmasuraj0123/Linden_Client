@@ -4,6 +4,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import AdminReviewCard from "../components/AdminReviewCard";
 import PromotionApplicationCard from "../components/PromotionApplicationCard";
+import Cookies from 'universal-cookie';
 
 
 let review = [{
@@ -49,16 +50,22 @@ class Admin extends Component {
     }
 
     componentDidMount() {
-        let id = this.props.match.params.id;
-        axios.get('http://localhost:8080/user/' + id)
-            .then(function (response) {
+
+        const cookies = new Cookies();
+        let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
+        axios.get('http://localhost:8080/admin/viewReports',
+            {
+                headers: {
+                    token: token
+                }
+            }).then(function (response) {
                 response = response.data.obj;
                 console.log(response);
                 this.setState({
                     name: response.firstName + ' ' + response.lastName,
                     email: response.email
                 });
-            }.bind(this));
+            }.bind(this)); 
     }
 
     render() {
@@ -77,7 +84,7 @@ class Admin extends Component {
                         </Menu>
                     </Grid.Column>
                     <Grid.Column width={12}>
-                        <Tab menu={{ secondary: true, pointing: true, inverted: true }} 
+                        <Tab  menu={{ secondary: true, pointing: true, inverted: true ,}} 
                         panes = {[
                             { menuItem: 'Reports', render: () => <Tab.Pane attached={false} inverted> <AdminReviewCard reviews = {review}/></Tab.Pane> },
                             { menuItem: 'Application', render: () => <Tab.Pane attached={false} inverted><PromotionApplicationCard/></Tab.Pane> },

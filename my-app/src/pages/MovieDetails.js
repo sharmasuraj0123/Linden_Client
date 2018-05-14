@@ -8,6 +8,8 @@ import SideBarList from "../components/SideBarList";
 import ReviewCard from "../components/ReviewCard";
 import MyReview from "../components/MyReview";
 import CastCard from "../components/CastCard";
+import MovieImages from "../components/MovieImages";
+import MovieVideoCard from "../components/MovieVideoCard";
 import PostAReview from "../components/PostAReview";
 import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
@@ -15,8 +17,10 @@ import { toast } from 'react-toastify';
 
 
 
+
 let ReviewField = null;
 let lindoIcon = null;
+let adminButton = null;
 
 
 class MovieDetails extends Component {
@@ -32,12 +36,16 @@ class MovieDetails extends Component {
             criticsReviews: [],
             myReview:[],
             reviews:[],
-            lindenMeter: 0
+            lindenMeter: 0,
+            releaseDate: 0,
+            photos:[],
+            videos:[]
         }
     }
 
     componentDidMount() {
         const cookies = new Cookies();
+        console.log(cookies);
         let id = this.props.match.params.id;
         let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
         let email = (cookies.get('obj')) ? cookies.get('obj').email : null;
@@ -73,6 +81,28 @@ class MovieDetails extends Component {
                 lindoIcon = (movie.lindenMeter >=75) ? (require("../images/Fall.png")) :(require("../images/Winter.png"));
                   console.log(audienceReviews);
 
+
+                adminButton= (cookies.get('obj')) ?  
+                                                   ( (cookies.get('obj').salary) ? (<Button label='hello'/>) : (<Button.Group>
+                                                        <Button icon labelPosition='left'
+                                                            toggle
+                                                            active={response.data.isWantToSee}
+                                                            onClick={(e, data) => this.addToWantToSee()}>
+                                                            <Icon name='bookmark' />
+                                                            Want To See
+                                                        </Button>
+                                                        <Button.Or />
+                                                        <Button icon labelPosition='left'
+                                                            toggle
+                                                            negative= {response.data.isNotInterested}
+                                                            onClick={(e, data) => this.addToNotInterested()}>
+                                                            <Icon name='hide' />
+                                                            Not Interested
+                                                            </Button>
+                                                    </Button.Group>) ): (null);
+                 
+                 
+
                 this.setState({
                     name: movie.name,
                     overview: movie.details,
@@ -82,14 +112,17 @@ class MovieDetails extends Component {
                     notInterested: response.data.isNotInterested,
                     reviews: movie.reviews,
                     lindenMeter: movie.lindenMeter,
+                    trailer: movie.videos[0],
+                    videos: movie.videos,
                     audienceReviews : audienceReviews,
                     criticsReviews: criticsReviews,
-                    myReview: myReview
-
+                    myReview: myReview,
+                    poster: movie.poster,
+                    duration: movie.duration,
+                    revenue: movie.revenue,
+                    photos: movie.photos,
+                    releaseDate: movie.releaseDate
                 });
-            
-                
-           
             console.log(ReviewField);
             }.bind(this));
     }
@@ -186,31 +219,36 @@ class MovieDetails extends Component {
                                                     style={{ width: 70, verticalAlign: 'bottom' }}
                                                 />
                                             </Menu.Item>
+                                            <Menu.Item>
+                                            {adminButton}
+                                            </Menu.Item>
                                             <Menu.Item position='right'>
-                                                <Button.Group>
-                                                    <Button icon labelPosition='left'
-                                                        toggle
-                                                        active={this.state.wantToSee}
-                                                        onClick={(e, data) => this.addToWantToSee()}>
-                                                        <Icon name='bookmark' />
-                                                        Want To See
+                                            <Button.Group>
+                                                <Button icon labelPosition='left'
+                                                    toggle
+                                                    active={this.state.wantToSee}
+                                                    onClick={(e, data) => this.addToWantToSee()}>
+                                                    <Icon name='bookmark' />
+                                                    Want To See
+                                                </Button>
+                                                <Button.Or />
+                                                <Button icon labelPosition='left'
+                                                    toggle
+                                                    negative={this.state.notInterested}
+                                                    onClick={(e, data) => this.addToNotInterested()}>
+                                                    <Icon name='hide' />
+                                                    Not Interested
                                                     </Button>
-                                                    <Button.Or />
-                                                    <Button icon labelPosition='left'
-                                                        toggle
-                                                        negative={this.state.notInterested}
-                                                        onClick={(e, data) => this.addToNotInterested()}>
-                                                        <Icon name='hide' />
-                                                        Not Interested
-                                                        </Button>
-                                                </Button.Group>
+                                            </Button.Group>
+
+                                            
                                             </Menu.Item>
                                         </Menu>
                                     </List.Item>
                                     <List.Item>
                                         <Embed
-                                            id='51nZS-a7mMY'
-                                            placeholder={require("../images/testMovieTrailer.jpg")}
+                                            id={this.state.trailer}
+                                            placeholder={this.state.poster}
                                             source='youtube'
                                         />
                                     </List.Item>
@@ -218,9 +256,10 @@ class MovieDetails extends Component {
                                         <Grid>
                                             <Grid.Column width={5}>
                                                 <Image bordered
-                                                    src={require("../images/certifiedmovie2.jpg")}
+                                                    src={this.state.poster}
                                                     style={{ width: 280, verticalAlign: 'bottom' }}
                                                 />
+                                                
                                             </Grid.Column>
                                             <Grid.Column width={10}>
                                                 <Divider horizontal inverted style={{ fontSize: '20px', }}> INFO</Divider>
@@ -239,15 +278,15 @@ class MovieDetails extends Component {
                                                         </Table.Row>
                                                         <Table.Row>
                                                             <Table.Cell>Runtime:</Table.Cell>
-                                                            <Table.Cell>191 minutes</Table.Cell>
+                                                            <Table.Cell>{this.state.duration} mins</Table.Cell>
                                                         </Table.Row>
                                                         <Table.Row>
                                                             <Table.Cell>Release Date:</Table.Cell>
-                                                            <Table.Cell>May 4, 2018</Table.Cell>
+                                                            <Table.Cell>{this.state.releaseDate}</Table.Cell>
                                                         </Table.Row>
                                                         <Table.Row>
                                                             <Table.Cell>Box Office Collection:</Table.Cell>
-                                                            <Table.Cell>$80,000,000</Table.Cell>
+                                                            <Table.Cell>${this.state.revenue}</Table.Cell>
                                                         </Table.Row>
                                                     </Table.Body>
                                                 </Table>
@@ -304,6 +343,18 @@ class MovieDetails extends Component {
                                         { menuItem: 'Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.criticsReviews}/></List></Tab.Pane> },
                                         { menuItem: 'Audience', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.audienceReviews}/></List></Tab.Pane> },
                                     ]} />
+                                </List.Item>
+                                <List.Item>
+                                    <Divider inverted horizontal style={{ fontSize: '20px' }}> photos</Divider>
+                                    <List horizontal>
+                                        <MovieImages images={this.state.photos} />
+                                    </List>
+                                </List.Item>
+                                <List.Item>
+                                    <Divider inverted horizontal style={{ fontSize: '20px' }}> Videos</Divider>
+                                    <List horizontal>
+                                        <MovieVideoCard videos={this.state.videos} />
+                                    </List>
                                 </List.Item>
                             </List>
                         </Segment>

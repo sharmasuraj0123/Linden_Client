@@ -42,16 +42,14 @@ class SearchResults extends Component {
                         resultCountResponse.actors) / 10.0);
                 movieList.forEach(function (element) {
                     element.year = element.releaseDate.split('-')[0];
-                    element.imageURL = require("../images/Logo.png");
-                    element.type = 'movie';
+                       
                 });
                 tvShowList.forEach(function (element) {
                     element.year = element.releaseDate.split('-')[0];
-                    element.imageURL = require("../images/Logo.png");
-                    element.type = 'tvShow';
+                   
                 });
                 actorsList.forEach(function (element) {
-                    element.imageURL = require("../images/Logo.png");
+                    
                 });
                 this.setState({
                     movies: movieList,

@@ -15,7 +15,7 @@ class SideBarList extends Component {
   componentDidMount() {
     axios.get('http://localhost:8080/movie/getComingSoon')
         .then(function (response) {
-            let movieList = response.data;
+            let movieList = response.data.movies;
             
             this.setState({
               movies: movieList,

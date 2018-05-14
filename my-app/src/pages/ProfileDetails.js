@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Menu, Tab } from 'semantic-ui-react';
+import { Grid, Menu, Tab, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import ContentCard from '../components/SearchResultsCards/ContentCard';
@@ -64,11 +64,11 @@ class ProfileDetails extends Component {
     render() {
         return (
             <div >
-                <Grid columns style={{ paddingTop: '1em' }}>
+                <Grid style={{ paddingTop: '1em' }}>
                     <Grid.Column width={3}>
                         <Menu vertical fluid inverted>
                             <Menu.Item>
-                                <Menu.Header as='h1'>{this.state.name}</Menu.Header>
+                                <Header as='h1' inverted>{this.state.name}</Header>
                                 <Menu.Menu>
                                     <img alt={''} src={this.state.profileImage} width={200} />
                                 </Menu.Menu>

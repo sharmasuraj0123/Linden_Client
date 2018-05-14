@@ -13,7 +13,7 @@ class ReviewCard extends Component {
                 <Card fluid key={review.contentId}>
                     <Item.Group>
                         <Item style={ItemStyle}>
-                            <Item.Image src={review.imageURL} />
+                            <Item.Image src={review.contentImage} />
                             <Item.Content>
                                 <Link to={'/' + review.contentType + '/' + review.contentId}>
                                     <Item.Header as='h1'>

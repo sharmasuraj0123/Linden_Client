@@ -9,7 +9,6 @@ const cookies = new Cookies();
 class ApplyPromotionModal extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props)
         this.state = { openApplyPromotion: false, error: null, review: this.props.review }
     }
     showApplyPromotion = dimmer => () => this.setState({ dimmer, openApplyPromotion: true })

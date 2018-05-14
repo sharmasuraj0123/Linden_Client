@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
 let details = '';
+let rating =  '';
 const cookies = new Cookies();
 class EditReviewModal extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class EditReviewModal extends Component {
         let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
         axios.post('http://localhost:8080/user/editReview/'+ reviewId,{
            token: token,
-           rating: 4,
+           rating: rating,
             details : details,
             contentType: this.props.review.contentType
         }).then(function (response) {
@@ -67,7 +68,9 @@ class EditReviewModal extends Component {
                                          New Review
                                         </Header>
                                         <Card.Header>{this.state.review.postedBy.firstName} {this.state.review.postedBy.lastName}  <Label>{this.state.review.reviewType}</Label></Card.Header>   
-                                        <Rating  maxRating={5}/> 
+                                        <Rating maxRating={5}  
+                                                            onRate= {(e, data ) => rating = data.rating }
+                                                            clearable size='large' style={{ color: 'white' }} />
                                         <Form.Input
                                             fluid
                                             icon='write'

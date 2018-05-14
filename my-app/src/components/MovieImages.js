@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import  { List,Image} from 'semantic-ui-react';
-import DeleteReviewModal from '../components/DeleteReviewModal';
-import EditReviewModal from '../components/EditReviewModal';
+
 
 
 

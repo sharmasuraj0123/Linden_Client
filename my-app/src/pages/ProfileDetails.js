@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Menu, Tab, Segment } from 'semantic-ui-react';
+import { Grid, Menu, Tab } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import { Rating, Card, Item, Label, Divider } from 'semantic-ui-react';
 import ContentCard from '../components/SearchResultsCards/ContentCard';
 import ReviewCard from '../components/SearchResultsCards/ReviewCard';
 

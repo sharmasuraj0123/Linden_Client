@@ -10,6 +10,7 @@ import MyReview from "../components/MyReview";
 import CastCard from "../components/CastCard";
 import MovieImages from "../components/MovieImages";
 import MovieVideoCard from "../components/MovieVideoCard";
+import EditMovieModal from "../components/EditMovieModal";
 import PostAReview from "../components/PostAReview";
 import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
@@ -21,6 +22,7 @@ import { toast } from 'react-toastify';
 let ReviewField = null;
 let lindoIcon = null;
 let adminButton = null;
+
 
 
 class MovieDetails extends Component {
@@ -76,31 +78,15 @@ class MovieDetails extends Component {
                    }    
                   })
                  
-
+                
                 ReviewField = myReview[0] ? (<MyReview reviews={myReview}/>)  : (<PostAReview id = {this.props.match.params.id} />);
                 lindoIcon = (movie.lindenMeter >=75) ? (require("../images/Fall.png")) :(require("../images/Winter.png"));
                   console.log(audienceReviews);
 
 
-                adminButton= (cookies.get('obj')) ?  
-                                                   ( (cookies.get('obj').salary) ? (<Button label='hello'/>) : (<Button.Group>
-                                                        <Button icon labelPosition='left'
-                                                            toggle
-                                                            active={response.data.isWantToSee}
-                                                            onClick={(e, data) => this.addToWantToSee()}>
-                                                            <Icon name='bookmark' />
-                                                            Want To See
-                                                        </Button>
-                                                        <Button.Or />
-                                                        <Button icon labelPosition='left'
-                                                            toggle
-                                                            negative= {response.data.isNotInterested}
-                                                            onClick={(e, data) => this.addToNotInterested()}>
-                                                            <Icon name='hide' />
-                                                            Not Interested
-                                                            </Button>
-                                                    </Button.Group>) ): (null);
-                 
+                  adminButton= (cookies.get('obj')) ?  
+                  ( (cookies.get('obj').firstName==='admin') ? (<EditMovieModal/>) :  (null) ) : (null);
+                      
                  
 
                 this.setState({
@@ -119,10 +105,14 @@ class MovieDetails extends Component {
                     myReview: myReview,
                     poster: movie.poster,
                     duration: movie.duration,
-                    revenue: movie.revenue,
+                    boxOffice: movie.boxOffice.toLocaleString(),
                     photos: movie.photos,
-                    releaseDate: movie.releaseDate
+                    releaseDate: movie.releaseDate.toLocaleString()
                 });
+
+
+                
+
             console.log(ReviewField);
             }.bind(this));
     }
@@ -219,10 +209,10 @@ class MovieDetails extends Component {
                                                     style={{ width: 70, verticalAlign: 'bottom' }}
                                                 />
                                             </Menu.Item>
-                                            <Menu.Item>
+                                            <Menu.Item position='right'>  
                                             {adminButton}
                                             </Menu.Item>
-                                            <Menu.Item position='right'>
+                                            <Menu.Item >
                                             <Button.Group>
                                                 <Button icon labelPosition='left'
                                                     toggle
@@ -248,7 +238,7 @@ class MovieDetails extends Component {
                                     <List.Item>
                                         <Embed
                                             id={this.state.trailer}
-                                            placeholder={this.state.poster}
+                                            placeholder={this.state.photos[0]}
                                             source='youtube'
                                         />
                                     </List.Item>
@@ -286,7 +276,7 @@ class MovieDetails extends Component {
                                                         </Table.Row>
                                                         <Table.Row>
                                                             <Table.Cell>Box Office Collection:</Table.Cell>
-                                                            <Table.Cell>${this.state.revenue}</Table.Cell>
+                                                            <Table.Cell>$ {this.state.boxOffice}</Table.Cell>
                                                         </Table.Row>
                                                     </Table.Body>
                                                 </Table>
@@ -353,7 +343,7 @@ class MovieDetails extends Component {
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Videos</Divider>
                                     <List horizontal>
-                                        <MovieVideoCard videos={this.state.videos} />
+                                        <MovieVideoCard  poster= {this.state.poster} videos={this.state.videos} />
                                     </List>
                                 </List.Item>
                             </List>

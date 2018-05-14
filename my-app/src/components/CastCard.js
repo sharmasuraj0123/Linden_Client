@@ -7,8 +7,8 @@ class CastCard extends Component {
         return (
             this.props.casts.map((cast) =>
                 <List.Item>
-                <Card href={'/cast/' + cast.id} style={{ width: 150, height: 230,verticalAlign: 'bottom' }}>
-                    <Image src={cast.imageURL} style={{ height: 150 }} />
+                <Card href={'/cast/' + cast.id} style={{ width: 200, height: 250,verticalAlign: 'bottom' }}>
+                    <Image src={cast.imageURL} style={{ height: 200 }} />
                     <Card.Content>
                         <Card.Header>
                             {cast.firstName + ' ' + cast.lastName}

@@ -3,6 +3,7 @@ import { Grid, Menu, Tab } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import AdminReviewCard from "../components/AdminReviewCard";
+import AddMovieModal from "../components/AddMovieModal";
 import PromotionApplicationCard from "../components/PromotionApplicationCard";
 import Cookies from 'universal-cookie';
 
@@ -62,8 +63,7 @@ class Admin extends Component {
                 response = response.data.obj;
                 console.log(response);
                 this.setState({
-                    name: response.firstName + ' ' + response.lastName,
-                    email: response.email
+                    
                 });
             }.bind(this)); 
     }
@@ -78,7 +78,9 @@ class Admin extends Component {
                                 <Menu.Header as='h1'>ADMIN</Menu.Header>
                                 <Menu.Menu>
                                     <img alt={''} src={require("../images/defaultPicture.jpg")} width={200} />
-                                    <Menu.Item name='Manage Account' />
+                                    <Menu.Item >
+                                        <AddMovieModal/>
+                                        </Menu.Item>
                                 </Menu.Menu>
                             </Menu.Item>
                         </Menu>

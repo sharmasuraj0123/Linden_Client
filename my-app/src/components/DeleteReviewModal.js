@@ -59,10 +59,8 @@ class DeleteReviewModal extends Component {
                                         <Card.Content description={this.state.review.details} />
                                     </Card.Content>
                                 </Message>
-                                <Form size='large'>
-                                    
-                                        <Button color='red' fluid size='large' onClick={(event, data) => this.handleDeleteReview()}>Delete Review</Button>
-                                    
+                                <Form size='large'>        
+                                        <Button color='red' fluid size='large' onClick={(event, data) => this.handleDeleteReview()}>Delete Review</Button>     
                                 </Form>
                             </Grid.Column>
                         </Grid>

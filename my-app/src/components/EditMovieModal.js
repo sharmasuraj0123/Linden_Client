@@ -7,17 +7,17 @@ let password = '';
 let name = '';
 let details = '';
 
-class AddMovieModal extends Component {
+class EditMovieModal extends Component {
     constructor(props) {
         super(props);
         this.state = { openLogin: false, error: null }
     }
 
-    showAddMovie = dimmer => () => this.setState({ dimmer, openAddMovie: true })
-    closeAddMovie = () => this.setState({ openAddMovie: false })
+    showEditMovie = dimmer => () => this.setState({ dimmer, openEditMovie: true })
+    closeEditMovie = () => this.setState({ openEditMovie: false })
 
-    handleAddMovie() {
-        axios.post('http://localhost:8080/AddMovie', {
+    handleEditMovie() {
+        axios.post('http://localhost:8080/admin/EditMovie', {
             name: name,
             details: details,
             poster: poster,
@@ -30,18 +30,18 @@ class AddMovieModal extends Component {
                 } else {
                     response = response.obj;
                 }
-            }).then(this.closeAddMovie)
+            }).then(this.closeEditMovie)
             .catch(function (error) {
                 console.log(error)
             })
     }
     render() {
-        const { openAddMovie, dimmer } = this.state
+        const { openEditMovie, dimmer } = this.state
         return (
-            <Modal trigger={<Button color='black' size='small' onClick={this.showAddMovie('blurring')}>Add Movie</Button>}
-                dimmer={dimmer} open={openAddMovie} onClose={this.closeAddMovie} style={{ marginTop: '15em', marginLeft: "25em", maxWidth: 550 }}>
+            <Modal trigger={<Button color='black' size='small' onClick={this.showEditMovie('blurring')}>Edit Movie</Button>}
+                dimmer={dimmer} open={openEditMovie} onClose={this.closeEditMovie} style={{ marginTop: '15em', marginLeft: "25em", maxWidth: 550 }}>
                 <Modal.Content>
-                    <div className='AddMovie-form'>
+                    <div className='EditMovie-form'>
                         <style>{`body > div, body > div > div, body > div > div > div.login-form {}`}</style>
                         <Grid
                             textAlign='left'
@@ -50,7 +50,7 @@ class AddMovieModal extends Component {
                         >
                             <Grid.Column style={{ maxWidth: 550 }}>
                                 <Header as='h2' color='grey' textAlign='center'>
-                                    {' '}Add Movie
+                                    {' '}Edit Movie
                                 </Header>
                                 <Form size='large'>
                                     <Segment stacked>
@@ -68,7 +68,7 @@ class AddMovieModal extends Component {
                                             fluid
                                             icon='user'
                                             iconPosition='left'
-                                            placeholder='E-mail address'
+                                            placeholder='E-mail Editress'
                                             onChange={(e, data) => poster = data.value}
                                         />
                                         <Form.Input
@@ -88,9 +88,13 @@ class AddMovieModal extends Component {
                                         <Button
                                             color='black'
                                             fluid size='large'
-                                            onClick={(event, data) => this.handleAddMovie()}>Sign up</Button>
+                                            onClick={(event, data) => this.handleEditMovie()}>Sign up</Button>
                                     </Segment>
                                 </Form>
+                                <Message>
+                                    Already have an Account? <a href='login'>Log in here</a><br/>
+                                    Didn't Recieve Verification poster? <a href='resendVerify'>Verify here</a>
+                                </Message>
                             </Grid.Column>
                         </Grid>
                     </div>
@@ -100,4 +104,4 @@ class AddMovieModal extends Component {
     }
 }
 
-export default AddMovieModal;
+export default EditMovieModal;

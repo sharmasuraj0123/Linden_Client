@@ -6,9 +6,6 @@ import Cookies from 'universal-cookie';
 import UserMenu from "./UserMenu";
 import ApplyPromotionModal from "./ApplyPromotionModal";
 
-import axios from 'axios';
-
-const cookies = new Cookies();
 class NavbarModals extends Component {
 
   state = { openLogin: false, openRegister: false, openContactUs: false }

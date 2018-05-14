@@ -9,6 +9,7 @@ class Cast extends Component {
                 <Label 
                 onClick={(e, data) =>  {
                     this.props.history.push('/cast/'+actor.id);
+                    window.location.reload();
                 }} 
                 as='a' 
                 key={actor.id} 

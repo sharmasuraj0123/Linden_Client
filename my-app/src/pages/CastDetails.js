@@ -3,7 +3,7 @@ import { Segment, Grid, List, Tab, Divider, Table } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import SideBarList from "../components/SideBarList";
-import Movies from '../components/Movies';
+import ContentCard from '../components/SearchResultsCards/ContentCard';
 
 class CastDetails extends Component {
 
@@ -24,7 +24,8 @@ class CastDetails extends Component {
                 console.log(data);
                 this.setState({
                     name: cast.firstName + ' ' + cast.lastName,
-                    movies: data.movies
+                    movies: data.movies,
+                    imgUrl: cast.imageURL
                 });
             }.bind(this));
     }
@@ -37,7 +38,7 @@ class CastDetails extends Component {
                         <Segment raised>
                             <List horizontal >
                                 <List.Item>
-                                    <img alt={''} src={require("../images/testActorImg.jpg")}
+                                    <img alt={''} src={this.state.imgUrl}
                                         style={{ width: 216, height: 319 }} />
                                 </List.Item>
                                 <List.Item >
@@ -71,7 +72,7 @@ class CastDetails extends Component {
                                 {
                                     menuItem: 'Movies', render: () =>
                                         <Tab.Pane attached={false}>
-                                            <Movies className='Movies' movies={this.state.movies} />
+                                            <ContentCard contents={this.state.movies} />
                                         </Tab.Pane>
                                 },
                                 {

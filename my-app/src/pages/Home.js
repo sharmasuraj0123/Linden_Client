@@ -18,7 +18,7 @@ class Home extends Component {
         return (
             <div>
 
-                <Grid columns divided style={{ paddingTop: '' }}>
+                <Grid divided style={{ paddingTop: '' }}>
                     <Grid.Column width={12}>
                         <List>
                             <List.Item>

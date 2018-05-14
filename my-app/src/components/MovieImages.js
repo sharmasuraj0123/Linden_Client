@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import  { List,Image} from 'semantic-ui-react';
-
-
-
-
+import { List, Image } from 'semantic-ui-react';
 
 class MovieImages extends Component {
     render() {
-        return (   
+        let i = 1;
+        return (
             this.props.images.map((image) =>
-            <List.Item>
-                  <Image bordered
+                <List.Item key={i++}>
+                    <Image bordered
                         src={image}
                         style={{ width: 280, verticalAlign: 'bottom' }}
-                />
-            </List.Item>
-)   
-            
+                    />
+                </List.Item>
+            )
+
         );
     }
 }

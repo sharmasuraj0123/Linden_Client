@@ -16,14 +16,9 @@ import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
 import { toast } from 'react-toastify';
 
-
-
-
 let ReviewField = null;
 let lindoIcon = null;
 let adminButton = null;
-
-
 
 class MovieDetails extends Component {
 
@@ -34,20 +29,19 @@ class MovieDetails extends Component {
             cast: [],
             wantToSee: null,
             notInterested: null,
-            audienceReviews:[],
+            audienceReviews: [],
             criticsReviews: [],
-            myReview:[],
-            reviews:[],
+            myReview: [],
+            reviews: [],
             lindenMeter: 0,
             releaseDate: 0,
-            photos:[],
-            videos:[]
+            photos: [],
+            videos: []
         }
     }
 
     componentDidMount() {
         const cookies = new Cookies();
-        console.log(cookies);
         let id = this.props.match.params.id;
         let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
         let email = (cookies.get('obj')) ? cookies.get('obj').email : null;
@@ -60,34 +54,25 @@ class MovieDetails extends Component {
             })
             .then(function (response) {
                 let movie = response.data.movie;
-
                 let audienceReviews = [];
                 let criticsReviews = [];
-                let myReview= [];
-                let allReviews = (movie.reviews) ?(movie.reviews): ([]);
-                
-                
+                let myReview = [];
+                let allReviews = (movie.reviews) ? (movie.reviews) : ([]);
                 allReviews.forEach((review) => {
-                if(review.postedBy.email === email){
-                    myReview.push(review);
-                }
-                else if(review.reviewType==='AUDIENCE'){
-                            audienceReviews.push(review);
-                   }else if(review.reviewType==='CRITIC'){
-                    criticsReviews.push(review);
-                   }    
-                  })
-                 
-                
-                ReviewField = myReview[0] ? (<MyReview reviews={myReview}/>)  : (<PostAReview id = {this.props.match.params.id} />);
-                lindoIcon = (movie.lindenMeter >=75) ? (require("../images/Fall.png")) :(require("../images/Winter.png"));
-                  console.log(audienceReviews);
+                    if (review.postedBy.email === email) {
+                        myReview.push(review);
+                    }
+                    else if (review.reviewType === 'AUDIENCE') {
+                        audienceReviews.push(review);
+                    } else if (review.reviewType === 'CRITIC') {
+                        criticsReviews.push(review);
+                    }
+                })
 
-
-                  adminButton= (cookies.get('obj')) ?  
-                  ( (cookies.get('obj').firstName==='admin') ? (<EditMovieModal/>) :  (null) ) : (null);
-                      
-                 
+                ReviewField = myReview[0] ? (<MyReview reviews={myReview} />) : (<PostAReview id={this.props.match.params.id} />);
+                lindoIcon = (movie.lindenMeter >= 75) ? (require("../images/Fall.png")) : (require("../images/Winter.png"));
+                adminButton = (cookies.get('obj')) ?
+                    ((cookies.get('obj').firstName === 'admin') ? (<EditMovieModal />) : (null)) : (null);
 
                 this.setState({
                     name: movie.name,
@@ -100,7 +85,7 @@ class MovieDetails extends Component {
                     lindenMeter: movie.lindenMeter,
                     trailer: movie.videos[0],
                     videos: movie.videos,
-                    audienceReviews : audienceReviews,
+                    audienceReviews: audienceReviews,
                     criticsReviews: criticsReviews,
                     myReview: myReview,
                     poster: movie.poster,
@@ -109,11 +94,6 @@ class MovieDetails extends Component {
                     photos: movie.photos,
                     releaseDate: movie.releaseDate.toLocaleString()
                 });
-
-
-                
-
-            console.log(ReviewField);
             }.bind(this));
     }
 
@@ -209,29 +189,29 @@ class MovieDetails extends Component {
                                                     style={{ width: 70, verticalAlign: 'bottom' }}
                                                 />
                                             </Menu.Item>
-                                            <Menu.Item position='right'>  
-                                            {adminButton}
+                                            <Menu.Item position='right'>
+                                                {adminButton}
                                             </Menu.Item>
                                             <Menu.Item >
-                                            <Button.Group>
-                                                <Button icon labelPosition='left'
-                                                    toggle
-                                                    active={this.state.wantToSee}
-                                                    onClick={(e, data) => this.addToWantToSee()}>
-                                                    <Icon name='bookmark' />
-                                                    Want To See
+                                                <Button.Group>
+                                                    <Button icon labelPosition='left'
+                                                        toggle
+                                                        active={this.state.wantToSee}
+                                                        onClick={(e, data) => this.addToWantToSee()}>
+                                                        <Icon name='bookmark' />
+                                                        Want To See
                                                 </Button>
-                                                <Button.Or />
-                                                <Button icon labelPosition='left'
-                                                    toggle
-                                                    negative={this.state.notInterested}
-                                                    onClick={(e, data) => this.addToNotInterested()}>
-                                                    <Icon name='hide' />
-                                                    Not Interested
+                                                    <Button.Or />
+                                                    <Button icon labelPosition='left'
+                                                        toggle
+                                                        negative={this.state.notInterested}
+                                                        onClick={(e, data) => this.addToNotInterested()}>
+                                                        <Icon name='hide' />
+                                                        Not Interested
                                                     </Button>
-                                            </Button.Group>
+                                                </Button.Group>
 
-                                            
+
                                             </Menu.Item>
                                         </Menu>
                                     </List.Item>
@@ -249,7 +229,7 @@ class MovieDetails extends Component {
                                                     src={this.state.poster}
                                                     style={{ width: 280, verticalAlign: 'bottom' }}
                                                 />
-                                                
+
                                             </Grid.Column>
                                             <Grid.Column width={10}>
                                                 <Divider horizontal inverted style={{ fontSize: '20px', }}> INFO</Divider>
@@ -298,7 +278,7 @@ class MovieDetails extends Component {
                                                 strokeLinecap="butt"
                                                 style={{ width: '150', height: '150' }} />
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
-                                            {this.state.lindenMeter} %</Header>
+                                                {this.state.lindenMeter} %</Header>
                                         </Grid.Column>
                                         <Grid.Column width={4}>
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
@@ -314,7 +294,7 @@ class MovieDetails extends Component {
                                         </Grid.Column>
                                         <Grid.Column width={8}>
 
-                                           {ReviewField}
+                                            {ReviewField}
 
                                         </Grid.Column>
                                     </Grid>
@@ -327,12 +307,12 @@ class MovieDetails extends Component {
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Reviews</Divider>
-                                    <Tab menu={{ secondary: true, pointing: true, inverted: true }}  
-                                    panes = {[
-                                        { menuItem: 'All', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.reviews}/></List></Tab.Pane> },
-                                        { menuItem: 'Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.criticsReviews}/></List></Tab.Pane> },
-                                        { menuItem: 'Audience', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.audienceReviews}/></List></Tab.Pane> },
-                                    ]} />
+                                    <Tab menu={{ secondary: true, pointing: true, inverted: true }}
+                                        panes={[
+                                            { menuItem: 'All', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.reviews} /></List></Tab.Pane> },
+                                            { menuItem: 'Critics', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.criticsReviews} /></List></Tab.Pane> },
+                                            { menuItem: 'Audience', render: () => <Tab.Pane attached={false}><List horizontal><ReviewCard reviews={this.state.audienceReviews} /></List></Tab.Pane> },
+                                        ]} />
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> photos</Divider>
@@ -343,7 +323,7 @@ class MovieDetails extends Component {
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Videos</Divider>
                                     <List horizontal>
-                                        <MovieVideoCard  poster= {this.state.poster} videos={this.state.videos} />
+                                        <MovieVideoCard poster={this.state.poster} videos={this.state.videos} />
                                     </List>
                                 </List.Item>
                             </List>

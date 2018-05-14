@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message,  Modal, Card, Label,Rating } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message, Modal, Card, Label, Rating } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
-
-
 
 const cookies = new Cookies();
 class DeleteReviewModal extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props)
         this.state = { openDeleteReview: false, error: null, review: this.props.review }
     }
     showDeleteReview = dimmer => () => this.setState({ dimmer, openDeleteReview: true })
@@ -18,18 +15,18 @@ class DeleteReviewModal extends Component {
     handleDeleteReview() {
         let reviewId = this.props.review.id
         let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
-        axios.post('http://localhost:8080/user/deleteReview/'+ reviewId,{
-           token: token,
-           reviewId: reviewId,
+        axios.post('http://localhost:8080/user/deleteReview/' + reviewId, {
+            token: token,
+            reviewId: reviewId,
         }).then(function (response) {
-                response = response.data;
-                if (response.status === 'ERROR') {
-                    console.log('Cant DeleteReview');
-                } else {
-                    response = response.obj;
-                    window.location.reload();
-                }
-            }).then(this.closeDeleteReview)
+            response = response.data;
+            if (response.status === 'ERROR') {
+                console.log('Cant DeleteReview');
+            } else {
+                response = response.obj;
+                window.location.reload();
+            }
+        }).then(this.closeDeleteReview)
             .catch(function (error) {
                 console.log(error)
             })
@@ -44,23 +41,23 @@ class DeleteReviewModal extends Component {
                     <div className='DeleteReview-form'>
                         <Grid>
                             <Grid.Column style={{ maxWidth: 550 }}>
-                              
+
                                 <Message>
-                                <Card.Content>
-                                <Header as='h2' color='grey' textAlign='center'>
-                                 Are you Sure you Want to Delete This Review?
+                                    <Card.Content>
+                                        <Header as='h2' color='grey' textAlign='center'>
+                                            Are you Sure you Want to Delete This Review?
                                 </Header>
-                                     <Card.Header>{this.state.review.postedBy.firstName} {this.state.review.postedBy.lastName}  <Label>{this.state.review.reviewType}</Label></Card.Header>   
+                                        <Card.Header>{this.state.review.postedBy.firstName} {this.state.review.postedBy.lastName}  <Label>{this.state.review.reviewType}</Label></Card.Header>
                                         <Card.Meta>
-                                             <Rating defaultRating={this.state.review.rating} maxRating={5} disabled />      
+                                            <Rating defaultRating={this.state.review.rating} maxRating={5} disabled />
                                         </Card.Meta>
                                     </Card.Content>
                                     <Card.Content>
                                         <Card.Content description={this.state.review.details} />
                                     </Card.Content>
                                 </Message>
-                                <Form size='large'>        
-                                        <Button color='red' fluid size='large' onClick={(event, data) => this.handleDeleteReview()}>Delete Review</Button>     
+                                <Form size='large'>
+                                    <Button color='red' fluid size='large' onClick={(event, data) => this.handleDeleteReview()}>Delete Review</Button>
                                 </Form>
                             </Grid.Column>
                         </Grid>

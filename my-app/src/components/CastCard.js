@@ -3,10 +3,9 @@ import { Card, Image, List } from 'semantic-ui-react';
 
 class CastCard extends Component {
     render() {
-        console.log(this.props);
         return (
             this.props.casts.map((cast) =>
-                <List.Item>
+                <List.Item key={cast.id}>
                 <Card href={'/cast/' + cast.id} style={{ width: 200, height: 250,verticalAlign: 'bottom' }}>
                     <Image src={cast.imageURL} style={{ height: 200 }} />
                     <Card.Content>

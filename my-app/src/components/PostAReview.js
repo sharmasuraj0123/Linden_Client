@@ -6,11 +6,6 @@ import axios from 'axios';
 let details = ' '
 let rating = 0
 class PostAReview extends Component {
-    constructor(props) {
-        super(props);
-        console.log(this.props)
-    }
-
     handlePostReview() {
         const cookies = new Cookies();
         let id = this.props.id;
@@ -32,18 +27,14 @@ class PostAReview extends Component {
             })
             .catch(function (error) {
                 console.log(error)
-
             });
     }
     render() {
-
-
         return (
-
             <List>
                 <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                     Add your Rating
-                                            </Header>
+                </Header>
                 <List.Item>
                     <List horizontal>
                         <List.Item>

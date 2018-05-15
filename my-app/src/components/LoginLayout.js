@@ -79,19 +79,13 @@ class LoginForm extends Component {
                                     </Segment>
                                 </Form>
                                 <Message>
-                                    New to Linden? <a href='register'>Sign Up</a>
+                                    New to Linden? <a href='http://localhost:3000/register'>Sign Up</a>
                                 </Message>
                                 <Message>
-                                    Forgot Password?
-                                    <a href='http://localhost:3000/forgotPassword'>
-                                        Forgot Password
-                                    </a>
+                                    Forgot Password? <a href='http://localhost:3000/forgotPassword'>Forgot Password</a>
                                 </Message>
                                 <Message>
-                                    Did not recieve Verification e-mail?
-                                    <a href='http://localhost:3000/resendVerify'>
-                                        Resend Verification
-                                    </a>
+                                    Did not recieve Verification e-mail? <a href='http://localhost:3000/resendVerify'> Resend Verification</a>
                                 </Message>
                             </Grid.Column>
                         </Grid>

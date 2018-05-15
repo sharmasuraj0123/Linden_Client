@@ -15,8 +15,8 @@ class NavbarModals extends Component {
   render() {
     // const { dimmer, openContactUs } = this.state
     const cookies = new Cookies();
-    let LoginButton = cookies.get('obj') ? (<ApplyPromotionModal/>) : (<LoginForm />);
-    let RegisterButton = cookies.get('obj') ? (<UserMenu />)  : (<RegisterForm />);
+    let LoginButton = cookies.get('obj') ? (<ApplyPromotionModal />) : (<LoginForm />);
+    let RegisterButton = cookies.get('obj') ? (<UserMenu />) : (<RegisterForm />);
     return (
       <div fluid={'true'} style={{ paddingBottom: '1em' }}>
         <Button color='black' size='tiny' href='about' style={{}}>About Linden</Button>

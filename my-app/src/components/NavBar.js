@@ -99,7 +99,7 @@ class NavBar extends Component {
             <div>
               <NavbarModals />
               <Button size='huge' circular color='black' icon='facebook' />
-              <Button size='huge' circular color='black' icon='instagram' />
+              <Button size='huge' circular color='black' icon='twitter' />
             </div>
           </Menu.Item>
         </Menu>

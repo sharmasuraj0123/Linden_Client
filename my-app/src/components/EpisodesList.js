@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Item } from 'semantic-ui-react';
+import { Divider, Item } from 'semantic-ui-react';
 
 const ItemStyle = {
   padding: '10px'
@@ -9,21 +9,23 @@ class EpisodesList extends Component {
   render() {
     return (
       this.props.episodes.map((episode) =>
-        <Card fluid key={episode.contentId}>
+        
           <Item.Group>
             <Item style={ItemStyle}>
               <Item.Content>
-                <Item.Header href={'/movie/' + episode.contentId}>
+                <Item.Header style={{ color: '#ffffff' }}>
                   {episode.name}
                 </Item.Header>
-                <Item.Meta>
+                <Item.Meta  style={{ color: '#ffffff' }}>
                   <span className='cinema'>{episode.releaseDate}</span>
                 </Item.Meta>
-                <Item.Description>{episode.details}</Item.Description>
+                <Item.Description  style={{ color: '#ffffff' }}>{episode.details}</Item.Description>
               </Item.Content>
             </Item>
+            <Divider/>
           </Item.Group>
-        </Card>
+          
+       
       )
     );
   }

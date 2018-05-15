@@ -13,7 +13,7 @@ import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
 
 const commentPanes = [
-    { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}><ReviewCard /></Tab.Pane> },
+    { menuItem: 'All Critics', render: () => <Tab.Pane attached={false}></Tab.Pane> },
     { menuItem: 'Top Critics', render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane> },
     { menuItem: 'Audience', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
     { menuItem: 'Fall', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
@@ -64,14 +64,14 @@ class TvShowDetails extends Component {
         let id = this.props.match.params.id;
         axios.get('http://localhost:8080/tvShow/' + id)
             .then(function (response) {
-                let tvShow = response.data.tvShow.tvShow;
+                let tvShow = response.data.tvShow;
                 console.log(response.data);
                 this.setState({
                     name: tvShow.name,
                     overview: tvShow.details,
                     cast: tvShow.cast,
                     genres: tvShow.genre,
-                    poster: 'https://image.tmdb.org/t/p/w500' + tvShow.poster,
+                    poster:  tvShow.poster,
                     releaseDate: tvShow.releaseDate,
                     seasons: tvShow.seasons
                     

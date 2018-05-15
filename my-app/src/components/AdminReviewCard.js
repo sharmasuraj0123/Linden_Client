@@ -5,24 +5,27 @@ import DeleteReviewModal from '../components/DeleteReviewModal';
 class AdminReviewCard extends Component {
     render() {
         return (
-            this.props.reviews.map((review) =>
+            this.props.reports.map((report) =>
                 <Card>
                     <Card.Content>
-                        <Card.Header>
-                            {review.postedBy.firstName} {review.postedBy.lastName}
+                        <Card.Header href= {'user/' + report.review.postedBy.id}>
+                            {report.review.postedBy.firstName} {report.review.postedBy.lastName}
                         </Card.Header>
                         <Card.Meta>
-                            <Rating defaultRating={review.rating} maxRating={5} disabled />
-                            <List.Content description={review.details} style={{ color: '#000' }} />
+                            <Rating defaultRating={report.review.rating} maxRating={5} disabled />
+                            <List.Content description={report.review.details} style={{ color: '#000' }} />
                         </Card.Meta>
+                        <Card.Description href= {'user/' +report.reportedBy.id}>
+                            <strong>Reported by: </strong>  {report.reportedBy.firstName} {report.reportedBy.lastName}
+                        </Card.Description>
                         <Card.Description>
-                            <strong>Reported by: </strong>  {review.postedBy.firstName} {review.postedBy.lastName}
+                            <strong>Reason: </strong>  {report.justification}
                         </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
                         <div className='ui two buttons'>
                             <Button basic color='green'>Dismiss</Button>
-                            <DeleteReviewModal review={review} />
+                            <DeleteReviewModal review={report.review}/>
                         </div>
                     </Card.Content>
                 </Card>

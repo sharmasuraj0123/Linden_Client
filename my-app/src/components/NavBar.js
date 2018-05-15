@@ -3,6 +3,7 @@ import { Menu, Dropdown, Image, List, Grid, Button } from 'semantic-ui-react'
 import NavbarModals from './NavbarModals';
 import SearchInput from './SearchInput';
 import FeaturedMovieCarousal from "../components/FeaturedMovieCarousal";
+import { withRouter, Link } from 'react-router-dom';
 
 class NavBar extends Component {
   render() {
@@ -20,7 +21,6 @@ class NavBar extends Component {
           <Menu.Item >
             <div>
               <div >
-
                 <SearchInput />
               </div>
               <Menu inverted style={{ fontSize: '25px', verticalAlign: 'bottom' }}>
@@ -32,19 +32,26 @@ class NavBar extends Component {
                           <List>
                             <List.Header style={{ fontSize: '18px', paddingBottom: '0.5em' }}>NEW</List.Header>
                             <List.Item>
-                              <List.Header as='a'>Opening This Week</List.Header>
+                              <Link to='/openingThisWeek'>
+                                <List.Header as='a'>Opening This Week</List.Header>
+                              </Link>
                             </List.Item>
                             <List.Item>
-                              <List.Header as='a'>Top Box Office</List.Header>
+                              <Link to='/topBoxOffice'>
+                                <List.Header as='a'>Top Box Office</List.Header>
+                              </Link>
                             </List.Item>
                             <List.Item>
-                              <List.Header as='a'>Coming Soon to Theaters</List.Header>
+                              <Link to='/comingSoon'>
+                                <List.Header as='a'>Coming Soon to Theaters</List.Header>
+                              </Link>
                             </List.Item>
                             <List.Item>
-                              <List.Header as='a'>Certified Fresh Movies</List.Header>
+                              <Link to='/movies/fresh'>
+                                <List.Header as='a'>Certified Fresh Movies</List.Header>
+                              </Link>
                             </List.Item>
                           </List>
-
                           <List>
                             <List.Header style={{ fontSize: '18px', paddingBottom: '0.5em' }}>ALL TIME</List.Header>
                             <List.Item>
@@ -54,47 +61,40 @@ class NavBar extends Component {
                               <List.Header as='a'>Oscar Winners</List.Header>
                             </List.Item>
                             <List.Item>
-                              <List.Header as='a'>Top Rated Movies</List.Header>
+                              <Link to='/highestRatedMovies'>
+                                <List.Header as='a'>Top Rated Movies</List.Header>
+                              </Link>
                             </List.Item>
                             <List.Item>
                               <List.Header as='a'>Most Popular Movies</List.Header>
                             </List.Item>
                           </List>
-                        </Grid.Column >
+                        </Grid.Column>
                         <Grid.Column width={10}>
                           <List.Header style={{ fontSize: '18px', paddingBottom: '0.5em' }}>FEATURED MOVIES</List.Header>
                           <FeaturedMovieCarousal />
-                        </Grid.Column >
+                        </Grid.Column>
                       </Grid>
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-
-
-
                 <Dropdown item simple text='TV Shows'>
                   <Dropdown.Menu style={{ fontSize: '16px', width: 650 }}>
                     <Dropdown.Item>
                       <Grid columns={2} divided >
                         <Grid.Column width={6}>
-                        </Grid.Column >
+                        </Grid.Column>
                         <Grid.Column width={10}>
                           <List.Header style={{ fontSize: '18px', paddingBottom: '0.5em' }}>FEATURED TV</List.Header>
                           <FeaturedMovieCarousal />
-                        </Grid.Column >
+                        </Grid.Column>
                       </Grid>
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-
-
-
-
-
               </Menu>
             </div>
           </Menu.Item>
-
           <Menu.Item position='right' style={{ fontSize: '12px' }}>
             <div>
               <NavbarModals />
@@ -108,4 +108,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

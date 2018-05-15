@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Header, List, Rating, Image,Card } from 'semantic-ui-react';
+import { Button, Form, Header, List, Rating, Image,Card ,Menu} from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ class PostAReview extends Component {
         axios.post('http://localhost:8080/user/postReview', {
             token: token,
             contentId: id,
-            contentType: "MOVIE",
+            contentType:   this.props.contentType,
             rating: rating,
             details: details
         })
@@ -31,19 +31,25 @@ class PostAReview extends Component {
     }
     render() {
         return (
-            <List>
-                <Header style={{ fontSize: '20px', color: '#ffffff' }}>
+            <div>
+                <Menu inverted>
+               
+                <Menu.Item>
+                <List>
+                    <List.Item>
+                <Header  style={{ fontSize: '25px', color: '#ffffff' }}>
                     Add your Rating
                 </Header>
+                </List.Item>
                 <List.Item>
-                    <List horizontal>
-                        <List.Item>
-                            <Image floated='left' style={{ width: 150, height: 150, verticalAlign: 'bottom' }} src={require('../images/defaultPicture.jpg')} />
-                        </List.Item>
+                    <Card style={{ width: 350,}}>
+                        <List>
                         <List.Item >
                             <Rating maxRating={5}
                                 onRate={(e, data) => rating = data.rating}
-                                clearable size='large' style={{ color: 'white' }} />
+                                clearable size='massive' style={{ color: 'white' }} />
+                             </List.Item >
+                             <List.Item >    
                             <Form reply fluid='true' size='large'>
                                 <Form.TextArea onChange={(e, data) => details = data.value} />
                                 <Button content='Post A Review'
@@ -51,9 +57,13 @@ class PostAReview extends Component {
                                     labelPosition='left' icon='edit' />
                             </Form>
                         </List.Item>
-                    </List>
-                </List.Item>
-            </List>
+                        </List>
+                    </Card>
+                    </List.Item>
+                </List>
+                </Menu.Item>
+                </Menu>
+            </div>
         );
     }
 }

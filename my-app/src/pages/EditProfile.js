@@ -5,6 +5,9 @@ import { withRouter } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 import validator from 'validator';
+import DeleteUserModal from '../components/DeleteUserModal';
+
+
 
 const cookies = new Cookies();
 let email = '';
@@ -129,12 +132,7 @@ class ProfileDetails extends Component {
                                         type='file'
                                         onChange={this.selectFileHandler}
                                     />
-                                    <Button
-                                        style={{ padding: '25px' }}
-                                        content='Delete Account'
-                                        negative
-                                        onClick={this.handleDeleteAccount}
-                                    />
+                                    <DeleteUserModal/>
                                 </Menu.Menu>
                             </Menu.Item>
                         </Menu>

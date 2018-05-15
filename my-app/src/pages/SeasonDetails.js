@@ -10,6 +10,7 @@ class SeasonDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: 0,
             genre: [],
             cast: [],
             episodes: [],
@@ -25,6 +26,7 @@ class SeasonDetails extends Component {
                 let season = response.data.season;
                 console.log(season);
                 this.setState({
+                    id:tvShowId,
                     seasonNumber: season.seasonNumber,
                     overview: season.details,
                     cast: season.cast,
@@ -48,7 +50,7 @@ class SeasonDetails extends Component {
                                 <List.Item >
                                     <List.Item >
                                         <Header as='h6' inverted style={{ fontSize: '2.5em', color: '#ffffff', }}>
-                                            {this.state.name}
+                                            SEASON {this.state.seasonNumber}
                                         </Header>
                                     </List.Item >
                                     <List.Item>
@@ -76,20 +78,17 @@ class SeasonDetails extends Component {
                                                         </Table.Row>
                                                     </Table.Body>
                                                 </Table>
-                                               
-                                            
-
+                                                <List.Item>
+                                    <Divider inverted horizontal style={{ fontSize: '20px' }}> SEASONS</Divider>
+                                            <List horizontal>
+                                            {/* <SeasonsList seasons={this.state.seasons} id ={this.state.id}/> */}
+                                            </List>
+                                            </List.Item>
                                             </Grid.Column>
                                         </Grid>
                                     </List.Item>
                                 </List.Item>
 
-                                <List.Item>
-                                    <Divider inverted horizontal style={{ fontSize: '20px' }}> CASTS</Divider>
-                                    <List horizontal>
-
-                                    </List>
-                                </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Episodes</Divider>
                                     <List>

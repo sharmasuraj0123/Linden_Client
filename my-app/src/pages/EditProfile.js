@@ -19,7 +19,8 @@ class ProfileDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
+            firstName: '',
+            lastName: '',
             email: '',
             profileImage: null,
             notInterested: [],
@@ -43,7 +44,8 @@ class ProfileDetails extends Component {
                 console.log(response.data);
                 response = response.data.obj;
                 let st = this.state;
-                st.name = response.firstName + ' ' + response.lastName;
+                st.firstName = response.firstName;
+                st.lastName = response.lastName;
                 st.email = response.email;
                 st.profileImage = response.profileImage;
                 this.setState(st);
@@ -95,12 +97,6 @@ class ProfileDetails extends Component {
         reader.readAsDataURL(event.target.files[0]);
     }
 
-    handleDeleteAccount = event => {
-        console.log('Delete Acct');
-        cookies.remove('obj');
-        this.props.history.push('/');
-    }
-
     handleChangePassword = event => {
         if (newPass === '' || newPass !== rePass) {
             let message = (newPass === '') ? 'Password can\'t be empty' : 'Passwords don\'t match';
@@ -122,7 +118,6 @@ class ProfileDetails extends Component {
     }
 
     handleChangeEmail = event => {
-        console.log(event);
         let app = this;
         if (!validator.isEmail(email)) {
             toast.error('Email is not valid', {
@@ -153,7 +148,6 @@ class ProfileDetails extends Component {
                     <Grid.Column width={3}>
                         <Menu vertical fluid inverted>
                             <Menu.Item>
-                                <Header as='h2' inverted>{this.state.name}</Header>
                                 <Menu.Menu>
                                     <img
                                         alt={''}
@@ -179,10 +173,15 @@ class ProfileDetails extends Component {
                                 {
                                     menuItem: 'Info', render: () =>
                                         <Tab.Pane attached={false} inverted>
+                                            <Segment>
+                                                <Header as='h3'>{'First Name: ' + this.state.firstName}</Header>
+                                                <Header as='h3'>{'Last Name: ' + this.state.lastName}</Header>
+                                                <Header as='h3'>{'E-Mail: ' + this.state.email}</Header>
+                                            </Segment>
                                         </Tab.Pane>
                                 },
                                 {
-                                    menuItem: 'Change E-mail/Password', render: () =>
+                                    menuItem: 'Edit Info', render: () =>
                                         <Tab.Pane attached={false} inverted>
                                             <Segment>
                                                 <Header as='h1'>Change E-mail</Header>
@@ -244,7 +243,7 @@ class ProfileDetails extends Component {
                         />
                     </Grid.Column>
                 </Grid>
-            </div >
+            </div>
         );
     }
 }

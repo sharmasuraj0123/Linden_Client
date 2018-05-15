@@ -69,9 +69,9 @@ class Home extends Component {
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Segment raised>
-                            
+
                             <SideBarList title='OPENING THIS WEEK' data='Avengers' />
-                          
+
                         </Segment>
                     </Grid.Column>
                 </Grid>

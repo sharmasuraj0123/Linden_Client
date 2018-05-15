@@ -11,7 +11,8 @@ class CastDetails extends Component {
         super(props);
         this.state = {
             name: '',
-            movies: []
+            movies: [],
+            tvShows: []
         }
     }
 
@@ -25,7 +26,8 @@ class CastDetails extends Component {
                 this.setState({
                     name: cast.firstName + ' ' + cast.lastName,
                     movies: data.movies,
-                    imgUrl: cast.imageURL
+                    imgUrl: cast.imageURL,
+                    tvShows: data.tvShows
                 });
             }.bind(this));
     }
@@ -78,8 +80,8 @@ class CastDetails extends Component {
                                 {
                                     menuItem: 'TV Shows', render: () =>
                                         <Tab.Pane attached={false}>
-                                            Tab 3 Content
-                                    </Tab.Pane>
+                                            <ContentCard contents={this.state.tvShows} />
+                                        </Tab.Pane>
                                 }
                             ]}
                         />

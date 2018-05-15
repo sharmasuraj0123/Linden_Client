@@ -36,6 +36,7 @@ class MovieDetails extends Component {
             myReview: [],
             reviews: [],
             lindenMeter: 0,
+            score:0,
             releaseDate: 0,
             photos: [],
             videos: []
@@ -59,6 +60,7 @@ class MovieDetails extends Component {
                 let audienceReviews = [];
                 let criticsReviews = [];
                 let myReview = [];
+                let contentType = movie.contentType;
                 let allReviews = (movie.reviews) ? (movie.reviews) : ([]);
                 allReviews.forEach((review) => {
                     if (review.postedBy.email === email) {
@@ -71,7 +73,7 @@ class MovieDetails extends Component {
                     }
                 })
 
-                ReviewField = myReview[0] ? (<MyReview reviews={myReview} />) : (<PostAReview id={this.props.match.params.id} />);
+                ReviewField = myReview[0] ? (<MyReview reviews={myReview} />) : (<PostAReview contentType ={movie.contentType} id={this.props.match.params.id} />);
                 lindoIcon = (movie.lindenMeter >= 75) ? (require("../images/Fall.png")) : (require("../images/Winter.png"));
                 adminButton = (cookies.get('obj')) ?
                     ((cookies.get('obj').email === 'admin@gmail.com') ? (<List><EditMovieModal /><DeleteMovieModal id={this.props.match.params.id}/></List>) : (null)) : (null);
@@ -85,6 +87,7 @@ class MovieDetails extends Component {
                     notInterested: response.data.isNotInterested,
                     reviews: movie.reviews,
                     lindenMeter: movie.lindenMeter,
+                    score: movie.score,
                     trailer: movie.videos[0],
                     videos: movie.videos,
                     audienceReviews: audienceReviews,
@@ -179,22 +182,23 @@ class MovieDetails extends Component {
                             <List vertical='true'>
                                 <List.Item >
                                     <List.Item >
-                                        <Header as='h6' inverted style={{ fontSize: '2.5em', color: '#ffffff', }}>
-                                            {this.state.name}
-                                        </Header>
+                                        
                                     </List.Item>
                                     <List.Item>
                                         <Menu inverted borderless>
-                                            <Menu.Item>
+                                            <Menu.Item width={2}>
                                                 <Image circular
                                                     src={lindoIcon}
                                                     style={{ width: 70, verticalAlign: 'bottom' }}
                                                 />
                                             </Menu.Item>
-                                            <Menu.Item >
-                                                {adminButton}
+                                            <Menu.Item width={10}>
+                                            <Header as='h1' inverted style={{ fontSize: '2.5em', color: '#ffffff' }}>
+                                            {this.state.name}
+                                        </Header>
+                                               
                                             </Menu.Item>
-                                            <Menu.Item position='right'>
+                                            <Menu.Item width={4} position='right'>
                                                 <Button.Group>
                                                     <Button icon labelPosition='left'
                                                         toggle
@@ -212,8 +216,6 @@ class MovieDetails extends Component {
                                                         Not Interested
                                                     </Button>
                                                 </Button.Group>
-
-
                                             </Menu.Item>
                                         </Menu>
                                     </List.Item>
@@ -231,6 +233,7 @@ class MovieDetails extends Component {
                                                     src={this.state.poster}
                                                     style={{ width: 280, verticalAlign: 'bottom' }}
                                                 />
+                                                 {adminButton}
 
                                             </Grid.Column>
                                             <Grid.Column width={10}>
@@ -270,7 +273,6 @@ class MovieDetails extends Component {
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Performance</Divider>
                                     <Grid textAlign={'center'}>
                                         <Grid.Column width={4}>
-
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                                 LINDOMETER
                                         </Header>
@@ -286,13 +288,13 @@ class MovieDetails extends Component {
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                                 AUDIENCE SCORE
                                         </Header>
-                                            <Circle percent="98" strokeWidth="10"
+                                            <Circle percent={this.state.score} strokeWidth="10"
                                                 strokeColor="white"
                                                 prefixCls='1'
                                                 strokeLinecap="butt"
                                                 style={{ width: '150', height: '150' }} />
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
-                                                98 %</Header>
+                                            {this.state.score} %</Header>
                                         </Grid.Column>
                                         <Grid.Column width={8}>
 

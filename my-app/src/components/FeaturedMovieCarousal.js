@@ -33,10 +33,6 @@ class FeaturedMovieCarousal extends Component {
             return (
                 <Carousel showArrows={true} autoPlay={true} infiniteLoop={true} showThumbs={false}>
                 
-                    <div>
-                        
-                   </div>
-                 )}
                 </Carousel>
             );
         }

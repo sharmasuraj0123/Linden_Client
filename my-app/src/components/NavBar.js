@@ -55,18 +55,14 @@ class NavBar extends Component {
                           <List>
                             <List.Header style={{ fontSize: '18px', paddingBottom: '0.5em' }}>ALL TIME</List.Header>
                             <List.Item>
-                              <List.Header as='a'>Box Office</List.Header>
-                            </List.Item>
-                            <List.Item>
-                              <List.Header as='a'>Oscar Winners</List.Header>
+                              <Link to='/oscar'>
+                                <List.Header as='a'>Oscar Winners</List.Header>
+                              </Link>
                             </List.Item>
                             <List.Item>
                               <Link to='/highestRatedMovies'>
                                 <List.Header as='a'>Top Rated Movies</List.Header>
                               </Link>
-                            </List.Item>
-                            <List.Item>
-                              <List.Header as='a'>Most Popular Movies</List.Header>
                             </List.Item>
                           </List>
                         </Grid.Column>

@@ -11,7 +11,9 @@ import RegisterForm from './components/RegisterForm';
 import NotFound from './pages/NotFound';
 import TopBoxOffice from './pages/topBoxOffice';
 import ComingSoon from './pages/ComingSoon';
+import OpeningThisWeek from './pages/OpeningThisWeek';
 import HighestRatedMovies from './pages/HighestRatedMovies';
+import OscarWinningMovies from './pages/OscarWinning';
 import 'semantic-ui-css/semantic.min.css';
 // import Cookies from 'universal-cookie';
 
@@ -62,6 +64,16 @@ ReactDOM.render(
                 <Route path='/comingSoon' exact render={
                     () => {
                         return (<ComingSoon />);
+                    }
+                } />
+                <Route path='/openingThisWeek' exact render={
+                    () => {
+                        return (<OpeningThisWeek />);
+                    }
+                } />
+                <Route path='/oscar' exact render={
+                    () => {
+                        return (<OscarWinningMovies />);
                     }
                 } />
                 <Route path='/highestRatedMovies' exact render={

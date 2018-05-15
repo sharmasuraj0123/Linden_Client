@@ -44,27 +44,27 @@ class SideBarList extends Component {
 	render() {
 		return (
 			<List>
-
 				<List.Item>
-					<List divided relaxed>
-						<Header as='h2' size='medium'>OPENING THIS WEEK</Header>
-						<List.Item>
-							<MovieList className='MovieList' movies={this.state.openingThisWeek} />
+					<Header as='h2' size='medium'>OPENING THIS WEEK</Header>
+					<List.Item>
+						<MovieList className='MovieList' movies={this.state.openingThisWeek} />
+					</List.Item>
+					<List.Item>
+						<Link to='/openingThisWeek'>
 							<Header as='a' floated={'right'} size='tiny'>See more >></Header>
-						</List.Item>
-					</List>
+						</Link>
+					</List.Item>
 				</List.Item>
-
 				<List.Item>
-					<List divided relaxed>
-						<Header as='h2' size='medium'>COMING SOON</Header>
-						<List.Item>
-							<MovieList className='MovieList' movies={this.state.comingSoon} />
-						</List.Item>
-						<List.Item>
+					<Header as='h2' size='medium'>COMING SOON</Header>
+					<List.Item>
+						<MovieList className='MovieList' movies={this.state.comingSoon} />
+					</List.Item>
+					<List.Item>
+						<Link to='/comingSoon'>
 							<Header as='a' floated={'right'} size='tiny'>See more >></Header>
-						</List.Item>
-					</List>
+						</Link>
+					</List.Item>
 				</List.Item>
 				<List.Item>
 					<List divided relaxed>
@@ -88,12 +88,12 @@ class SideBarList extends Component {
 									<Header size='small'>
 										{'$ ' + movie.revenue}
 									</Header>
-
 								</Menu.Item>
 							</Menu>
-
 						)}
-						<Header as='a' floated={'right'} size='tiny'>See more >></Header>
+						<Link to='/topBoxOffice'>
+							<Header as='a' floated={'right'} size='tiny'>See more >></Header>
+						</Link>
 					</List>
 				</List.Item>
 			</List>
@@ -101,4 +101,4 @@ class SideBarList extends Component {
 	}
 }
 
-export default SideBarList;
+export default withRouter(SideBarList);

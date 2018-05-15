@@ -22,10 +22,12 @@ class AddMovieModal extends Component {
         let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
         axios.post('http://localhost:8080/admin/addMovie', {
             token: token,
-            obj :{name: name,
-            details: details,
-            poster: poster,
-            contentType : 'MOVIE'}
+            obj: {
+                name: name,
+                details: details,
+                poster: poster,
+                contentType: 'MOVIE'
+            }
         })
             .then(function (response) {
                 response = response.data;

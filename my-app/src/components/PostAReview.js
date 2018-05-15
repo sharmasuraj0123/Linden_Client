@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Header, List, Rating, Image } from 'semantic-ui-react';
+import { Button, Form, Header, List, Rating, Image,Card } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 

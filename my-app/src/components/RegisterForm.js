@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment, Modal, Checkbox } from 'semantic-ui-react';
 import axios from 'axios';
+import validator from 'validator';
+import { toast } from 'react-toastify';
 
 let email = '';
 let password = '';
@@ -17,23 +19,30 @@ class RegisterForm extends Component {
     closeRegister = () => this.setState({ openRegister: false })
 
     handleRegister() {
-        axios.post('http://localhost:8080/register', {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-        })
-            .then(function (response) {
-                response = response.data;
-                if (response.status === 'ERROR') {
-                    console.log('Invalid Creds!');
-                } else {
-                    response = response.obj;
-                }
-            }).then(this.closeRegister)
-            .catch(function (error) {
-                console.log(error)
+        if (firstName.length === 0 || lastName.length === 0 || !validator.isEmail(email) || password.length === 0) {
+            toast.error('Invalid data!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+            this.closeRegister();
+        } else {
+            axios.post('http://localhost:8080/register', {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
             })
+                .then(function (response) {
+                    response = response.data;
+                    if (response.status === 'ERROR') {
+                        console.log('Invalid Creds!');
+                    } else {
+                        response = response.obj;
+                    }
+                }).then(this.closeRegister)
+                .catch(function (error) {
+                    console.log(error)
+                })
+        }
     }
     render() {
         const { openRegister, dimmer } = this.state
@@ -92,7 +101,7 @@ class RegisterForm extends Component {
                                     </Segment>
                                 </Form>
                                 <Message>
-                                    Already have an Account? <a href='login'>Log in here</a><br/>
+                                    Already have an Account? <a href='login'>Log in here</a><br />
                                     Didn't Recieve Verification email? <a href='resendVerify'>Verify here</a>
                                 </Message>
                             </Grid.Column>

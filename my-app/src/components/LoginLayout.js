@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment, Modal } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 let email = '';
 let password = '';
@@ -22,6 +23,9 @@ class LoginForm extends Component {
             response = response.data;
             if (response.status === 'ERROR') {
                 console.log('Invalid Creds!');
+                toast.error('Invalid Creds!', {
+                    position: toast.POSITION.TOP_CENTER
+                });
             } else {
                 response = response.obj;
                 const cookies = new Cookies();
@@ -29,7 +33,8 @@ class LoginForm extends Component {
                     token: response.token,
                     firstName: response.firstName,
                     lastName: response.lastName,
-                    email: response.email
+                    email: response.email,
+                    id: response.id
                 };
                 cookies.set('obj', obj);
                 console.log(cookies.get('obj').token);
@@ -74,19 +79,13 @@ class LoginForm extends Component {
                                     </Segment>
                                 </Form>
                                 <Message>
-                                    New to Linden? <a href='register'>Sign Up</a>
+                                    New to Linden? <a href='http://localhost:3000/register'>Sign Up</a>
                                 </Message>
                                 <Message>
-                                    Forgot Password?
-                                    <a href='http://localhost:3000/forgotPassword'>
-                                        Forgot Password
-                                    </a>
+                                    Forgot Password? <a href='http://localhost:3000/forgotPassword'>Forgot Password</a>
                                 </Message>
                                 <Message>
-                                    Did not recieve Verification e-mail?
-                                    <a href='http://localhost:3000/resendVerify'>
-                                        Resend Verification
-                                    </a>
+                                    Did not recieve Verification e-mail? <a href='http://localhost:3000/resendVerify'> Resend Verification</a>
                                 </Message>
                             </Grid.Column>
                         </Grid>

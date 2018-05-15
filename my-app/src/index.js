@@ -9,6 +9,9 @@ import SearchResults from './pages/SearchResults';
 import LoginForm from './components/LoginLayout';
 import RegisterForm from './components/RegisterForm';
 import NotFound from './pages/NotFound';
+import TopBoxOffice from './pages/topBoxOffice';
+import ComingSoon from './pages/ComingSoon';
+import HighestRatedMovies from './pages/HighestRatedMovies';
 import 'semantic-ui-css/semantic.min.css';
 // import Cookies from 'universal-cookie';
 
@@ -49,6 +52,21 @@ ReactDOM.render(
                 <Route path='/' exact render={
                     () => {
                         return (<Home />);
+                    }
+                } />
+                <Route path='/topBoxOffice' exact render={
+                    () => {
+                        return (<TopBoxOffice />);
+                    }
+                } />
+                <Route path='/comingSoon' exact render={
+                    () => {
+                        return (<ComingSoon />);
+                    }
+                } />
+                <Route path='/highestRatedMovies' exact render={
+                    () => {
+                        return (<HighestRatedMovies />);
                     }
                 } />
                 <Route path='/search' exact render={

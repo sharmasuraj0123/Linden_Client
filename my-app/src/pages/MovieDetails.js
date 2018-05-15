@@ -193,13 +193,24 @@ class MovieDetails extends Component {
                                                 />
                                             </Menu.Item>
                                             <Menu.Item width={10}>
-                                            <Header as='h1' inverted style={{ fontSize: '2.5em', color: '#ffffff' }}>
+                                            <Header as='h1' inverted style={{ fontSize: '33px', color: '#ffffff' }}>
                                             {this.state.name}
-                                        </Header>
-                                               
+                                        </Header>    
                                             </Menu.Item>
-                                            <Menu.Item width={4} position='right'>
-                                                <Button.Group>
+                                           
+                                        </Menu>
+                                    </List.Item>
+                                    <List.Item>
+                                        <Embed
+                                            id={this.state.trailer}
+                                            placeholder={this.state.photos[0]}
+                                            source='youtube'
+                                        />
+                                    </List.Item>
+                                    <List.Item>
+                                        <Grid>
+                                            <Grid.Column width={6}>
+                                            <Button.Group>
                                                     <Button icon labelPosition='left'
                                                         toggle
                                                         active={this.state.wantToSee}
@@ -216,27 +227,17 @@ class MovieDetails extends Component {
                                                         Not Interested
                                                     </Button>
                                                 </Button.Group>
-                                            </Menu.Item>
-                                        </Menu>
-                                    </List.Item>
-                                    <List.Item>
-                                        <Embed
-                                            id={this.state.trailer}
-                                            placeholder={this.state.photos[0]}
-                                            source='youtube'
-                                        />
-                                    </List.Item>
-                                    <List.Item>
-                                        <Grid>
-                                            <Grid.Column width={5}>
+
                                                 <Image bordered
                                                     src={this.state.poster}
-                                                    style={{ width: 280, verticalAlign: 'bottom' }}
+                                                    style={{ width: 420, verticalAlign: 'bottom' }}
                                                 />
+                                                 
                                                  {adminButton}
 
                                             </Grid.Column>
                                             <Grid.Column width={10}>
+                                            
                                                 <Divider horizontal inverted style={{ fontSize: '20px', }}> INFO</Divider>
                                                 <List.Item as='p'>{this.state.overview}</List.Item>
                                                 <Table basic='very' inverted >
@@ -297,9 +298,7 @@ class MovieDetails extends Component {
                                             {this.state.score} %</Header>
                                         </Grid.Column>
                                         <Grid.Column width={8}>
-
                                             {ReviewField}
-
                                         </Grid.Column>
                                     </Grid>
                                 </List.Item>

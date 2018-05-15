@@ -33,10 +33,6 @@ class AboutUs extends Component {
                         <DescriptionCard imagesrc={require('../images/Fall.png')} verticalAlign='top' />
                     </List.Item>
                 </List>
-                <Divider inverted horizontal style={{ fontSize: '2.5em' }}> Verfied Summer</Divider>
-                <Divider inverted horizontal style={{ fontSize: '2.5em' }}> Score</Divider>
-                <Divider inverted horizontal style={{ fontSize: '2.5em' }}> Audience Score</Divider>
-
             </div>
         )
     }

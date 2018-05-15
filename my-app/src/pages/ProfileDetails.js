@@ -61,10 +61,10 @@ class ProfileDetails extends Component {
                 this.setState(st);
             }.bind(this));
 
-        axios.get('http://localhost:8080/user/' + id + '/reviewHistory/movies')
+        axios.get('http://localhost:8080/user/' + id + '/reviewHistory/tvShows')
             .then(function (response) {
                 let st = this.state;
-                st.movies = response.data.reviewHistory;
+                st.tvShows = response.data.reviewHistory;
                 this.setState(st);
             }.bind(this));
     }

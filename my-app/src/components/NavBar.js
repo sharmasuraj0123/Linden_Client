@@ -77,14 +77,8 @@ class NavBar extends Component {
                 <Dropdown item simple text='TV Shows'>
                   <Dropdown.Menu style={{ fontSize: '16px', width: 650 }}>
                     <Dropdown.Item>
-                      <Grid columns={2} divided >
-                        <Grid.Column width={6}>
-                        </Grid.Column>
-                        <Grid.Column width={10}>
-                          <List.Header style={{ fontSize: '18px', paddingBottom: '0.5em' }}>FEATURED TV</List.Header>
-                          <FeaturedMovieCarousal />
-                        </Grid.Column>
-                      </Grid>
+                      <List.Header style={{ fontSize: '18px', paddingBottom: '0.5em' }}>FEATURED TV</List.Header>
+                      <FeaturedMovieCarousal />
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>

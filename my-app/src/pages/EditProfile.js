@@ -137,6 +137,11 @@ class ProfileDetails extends Component {
                     toast.success('E-mail Changed Successfully!', {
                         position: toast.POSITION.TOP_CENTER
                     });
+                })
+                .catch(function(error){
+                    toast.error(error, {
+                        position: toast.POSITION.TOP_CENTER
+                    });
                 });
         }
     }

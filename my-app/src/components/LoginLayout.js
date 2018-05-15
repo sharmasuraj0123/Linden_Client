@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment, Modal } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 let email = '';
 let password = '';
@@ -22,6 +23,9 @@ class LoginForm extends Component {
             response = response.data;
             if (response.status === 'ERROR') {
                 console.log('Invalid Creds!');
+                toast.error('Invalid Creds!', {
+                    position: toast.POSITION.TOP_CENTER
+                });
             } else {
                 response = response.obj;
                 const cookies = new Cookies();

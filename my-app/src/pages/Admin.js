@@ -8,35 +8,6 @@ import PromotionApplicationCard from "../components/PromotionApplicationCard";
 import Cookies from 'universal-cookie';
 
 
-let review = [{
-    "id": 2196,
-    "date": "2018-05-13T06:29:23.000+0000",
-    "postedBy": {
-        "id": 708,
-        "firstName": "Suraj",
-        "lastName": "Sharma",
-        "email": "sharmasuraj0123@gmail.com",
-        "password": "$2a$10$UqF/rBuRhMVwAPmDMBIkQ.C48z50P4jSe1XufNFbJfqcLj9YQtKMi",
-        "token": "v0mR0Ey1KVjWwSGKNmWEcVNCKcWBtWa4r^quVmYcpawWB8WB35#1ZP5!aYflv3Rz",
-        "verifiedAccount": true,
-        "userType": "AUDIENCE",
-        "wantsToSee": [
-            {
-                "id": 2197,
-                "userId": 708,
-                "contentId": 487,
-                "contentType": "MOVIE"
-            }
-        ],
-        "notInterested": []
-    },
-    "contentId": 487,
-    "contentType": "MOVIE",
-    "details": "It is very Nice.",
-    "rating": 4,
-    "reviewType": "AUDIENCE",
-    "token": "8lhaA!Pc$xEoMWR&n!yaYgz6DlrjpLb87KwtwG$XCGucBNGA574prde0R2v0U0Bv"
-}];
 
 class Admin extends Component {
 
@@ -46,7 +17,9 @@ class Admin extends Component {
             name: '',
             email: '',
             notInterested: [],
-            wantsToSee: []
+            wantsToSee: [],
+            reports: [],
+            applications: []
         };
     }
 
@@ -57,15 +30,34 @@ class Admin extends Component {
         axios.get('http://localhost:8080/admin/viewReports',
             {
                 headers: {
-                    token: token
+                    token: 'token'
                 }
             }).then(function (response) {
-                response = response.data.obj;
+                response = response.data;
                 console.log(response);
-                this.setState({
-                    
-                });
+     
+                let st = this.state;
+                st.reports = response.reports
+                this.setState(st);
+               
             }.bind(this)); 
+
+        axios.get('http://localhost:8080/admin/viewPromotionApplications',
+            {
+                headers: {
+                    token: 'token'
+                }
+            }).then(function (response) {
+                response = response.data;
+                console.log(response);
+     
+                let st = this.state;
+                st.applications = response.applications
+                this.setState(st);
+               
+            }.bind(this)); 
+
+       
     }
 
     render() {
@@ -88,8 +80,8 @@ class Admin extends Component {
                     <Grid.Column width={12}>
                         <Tab  menu={{ secondary: true, pointing: true, inverted: true ,}} 
                         panes = {[
-                            { menuItem: 'Reports', render: () => <Tab.Pane attached={false} inverted> <AdminReviewCard reviews = {review}/></Tab.Pane> },
-                            { menuItem: 'Application', render: () => <Tab.Pane attached={false} inverted><PromotionApplicationCard/></Tab.Pane> },
+                            { menuItem: 'Reports', render: () => <Tab.Pane attached={false} inverted> <AdminReviewCard reports = {this.state.reports}/></Tab.Pane> },
+                            { menuItem: 'Application', render: () => <Tab.Pane attached={false} inverted><PromotionApplicationCard applications = {this.state.applications}/></Tab.Pane> },
                         ]} />
 
                     </Grid.Column>

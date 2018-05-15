@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Segment, Modal, Checkbox } from 'semantic-ui-react';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 let poster = '';
 let password = '';
 let name = '';
 let details = '';
 
+const cookies = new Cookies();
 class AddMovieModal extends Component {
     constructor(props) {
         super(props);
@@ -17,11 +19,13 @@ class AddMovieModal extends Component {
     closeAddMovie = () => this.setState({ openAddMovie: false })
 
     handleAddMovie() {
-        axios.post('http://localhost:8080/AddMovie', {
-            name: name,
+        let token = (cookies.get('obj')) ? cookies.get('obj').token : null;
+        axios.post('http://localhost:8080/admin/addMovie', {
+            token: token,
+            obj :{name: name,
             details: details,
             poster: poster,
-            password: password,
+            contentType : 'MOVIE'}
         })
             .then(function (response) {
                 response = response.data;
@@ -68,7 +72,7 @@ class AddMovieModal extends Component {
                                             fluid
                                             icon='user'
                                             iconPosition='left'
-                                            placeholder='E-mail address'
+                                            placeholder='poster'
                                             onChange={(e, data) => poster = data.value}
                                         />
                                         <Form.Input

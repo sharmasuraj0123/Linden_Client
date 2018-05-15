@@ -11,6 +11,8 @@ import CastCard from "../components/CastCard";
 import MovieImages from "../components/MovieImages";
 import MovieVideoCard from "../components/MovieVideoCard";
 import EditMovieModal from "../components/EditMovieModal";
+import AddMovieModal from "../components/AddMovieModal";
+import DeleteMovieModal from "../components/DeleteMovieModal";
 import PostAReview from "../components/PostAReview";
 import Genre from "../components/Genres";
 import Cookies from 'universal-cookie';
@@ -72,7 +74,7 @@ class MovieDetails extends Component {
                 ReviewField = myReview[0] ? (<MyReview reviews={myReview} />) : (<PostAReview id={this.props.match.params.id} />);
                 lindoIcon = (movie.lindenMeter >= 75) ? (require("../images/Fall.png")) : (require("../images/Winter.png"));
                 adminButton = (cookies.get('obj')) ?
-                    ((cookies.get('obj').firstName === 'admin') ? (<EditMovieModal />) : (null)) : (null);
+                    ((cookies.get('obj').email === 'admin@gmail.com') ? (<List><EditMovieModal /><DeleteMovieModal id={this.props.match.params.id}/></List>) : (null)) : (null);
 
                 this.setState({
                     name: movie.name,
@@ -189,10 +191,10 @@ class MovieDetails extends Component {
                                                     style={{ width: 70, verticalAlign: 'bottom' }}
                                                 />
                                             </Menu.Item>
-                                            <Menu.Item position='right'>
+                                            <Menu.Item >
                                                 {adminButton}
                                             </Menu.Item>
-                                            <Menu.Item >
+                                            <Menu.Item position='right'>
                                                 <Button.Group>
                                                     <Button icon labelPosition='left'
                                                         toggle

@@ -29,7 +29,7 @@ class SeasonDetails extends Component {
                     overview: season.details,
                     cast: season.cast,
                     numberOfEpisodes: season.numberOfEpisodes,
-                    poster: 'https://image.tmdb.org/t/p/w500' + season.poster,
+                    poster: season.poster,
                     releaseDate: season.releaseDate,
                     episodes: season.episodes
 

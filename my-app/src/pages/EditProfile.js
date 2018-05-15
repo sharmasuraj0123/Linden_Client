@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Grid, Menu, Button, Tab, Form, Header, Image } from 'semantic-ui-react';
+import { Grid, Menu, Button, Tab, Form, Header, Segment, Divider } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
+import validator from 'validator';
 
 const cookies = new Cookies();
 let email = '';
+let newPass = '';
+let rePass = '';
 
 class ProfileDetails extends Component {
 
@@ -28,7 +32,6 @@ class ProfileDetails extends Component {
         })
             .then(function (response) {
                 response = response.data.obj;
-                console.log(response);
                 let st = this.state;
                 st.name = response.firstName + ' ' + response.lastName;
                 st.email = response.email;
@@ -56,10 +59,53 @@ class ProfileDetails extends Component {
 
     handleDeleteAccount = event => {
         console.log('Delete Acct');
+        cookies.remove('obj');
+        this.props.history.push('/');
     }
 
     handleChangePassword = event => {
+        if (newPass === '' || newPass !== rePass) {
+            let message = (newPass === '') ? 'Password can\'t be empty' : 'Passwords don\'t match';
+            toast.error(message, {
+                position: toast.POSITION.TOP_CENTER
+            });
+        } else {
+            axios.post('http://localhost:8080/user/editCredentials', {
+                password: newPass,
+                token: cookies.get('obj').token
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                    toast.success('Password successfully changed!', {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                });
+        }
+    }
 
+    handleChangeEmail = event => {
+        console.log(event);
+        let app = this;
+        if (!validator.isEmail(email)) {
+            toast.error('Email is not valid', {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        else {
+            axios.post('http://localhost:8080/user/editCredentials', {
+                email: email,
+                token: cookies.get('obj').token
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                    let st = app.state;
+                    st.email = email;
+                    app.setState(st);
+                    toast.success('E-mail Changed Successfully!', {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                });
+        }
     }
 
     render() {
@@ -77,7 +123,9 @@ class ProfileDetails extends Component {
                                         width={200}
                                     />
                                     <input
-                                        style={{ padding: '10px' }}
+                                        style={{
+                                            padding: '15px'
+                                        }}
                                         type='file'
                                         onChange={this.selectFileHandler}
                                     />
@@ -101,33 +149,43 @@ class ProfileDetails extends Component {
                                         </Tab.Pane>
                                 },
                                 {
-                                    menuItem: 'Change email/password', render: () =>
+                                    menuItem: 'Change E-mail/Password', render: () =>
                                         <Tab.Pane attached={false} inverted>
-                                            <Header as='h2'>
-                                                <Image circular src={this.state.profileImage} />
-                                                {' '}{this.state.name}
-                                            </Header>
-                                            <Form inverted>
-                                                <Form.Input
-                                                    label='Please enter your new e-mail'
-                                                    onChange={(e, data) => email = data.value}
-                                                    placeholder='joe@schmoe.com' />
-                                                <Button onClick={(event, data) => this.handleChangeEmail()}>Change e-mail</Button>
-                                            </Form>
-                                            <br />
-                                            <Form inverted>
-                                                <Form.Input
-                                                    label='Enter your new password'
-                                                    type='password'
-                                                    onChange={(e, data) => email = data.value}
-                                                    placeholder='Enter you new Password' />
-                                                <Form.Input
-                                                    label='Re-enter password'
-                                                    type='password'
-                                                    onChange={(e, data) => email = data.value}
-                                                    placeholder='Re-enter password' />
-                                                <Button onClick={(event, data) => this.handleChangePassword()}>Change Password</Button>
-                                            </Form>
+                                            <Segment>
+                                                <Header as='h1'>Change E-mail</Header>
+                                                <Form>
+                                                    <Form.Input
+                                                        label='Please enter your new e-mail'
+                                                        onChange={(e, data) => email = data.value}
+                                                        placeholder='joe@schmoe.com' />
+                                                    <Button
+                                                        color='teal'
+                                                        basic
+                                                        onClick={(event, data) => this.handleChangeEmail()}>
+                                                        Change e-mail
+                                                    </Button>
+                                                </Form>
+                                                <Divider section />
+                                                <Form>
+                                                    <Header as='h1'>Change Password</Header>
+                                                    <Form.Input
+                                                        label='Enter your new password'
+                                                        type='password'
+                                                        onChange={(e, data) => newPass = data.value}
+                                                        placeholder='Enter you new Password' />
+                                                    <Form.Input
+                                                        label='Re-enter password'
+                                                        type='password'
+                                                        onChange={(e, data) => rePass = data.value}
+                                                        placeholder='Re-enter password' />
+                                                    <Button
+                                                        color='teal'
+                                                        basic
+                                                        onClick={(event, data) => this.handleChangePassword()}>
+                                                        Change Password
+                                                    </Button>
+                                                </Form>
+                                            </Segment>
                                         </Tab.Pane>
                                 }
                             ]}

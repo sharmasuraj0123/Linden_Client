@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 import validator from 'validator';
 import DeleteUserModal from '../components/DeleteUserModal';
-
-
+import ContentCard from '../components/SearchResultsCards/ContentCard';
+import ReviewCard from '../components/SearchResultsCards/ReviewCard';
 
 const cookies = new Cookies();
 let email = '';
@@ -21,24 +21,59 @@ class ProfileDetails extends Component {
         this.state = {
             name: '',
             email: '',
-            profileImage: null
+            profileImage: null,
+            notInterested: [],
+            wantsToSee: [],
+            movies: [],
+            tvShows: [],
+            userType: ''
         };
     }
 
     componentDidMount() {
         // to-do add route if user not logged in.
         let token = cookies.get('obj').token;
+        let id = cookies.get('obj').id;
         axios.get('http://localhost:8080/user/profile', {
             headers: {
                 token: token
             }
         })
             .then(function (response) {
+                console.log(response.data);
                 response = response.data.obj;
                 let st = this.state;
                 st.name = response.firstName + ' ' + response.lastName;
                 st.email = response.email;
                 st.profileImage = response.profileImage;
+                this.setState(st);
+            }.bind(this));
+
+        axios.get('http://localhost:8080/user/' + id + '/getWantToSee')
+            .then(function (response) {
+                let st = this.state;
+                st.wantsToSee = response.data.obj;
+                this.setState(st);
+            }.bind(this));
+
+        axios.get('http://localhost:8080/user/' + id + '/getNotInterested')
+            .then(function (response) {
+                let st = this.state;
+                st.notInterested = response.data.obj;
+                this.setState(st);
+            }.bind(this));
+
+        axios.get('http://localhost:8080/user/' + id + '/reviewHistory/movies')
+            .then(function (response) {
+                let st = this.state;
+                st.movies = response.data.reviewHistory;
+                this.setState(st);
+            }.bind(this));
+
+        axios.get('http://localhost:8080/user/' + id + '/reviewHistory/tvShows')
+            .then(function (response) {
+                let st = this.state;
+                st.tvShows = response.data.reviewHistory;
                 this.setState(st);
             }.bind(this));
 
@@ -132,7 +167,7 @@ class ProfileDetails extends Component {
                                         type='file'
                                         onChange={this.selectFileHandler}
                                     />
-                                    <DeleteUserModal/>
+                                    <DeleteUserModal />
                                 </Menu.Menu>
                             </Menu.Item>
                         </Menu>
@@ -184,6 +219,25 @@ class ProfileDetails extends Component {
                                                     </Button>
                                                 </Form>
                                             </Segment>
+                                        </Tab.Pane>
+                                },
+                                {
+                                    menuItem: 'Watch List', render: () =>
+                                        <Tab.Pane attached={false} inverted>
+                                            <ContentCard contents={this.state.wantsToSee} />
+                                        </Tab.Pane>
+                                },
+                                {
+                                    menuItem: 'Not Interested', render: () =>
+                                        <Tab.Pane attached={false} inverted>
+                                            <ContentCard contents={this.state.notInterested} />
+                                        </Tab.Pane>
+                                },
+                                {
+                                    menuItem: 'Ratings', render: () =>
+                                        <Tab.Pane attached={false} inverted>
+                                            <ReviewCard reviews={this.state.movies} />
+                                            <ReviewCard reviews={this.state.tvShows} />
                                         </Tab.Pane>
                                 }
                             ]}

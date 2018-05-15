@@ -29,7 +29,8 @@ class LoginForm extends Component {
                     token: response.token,
                     firstName: response.firstName,
                     lastName: response.lastName,
-                    email: response.email
+                    email: response.email,
+                    id: response.id
                 };
                 cookies.set('obj', obj);
                 console.log(cookies.get('obj').token);

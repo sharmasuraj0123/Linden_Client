@@ -2,6 +2,7 @@ import React from 'react'
 import { Dropdown, Icon } from 'semantic-ui-react'
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 const cookies = new Cookies();
 
@@ -26,6 +27,14 @@ function handleLogout() {
 		})
 }
 
+function handleProfileRedirect() {
+	if (cookies.get('obj').firstName === 'admin') {
+		window.location.replace('http://localhost:3000/admin')
+	} else {
+		window.location.replace('http://localhost:3000/editProfile');
+	}
+}
+
 const trigger = (
 	<span>
 		<Icon name='user' /> Hello, {cookies.get('obj') ? (cookies.get('obj').firstName) : ("Kelly")}
@@ -38,12 +47,11 @@ const options = [
 		text: <span>Signed in as <strong>{cookies.get('obj') ? (cookies.get('obj').firstName) : ("Robert")}</strong></span>,
 		disabled: true,
 	},
-	{ key: 'profile', text: 'Your Profile' },
-	{ key: 'stars', text: 'Your Stars' },
-	{ key: 'explore', text: 'Explore' },
-	{ key: 'integrations', text: 'Integrations' },
-	{ key: 'help', text: 'Help' },
-	{ key: 'settings', text: 'Settings' },
+	{
+		key: 'profile',
+		text: 'Your Profile',
+		onClick: (event, data) => handleProfileRedirect()
+	},
 	{ key: 'sign-out', text: 'Sign Out', onClick: (event, data) => handleLogout() }
 ]
 
@@ -51,4 +59,4 @@ const UserMenu = () => (
 	<Dropdown trigger={trigger} options={options} size='mini' />
 )
 
-export default UserMenu;
+export default withRouter(UserMenu);

@@ -98,8 +98,8 @@ class NavBar extends Component {
           <Menu.Item position='right' style={{ fontSize: '12px' }}>
             <div>
               <NavbarModals />
-              <Button size='huge' circular color='black' icon='facebook' />
-              <Button size='huge' circular color='black' icon='instagram' />
+              <Button size='huge' circular color='black' href='https://www.facebook.com/Linden-Watch-Rate-Share-860703627449132/' icon='facebook' />
+              <Button size='huge' circular color='black' href='https://twitter.com/Linden69880224?cn=bG9naW5fbm90aWZpY2F0aW9u&refsrc=email' icon='twitter' />
             </div>
           </Menu.Item>
         </Menu>

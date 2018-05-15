@@ -23,11 +23,11 @@ class LindenCritics extends Component {
                 <Grid columns='equal'>
                     <Grid.Column>
                         <Divider inverted horizontal style={{ fontSize: '2.5em' }}> Movies</Divider>
-                            <ReviewCard/>
+                            
                     </Grid.Column>
                     <Grid.Column>
                         <Divider inverted horizontal style={{ fontSize: '2.5em' }}> TV SHOWS</Divider>
-                            <ReviewCard/>
+                           
                     </Grid.Column>
                 </Grid>
 

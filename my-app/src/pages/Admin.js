@@ -4,6 +4,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import AdminReviewCard from "../components/AdminReviewCard";
 import AddMovieModal from "../components/AddMovieModal";
+import AddMovieJSONModal from "../components/AddMovieJSONModal";
 import PromotionApplicationCard from "../components/PromotionApplicationCard";
 import Cookies from 'universal-cookie';
 
@@ -72,6 +73,7 @@ class Admin extends Component {
                                     <img alt={''} src={require("../images/defaultPicture.jpg")} width={200} />
                                     <Menu.Item >
                                         <AddMovieModal/>
+                                        <AddMovieJSONModal/>
                                         </Menu.Item>
                                 </Menu.Menu>
                             </Menu.Item>

@@ -271,7 +271,7 @@ class MovieDetails extends Component {
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Performance</Divider>
-                                    <Grid textAlign={'center'}>
+                                    <Grid textAlign={'center'} verticalAlign='bottom'>
                                         <Grid.Column width={4}>
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                                 LINDOMETER
@@ -280,7 +280,7 @@ class MovieDetails extends Component {
                                                 strokeColor="white"
                                                 prefixCls='0'
                                                 strokeLinecap="butt"
-                                                style={{ width: '150', height: '150' }} />
+                                                style={{ width: '190', height: '190' }} />
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                                 {this.state.lindenMeter} %</Header>
                                         </Grid.Column>
@@ -292,7 +292,7 @@ class MovieDetails extends Component {
                                                 strokeColor="white"
                                                 prefixCls='1'
                                                 strokeLinecap="butt"
-                                                style={{ width: '150', height: '150' }} />
+                                                style={{ width: '190', height: '190' }} />
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                             {this.state.score} %</Header>
                                         </Grid.Column>

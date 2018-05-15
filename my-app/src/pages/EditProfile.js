@@ -47,7 +47,7 @@ class ProfileDetails extends Component {
             })
                 .then(function (response) {
                     let st = this.state;
-                    st.image = reader.result;
+                    st.profileImage = reader.result;
                     this.setState(st);
                 }.bind(this));
         }

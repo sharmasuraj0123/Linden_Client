@@ -1,10 +1,177 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { Segment } from 'semantic-ui-react';
 import registerServiceWorker from './registerServiceWorker';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import Route from 'react-router-dom/Route';
+import SearchResults from './pages/SearchResults';
+import LoginForm from './components/LoginLayout';
+import RegisterForm from './components/RegisterForm';
+import NotFound from './pages/NotFound';
+import TopBoxOffice from './pages/topBoxOffice';
+import ComingSoon from './pages/ComingSoon';
+import OpeningThisWeek from './pages/OpeningThisWeek';
+import HighestRatedMovies from './pages/HighestRatedMovies';
+import OscarWinningMovies from './pages/OscarWinning';
 import 'semantic-ui-css/semantic.min.css';
+// import Cookies from 'universal-cookie';
+
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+
+import MovieDetails from './pages/MovieDetails';
+import TvShowDetails from './pages/TvShowDetails';
+import SeasonDetails from './pages/SeasonDetails';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
+import LindenCritics from './pages/LindenCritics';
+import Admin from './pages/Admin';
+import ForgotPassword from './pages/forgotPassword';
+import EditProfile from './pages/EditProfile';
+import TermsAndCondition from './pages/TermsAndCondition';
+import ProfileDetails from './pages/ProfileDetails';
+import CastDetails from './pages/CastDetails';
+import AccountVerification from './pages/AccountVerification';
+import ResendVerification from './pages/ResendVerification';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+const SegmentStyle = {
+    flex: 1,
+    marginLeft: "15em",
+    marginRight: "15em",
+};
+
 
 ReactDOM.render(
-    <App />, document.getElementById('root')
+    <Router>
+        <Segment inverted raised style={SegmentStyle}>
+            <ToastContainer />
+            <NavBar />
+            <Switch>
+                <Route path='/' exact render={
+                    () => {
+                        return (<Home />);
+                    }
+                } />
+                <Route path='/topBoxOffice' exact render={
+                    () => {
+                        return (<TopBoxOffice />);
+                    }
+                } />
+                <Route path='/comingSoon' exact render={
+                    () => {
+                        return (<ComingSoon />);
+                    }
+                } />
+                <Route path='/openingThisWeek' exact render={
+                    () => {
+                        return (<OpeningThisWeek />);
+                    }
+                } />
+                <Route path='/oscar' exact render={
+                    () => {
+                        return (<OscarWinningMovies />);
+                    }
+                } />
+                <Route path='/highestRatedMovies' exact render={
+                    () => {
+                        return (<HighestRatedMovies />);
+                    }
+                } />
+                <Route path='/search' exact render={
+                    () => {
+                        return (<SearchResults />);
+                    }
+                } />
+                <Route path='/login' exact render={
+                    () => {
+                        return (<LoginForm />);
+                    }
+                } />
+                <Route path='/register' exact render={
+                    () => {
+                        return (<RegisterForm />);
+                    }
+                } />
+                <Route path='/forgotPassword' exact render={
+                    () => {
+                        return (<ForgotPassword />);
+                    }
+                } />
+                <Route path='/movie/:id' exact render={
+                    () => {
+                        return (<MovieDetails />);
+                    }
+                } />
+                <Route path='/tvShow/:id' exact render={
+                    () => {
+                        return (<TvShowDetails />);
+                    }
+                } />
+                <Route path='/tvShow/:tvShowId/season/:seasonNumber' exact render={
+                    () => {
+                        return (<SeasonDetails />);
+                    }
+                } />
+                <Route path='/user/:id' exact render={
+                    () => {
+                        return (<ProfileDetails />);
+                    }
+                } />
+                <Route path='/cast/:id' exact render={
+                    () => {
+                        return (<CastDetails />);
+                    }
+                } />
+                <Route path='/about' exact render={
+                    () => {
+                        return (<AboutUs />);
+                    }
+                } />
+                <Route path='/contactUs' exact render={
+                    () => {
+                        return (<ContactUs />);
+                    }
+                } />
+                <Route path='/terms' exact render={
+                    () => {
+                        return (<TermsAndCondition />);
+                    }
+                } />
+                <Route path='/lindenCritics' exact render={
+                    () => {
+                        return (<LindenCritics />);
+                    }
+                } />
+                <Route path='/verify/:userId/:token' exact render={
+                    () => {
+                        return (<AccountVerification />);
+                    }
+                } />
+                <Route path='/resendVerify' exact render={
+                    () => {
+                        return (<ResendVerification />);
+                    }
+                } />
+                <Route path='/admin' exact render={
+                    () => {
+                        return (<Admin />);
+                    }
+                } />
+                <Route path='/editProfile' exact render={
+                    () => {
+                        return (<EditProfile />);
+                    }
+                } />
+                <Route component={NotFound} />
+            </Switch>
+            <Footer />
+        </Segment>
+    </Router>
+    , document.getElementById('root')
 );
+
 registerServiceWorker();

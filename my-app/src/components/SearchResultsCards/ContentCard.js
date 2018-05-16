@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Rating, Card, Item, Label, Divider } from 'semantic-ui-react';
+import { Rating, Card, Item, Label, Divider,Image } from 'semantic-ui-react';
 import Genres from '../Genres';
 import Cast from '../Cast';
 import { withRouter, Link } from 'react-router-dom';
@@ -27,8 +27,13 @@ class ContentCard extends Component {
                 </Item.Meta>
                 <Item.Description>{content.details}</Item.Description>
                 <Item.Extra>
-                  <Rating defaultRating={content.score} maxRating={5} disabled />
-                  <Label>75 Reviews</Label>
+                <Image circular
+										src={(content.lindenMeter >= 75) ? (require("../../images/Fall.png")) : (require("../../images/Winter.png"))}
+										style={{ width: 25, verticalAlign: 'bottom' }}
+									/>
+                <Label>Lindometer : {content.lindenMeter} %</Label>
+                  <Label>Audience Score : {content.score} %</Label>
+                  
                 </Item.Extra>
                 <Divider />
                 <Genres genres={content.genre} />

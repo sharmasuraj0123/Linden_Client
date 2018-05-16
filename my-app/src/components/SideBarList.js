@@ -84,11 +84,7 @@ class SideBarList extends Component {
 										</Header>
 									</Link>
 								</Menu.Item>
-								<Menu.Item position='right'>
-									<Header size='small'>
-										{'$ ' + movie.revenue}
-									</Header>
-								</Menu.Item>
+								
 							</Menu>
 						)}
 						<Link to='/topBoxOffice'>

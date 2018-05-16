@@ -76,7 +76,7 @@ class MovieDetails extends Component {
                 ReviewField = myReview[0] ? (<MyReview reviews={myReview} />) : (<PostAReview contentType ={movie.contentType} id={this.props.match.params.id} />);
                 lindoIcon = (movie.lindenMeter >= 75) ? (require("../images/Fall.png")) : (require("../images/Winter.png"));
                 adminButton = (cookies.get('obj')) ?
-                    ((cookies.get('obj').email === 'admin@gmail.com') ? (<List><EditMovieModal /><DeleteMovieModal id={this.props.match.params.id}/></List>) : (null)) : (null);
+                    ((cookies.get('obj').email === 'admin@gmail.com') ? (<List><DeleteMovieModal id={this.props.match.params.id}/></List>) : (null)) : (null);
 
                 this.setState({
                     name: movie.name,
@@ -201,16 +201,7 @@ class MovieDetails extends Component {
                                         </Menu>
                                     </List.Item>
                                     <List.Item>
-                                        <Embed
-                                            id={this.state.trailer}
-                                            placeholder={this.state.photos[0]}
-                                            source='youtube'
-                                        />
-                                    </List.Item>
-                                    <List.Item>
-                                        <Grid>
-                                            <Grid.Column width={6}>
-                                            <Button.Group>
+                                    <Button.Group>
                                                     <Button icon labelPosition='left'
                                                         toggle
                                                         active={this.state.wantToSee}
@@ -218,6 +209,7 @@ class MovieDetails extends Component {
                                                         <Icon name='bookmark' />
                                                         Want To See
                                                 </Button>
+                                                
                                                     <Button.Or />
                                                     <Button icon labelPosition='left'
                                                         toggle
@@ -227,6 +219,17 @@ class MovieDetails extends Component {
                                                         Not Interested
                                                     </Button>
                                                 </Button.Group>
+                                                <Divider/>
+                                        <Embed
+                                            id={this.state.trailer}
+                                            placeholder={this.state.photos[0]}
+                                            source='youtube'
+                                        />
+                                    </List.Item>
+                                    <List.Item>
+                                        <Grid>
+                                            <Grid.Column width={6}>
+                                            
 
                                                 <Image bordered
                                                     src={this.state.poster}

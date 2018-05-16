@@ -10,7 +10,7 @@ class ReviewCard extends Component {
                 <List.Item key={i++}>
                     <Card width={75}>
                         <Card.Content>
-                            <Card.Header>{review.postedBy.firstName} {review.postedBy.lastName}
+                            <Card.Header href= {'http://localhost:3000/user/'+review.postedBy.id}>{review.postedBy.firstName} {review.postedBy.lastName}
                                 <Label>{review.reviewType}</Label>
                             </Card.Header>
                             <Card.Meta>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Grid, List, Tab, Divider, Table } from 'semantic-ui-react';
+import { Segment, Grid, List, Tab, Divider,Header } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import SideBarList from "../components/SideBarList";
@@ -36,36 +36,17 @@ class CastDetails extends Component {
         return (
             <div>
                 <Grid>
-                    <Grid.Column width={12} style={{ paddingTop: '2em' }}>
+                    <Grid.Column width={12} centered style={{ paddingTop: '2em' }}>
                         <Segment raised>
-                            <List horizontal >
+                            <List centered>
+                            <List.Item >      
+                                    <Header colSpan='3' style={{ fontSize: '3em' }}>{this.state.name}</Header>            
+                                </List.Item>
                                 <List.Item>
                                     <img alt={''} src={this.state.imgUrl}
                                         style={{ width: 216, height: 319 }} />
                                 </List.Item>
-                                <List.Item >
-                                    <Table basic='very' style={{ height: 300 }}  >
-                                        <Table.Header>
-                                            <Table.Row>
-                                                <Table.HeaderCell colSpan='3' style={{ fontSize: '3em' }}>{this.state.name}</Table.HeaderCell>
-                                            </Table.Row>
-                                        </Table.Header>
-                                        <Table.Body style={{ fontSize: '1.5em' }}>
-                                            <Table.Row>
-                                                <Table.Cell><strong>Birthday:</strong></Table.Cell>
-                                                <Table.Cell> Apr 4, 1965</Table.Cell>
-                                            </Table.Row>
-                                            <Table.Row>
-                                                <Table.Cell>Highest Rated:</Table.Cell>
-                                                <Table.Cell>Approved</Table.Cell>
-                                            </Table.Row>
-                                            <Table.Row>
-                                                <Table.Cell>Lowest Rated:</Table.Cell>
-                                                <Table.Cell>Denied</Table.Cell>
-                                            </Table.Row>
-                                        </Table.Body>
-                                    </Table>
-                                </List.Item>
+                               
                             </List>
                         </Segment>
                         <Divider horizontal inverted style={{ fontSize: '20px' }}> FILMOGRAPHY</Divider>

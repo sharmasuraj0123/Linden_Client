@@ -76,7 +76,7 @@ class MovieDetails extends Component {
                 ReviewField = myReview[0] ? (<MyReview reviews={myReview} />) : (<PostAReview contentType ={movie.contentType} id={this.props.match.params.id} />);
                 lindoIcon = (movie.lindenMeter >= 75) ? (require("../images/Fall.png")) : (require("../images/Winter.png"));
                 adminButton = (cookies.get('obj')) ?
-                    ((cookies.get('obj').email === 'admin@gmail.com') ? (<List><EditMovieModal /><DeleteMovieModal id={this.props.match.params.id}/></List>) : (null)) : (null);
+                    ((cookies.get('obj').email === 'admin@gmail.com') ? (<List><DeleteMovieModal id={this.props.match.params.id}/></List>) : (null)) : (null);
 
                 this.setState({
                     name: movie.name,
@@ -193,13 +193,15 @@ class MovieDetails extends Component {
                                                 />
                                             </Menu.Item>
                                             <Menu.Item width={10}>
-                                            <Header as='h1' inverted style={{ fontSize: '2.5em', color: '#ffffff' }}>
+                                            <Header as='h1' inverted style={{ fontSize: '33px', color: '#ffffff' }}>
                                             {this.state.name}
-                                        </Header>
-                                               
+                                        </Header>    
                                             </Menu.Item>
-                                            <Menu.Item width={4} position='right'>
-                                                <Button.Group>
+                                           
+                                        </Menu>
+                                    </List.Item>
+                                    <List.Item>
+                                    <Button.Group>
                                                     <Button icon labelPosition='left'
                                                         toggle
                                                         active={this.state.wantToSee}
@@ -207,6 +209,7 @@ class MovieDetails extends Component {
                                                         <Icon name='bookmark' />
                                                         Want To See
                                                 </Button>
+                                                
                                                     <Button.Or />
                                                     <Button icon labelPosition='left'
                                                         toggle
@@ -216,10 +219,7 @@ class MovieDetails extends Component {
                                                         Not Interested
                                                     </Button>
                                                 </Button.Group>
-                                            </Menu.Item>
-                                        </Menu>
-                                    </List.Item>
-                                    <List.Item>
+                                                <Divider/>
                                         <Embed
                                             id={this.state.trailer}
                                             placeholder={this.state.photos[0]}
@@ -228,15 +228,19 @@ class MovieDetails extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <Grid>
-                                            <Grid.Column width={5}>
+                                            <Grid.Column width={6}>
+                                            
+
                                                 <Image bordered
                                                     src={this.state.poster}
-                                                    style={{ width: 280, verticalAlign: 'bottom' }}
+                                                    style={{ width: 420, verticalAlign: 'bottom' }}
                                                 />
+                                                 
                                                  {adminButton}
 
                                             </Grid.Column>
                                             <Grid.Column width={10}>
+                                            
                                                 <Divider horizontal inverted style={{ fontSize: '20px', }}> INFO</Divider>
                                                 <List.Item as='p'>{this.state.overview}</List.Item>
                                                 <Table basic='very' inverted >
@@ -271,7 +275,7 @@ class MovieDetails extends Component {
                                 </List.Item>
                                 <List.Item>
                                     <Divider inverted horizontal style={{ fontSize: '20px' }}> Performance</Divider>
-                                    <Grid textAlign={'center'}>
+                                    <Grid textAlign={'center'} verticalAlign='bottom'>
                                         <Grid.Column width={4}>
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                                 LINDOMETER
@@ -280,7 +284,7 @@ class MovieDetails extends Component {
                                                 strokeColor="white"
                                                 prefixCls='0'
                                                 strokeLinecap="butt"
-                                                style={{ width: '150', height: '150' }} />
+                                                style={{ width: '190', height: '190' }} />
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                                 {this.state.lindenMeter} %</Header>
                                         </Grid.Column>
@@ -292,14 +296,12 @@ class MovieDetails extends Component {
                                                 strokeColor="white"
                                                 prefixCls='1'
                                                 strokeLinecap="butt"
-                                                style={{ width: '150', height: '150' }} />
+                                                style={{ width: '190', height: '190' }} />
                                             <Header style={{ fontSize: '20px', color: '#ffffff' }}>
                                             {this.state.score} %</Header>
                                         </Grid.Column>
                                         <Grid.Column width={8}>
-
                                             {ReviewField}
-
                                         </Grid.Column>
                                     </Grid>
                                 </List.Item>
